@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EssayDTO {
+public class PostWrittenDTO {
+
     private Long no;
-    private String genre;
-    private String book_name;
+    private String post_content;
     private String writer;
-    private String essay_content;
+    private Long image_no;
     private LocalDateTime regDate;
 
 }

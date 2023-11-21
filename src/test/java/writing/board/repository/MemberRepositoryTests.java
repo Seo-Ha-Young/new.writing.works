@@ -4,38 +4,42 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-import writing.board.entity.Essay;
+import writing.board.entity.Image;
+import writing.board.entity.Member;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-public class EssayRepositoryTests {
+public class MemberRepositoryTests {
     @Autowired
-    private EssayRepository essayRepository;
+    private MemberRepository memberRepository;
     @Commit
     @Transactional
     @Test
-    public void insertEssay() {
+    public void insertMember() {
         IntStream.rangeClosed(1,10).forEach(i ->{
-            Essay essay = Essay.builder()
-                    .essay_content("content_number"+i)
-                    .book_name("book_name"+i)
-                    .writer("writer"+i)
-                    .genre("genre"+i)
+            Member member = Member.builder()
+                    .address("address"+i)
+                    .name("name"+i)
+                    .id("id"+i)
+                    .password("password"+i)
+                    .dateOfBirth(new Date())
+                    .email("email"+i+"@email.com")
+                    .nickName("nickName"+i)
                     .build();
             System.out.println("=======================================================");
-            essayRepository.save(essay);
+            memberRepository.save(member);
             System.out.println("--------------------------------------------------------");
         });
     }
 
     @Test
-    public void testGetEssayWithAll() {
-        List<Object[]> result = essayRepository.getEssayWithAll(4L);
+    public void testGetMemberWithAll() {
+        List<Object[]> result = memberRepository.getMemberWithAll(4L);
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){
@@ -45,8 +49,8 @@ public class EssayRepositoryTests {
     }
 
     @Test
-    public void testGetEssayWithAll2() {
-        List<Object[]> result = essayRepository.getEssayWithAll();
+    public void testGetMemberWithAll2() {
+        List<Object[]> result = memberRepository.getMemberWithAll();
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){
