@@ -4,38 +4,37 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-import writing.board.entity.Essay;
+import writing.board.entity.Recommendation;
+import writing.board.entity.Review;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-public class EssayRepositoryTests {
+public class ReviewRepositoryTests {
     @Autowired
-    private EssayRepository essayRepository;
+    private ReviewRepository reviewRepository;
     @Commit
     @Transactional
     @Test
-    public void insertEssay() {
+    public void insertReview() {
         IntStream.rangeClosed(1,10).forEach(i ->{
-            Essay essay = Essay.builder()
-                    .essay_content("content_number"+i)
-                    .book_name("book_name"+i)
-                    .writer("writer"+i)
-                    .genre("genre"+i)
+            Review review = Review.builder()
+                    .id("id"+i)
+                    .post_no((long) i)
+                    .review_content("review_content"+i)
                     .build();
             System.out.println("=======================================================");
-            essayRepository.save(essay);
+            reviewRepository.save(review);
             System.out.println("--------------------------------------------------------");
         });
     }
 
     @Test
-    public void testGetEssayWithAll() {
-        List<Object[]> result = essayRepository.getEssayWithAll(4L);
+    public void testGetReviewWithAll() {
+        List<Object[]> result = reviewRepository.getReviewWithAll(4L);
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){
@@ -45,8 +44,8 @@ public class EssayRepositoryTests {
     }
 
     @Test
-    public void testGetEssayWithAll2() {
-        List<Object[]> result = essayRepository.getEssayWithAll();
+    public void testGetReviewWithAll2() {
+        List<Object[]> result = reviewRepository.getReviewWithAll();
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){

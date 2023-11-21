@@ -4,38 +4,37 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-import writing.board.entity.Essay;
+import writing.board.entity.PostWritten;
+import writing.board.entity.Recommendation;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-public class EssayRepositoryTests {
+public class RecommendationRepositoryTests {
     @Autowired
-    private EssayRepository essayRepository;
+    private RecommendationRepository recommendationRepository;
     @Commit
     @Transactional
     @Test
-    public void insertEssay() {
+    public void insertRecommend() {
         IntStream.rangeClosed(1,10).forEach(i ->{
-            Essay essay = Essay.builder()
-                    .essay_content("content_number"+i)
-                    .book_name("book_name"+i)
-                    .writer("writer"+i)
-                    .genre("genre"+i)
+            Recommendation recommendation = Recommendation.builder()
+                    .id("id"+i)
+                    .post_no((long) i)
+                    .push(true)
                     .build();
             System.out.println("=======================================================");
-            essayRepository.save(essay);
+            recommendationRepository.save(recommendation);
             System.out.println("--------------------------------------------------------");
         });
     }
 
     @Test
-    public void testGetEssayWithAll() {
-        List<Object[]> result = essayRepository.getEssayWithAll(4L);
+    public void testGetRecommendationWithAll() {
+        List<Object[]> result = recommendationRepository.getRecommendationWithAll(4L);
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){
@@ -45,8 +44,8 @@ public class EssayRepositoryTests {
     }
 
     @Test
-    public void testGetEssayWithAll2() {
-        List<Object[]> result = essayRepository.getEssayWithAll();
+    public void testGetRecommendationWithAll2() {
+        List<Object[]> result = recommendationRepository.getRecommendationWithAll();
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){

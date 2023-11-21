@@ -17,6 +17,9 @@ import java.time.LocalDateTime;
 @Getter
 public class Essay extends BaseEntity {
 
+    private String genre;
+    private String book_name;
+    private String writer;
     private String essay_content;
 
 }

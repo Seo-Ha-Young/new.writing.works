@@ -5,37 +5,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import writing.board.entity.Essay;
+import writing.board.entity.Image;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-public class EssayRepositoryTests {
+public class ImageRepositoryTests {
     @Autowired
-    private EssayRepository essayRepository;
+    private ImageRepository imageRepository;
     @Commit
     @Transactional
     @Test
-    public void insertEssay() {
+    public void insertImage() {
         IntStream.rangeClosed(1,10).forEach(i ->{
-            Essay essay = Essay.builder()
-                    .essay_content("content_number"+i)
-                    .book_name("book_name"+i)
-                    .writer("writer"+i)
-                    .genre("genre"+i)
+            Image image = Image.builder()
+                    .img_name("image_name"+i)
                     .build();
             System.out.println("=======================================================");
-            essayRepository.save(essay);
+            imageRepository.save(image);
             System.out.println("--------------------------------------------------------");
         });
     }
 
     @Test
-    public void testGetEssayWithAll() {
-        List<Object[]> result = essayRepository.getEssayWithAll(4L);
+    public void testGetImageWithAll() {
+        List<Object[]> result = imageRepository.getImageWithAll(4L);
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){
@@ -45,8 +42,8 @@ public class EssayRepositoryTests {
     }
 
     @Test
-    public void testGetEssayWithAll2() {
-        List<Object[]> result = essayRepository.getEssayWithAll();
+    public void testGetImageWithAll2() {
+        List<Object[]> result = imageRepository.getImageWithAll();
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){
