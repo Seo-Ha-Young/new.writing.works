@@ -4,38 +4,38 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-import writing.board.entity.Essay;
+import writing.board.entity.Member;
+import writing.board.entity.PostWritten;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-public class EssayRepositoryTests {
+public class PostWrittenRepositoryTests {
     @Autowired
-    private EssayRepository essayRepository;
+    private PostWrittenRepository postWrittenRepository;
     @Commit
     @Transactional
     @Test
-    public void insertEssay() {
+    public void insertPost() {
         IntStream.rangeClosed(1,10).forEach(i ->{
-            Essay essay = Essay.builder()
-                    .essay_content("content_number"+i)
-                    .book_name("book_name"+i)
+            PostWritten postWritten = PostWritten.builder()
+                    .post_content("post_content"+i)
+                    .image_no((long) i)
                     .writer("writer"+i)
-                    .genre("genre"+i)
                     .build();
             System.out.println("=======================================================");
-            essayRepository.save(essay);
+            postWrittenRepository.save(postWritten);
             System.out.println("--------------------------------------------------------");
         });
     }
 
     @Test
-    public void testGetEssayWithAll() {
-        List<Object[]> result = essayRepository.getEssayWithAll(4L);
+    public void testGetPostWithAll() {
+        List<Object[]> result = postWrittenRepository.getPostWithAll(4L);
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){
@@ -45,8 +45,8 @@ public class EssayRepositoryTests {
     }
 
     @Test
-    public void testGetEssayWithAll2() {
-        List<Object[]> result = essayRepository.getEssayWithAll();
+    public void testGetPostWithAll2() {
+        List<Object[]> result = postWrittenRepository.getPostWithAll();
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
         for(Object[] arr : result){

@@ -9,9 +9,9 @@ import java.util.Objects;
 
 public interface EssayRepository extends JpaRepository<Essay, Long> {
 
-    @Query("select no, regDate, essay_content from Essay where no = :no")
+    @Query("select no, regDate, essay_content, genre, book_name, writer from Essay where no = :no")
     List<Object[]> getEssayWithAll(Long no);
 
-    @Query("select no, regDate, essay_content from Essay")
+    @Query("select no, regDate, essay_content, genre, book_name, writer from Essay")
     List<Object[]> getEssayWithAll();
 }
