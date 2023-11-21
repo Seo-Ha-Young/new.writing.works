@@ -1,0 +1,29 @@
+java.lang.IllegalStateException: Failed to load ApplicationContext
+-mariaDB에 자료가 들어가는지 테스트 중 발생
+세부 원인:
+Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource 
+확인한 원인:
+build.gradle에 dependencies에 | implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0' | 추가 안함
+즉, springboot에 mariaDB를 사용하겠다고 안했던 것...;;
+
+java.lang.IllegalStateException: Failed to load ApplicationContext
+-mariaDB에 파일 리스트가 불러와지는지 테스트 중 발생
+세부원인:
+1차
+Caused by: org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from writing.board.entity.Essay where no = :no]
+->repository query문에 * 사용 X
+2차
+Caused by: org.hibernate.QueryException: No data type for node: org.hibernate.hql.internal.ast.tree.IdentNode 
+ \-[IDENT] IdentNode: 'regdate' {originalText=regdate}
+-> 이유는 모르겠지만 BaseEntity에서     @Column(name = "regdate", updatable = false) 로 했더니 오류 발생,
+    @Column(name = "regDate", updatable = false) 로 수정후 정상작동
+3차
+Failed to convert from type [java.lang.Object[]] to type [@org.springframework.data.jpa.repository.Query java.util.Objects[]] for value [{...}]; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.Long] to type [@org.springframework.data.jpa.repository.Query java.util.Objects]
+No converter found capable of converting from type [java.math.BigInteger] to type [@org.springframework.data.jpa.repository.Query java.util.Objects]
+-> object를 사용해야하는데 objects를 잘못 사용, List<Objects[]> -> List<Object[]> 변경
+	(objects클래스는 null-safe한 메서드들을 제공하여, 객체 비교, null 처리 등에 사용되는 것)
+
+regDate = null로 mariaDB에 들어가는 문제
+->BaseEntity에 @EntityListeners(value = { AuditingEntityListener.class}) 선언을 하고서는
+   BoardApplication에 @EnableJpaAuditing 선언을 안해서 @EntityListeners가 활성화가 안됨..ㅎㅎ
+
