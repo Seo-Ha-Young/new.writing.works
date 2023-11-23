@@ -1,3 +1,4 @@
+23.11.21
 java.lang.IllegalStateException: Failed to load ApplicationContext
 -mariaDB에 자료가 들어가는지 테스트 중 발생
 세부 원인:
@@ -27,5 +28,14 @@ regDate = null로 mariaDB에 들어가는 문제
 ->BaseEntity에 @EntityListeners(value = { AuditingEntityListener.class}) 선언을 하고서는
    BoardApplication에 @EnableJpaAuditing 선언을 안해서 @EntityListeners가 활성화가 안됨..ㅎㅎ
 
+23.11.22
 외부DB연결을 위해 타 컴퓨터에서 tests 실행중
 Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
+->port를 데이터베이스가 있는 pc에서는 10000port를 외부포트로 두고 포드포워딩을 했는데 계속 내부포트인 3306으로 시도해서 port가 안맞아서 오류가 났던것,
+   application.properties에서 spring.datasource.url=jdbc:mariadb://110.13.8.17:10000/writer_board 로 변경 후 정상 연결 확인!
+
+23.11.23
+데이터를 DB에 삽입하는 중
+    DB에 Essay data를 넣었는데 content만 넘어감
+-> 맙소사.. EssayService에 있는 dtoToEntity를 통해서 데이터를 없로드하는데, 거기에 content만 가져와서 넣도록함,, 현재 수정완료, 정상업로드되는것 확인,
+    추가로, 데이터가 많아서, heidiSQL에서 도구-csv파일 가져오기를 이용해서 업로드
