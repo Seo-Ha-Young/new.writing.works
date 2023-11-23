@@ -27,3 +27,5 @@ regDate = null로 mariaDB에 들어가는 문제
 ->BaseEntity에 @EntityListeners(value = { AuditingEntityListener.class}) 선언을 하고서는
    BoardApplication에 @EnableJpaAuditing 선언을 안해서 @EntityListeners가 활성화가 안됨..ㅎㅎ
 
+외부DB연결을 위해 타 컴퓨터에서 tests 실행중
+Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
