@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지</title>
+    <link rel="stylesheet" href="../css/css.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
+        $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+      });
+    </script>
+    <link rel="javascript" href="../js/test.js" />
+  </head>
+
+  <body>
+  <div id="header"></div>
+  <div class="board_wrap" id="board_wrap" style="display: block">
+    <div class="board_title">
+      <strong>도움말</strong><br />
+
+      <div class="q">
+        원하는 모드와 목표 시간을 입력후 시작하면 설정한 시간동안 제시된 글
+        또는 이미지를 보고 글을 작성 할 수 있습니다.
+      </div>
+    </div>
+  </div>
+  <div class="write_warp" id="write_warp">
+    <div class="timer">
+      <dl>
+        <dt>
+          글쓰기 목표시간<br />
+          (초단위)
+        </dt>
+        <dd>
+          <input type="number" id="timer" min="1" />
+        </dd>
+      </dl>
+    </div>
+    <div class="modeSelect">
+      <dl>
+        <dt>모드를 선택해 주세요</dt>
+        <dd>
+          <select id="mod" class="mod" onchange="getSelectedValue()">
+            <option value="1">이미지</option>
+            <option value="2">에세이/소설 한줄</option>
+          </select>
+        </dd>
+      </dl>
+    </div>
+    <br />
+    <div class="btn" onclick="buttonClick()">
+      <button>시작하기</button>
+    </div>
+  </div>
+
+  <div class="wirte_mode1" id="wirte_mode1" style="display: none">
+    <img src="img/Team02_logo%20.png" />
+    <div id="timers"></div>
+    <textarea id="write_word"></textarea><br />
+    <button id="upload" style="display: none">등록</button>
+  </div>
+  <div class="wirte_mode2" id="wirte_mode2" style="display: none">
+    <div id="timers2"></div>
+    <textarea id="write_word2"></textarea><br />
+    <button id="upload2" style="display: none">등록</button>
+  </div>
+    <script type="text/javascript" src="../js/test.js"></script>
+  </body>
+</html>
