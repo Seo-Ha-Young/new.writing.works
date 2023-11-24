@@ -25,11 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/sample/admin").hasRole("ADMIN");//antMatcher: ?: 한 글자, *: 임의의 파일 , **: 임의의 경로
         http.formLogin();
         http.csrf().disable();
-        http.logout();
+        //http.logout();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user1").password("$2a$10$QbL3Lb.6syub5bLsoVS8w.y6T3jLNQ1kwcpQQOpM3j0TCsy2KlyP2").roles("USER");
-    }
 }
