@@ -30,10 +30,6 @@ public class Member extends BaseEntity {
     @Builder.Default
     private Set<MemberRole> roleSet = new HashSet<>(); // 권한
 
-    @LastModifiedDate
-    @Column(name ="modDate")
-    private LocalDateTime modDate; // 최근 날짜
-
     public void addMemberRole(MemberRole memberRole){
         roleSet.add(memberRole);
     }

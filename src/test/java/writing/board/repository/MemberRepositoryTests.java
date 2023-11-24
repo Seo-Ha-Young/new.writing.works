@@ -38,8 +38,6 @@ public class MemberRepositoryTests {
                     .fromSocial(false)
                     .build();
             member.addMemberRole(MemberRole.USER);
-            if(i == 8)
-                member.addMemberRole(MemberRole.MANAGER);
             if(i == 9)
                 member.addMemberRole(MemberRole.ADMIN);
             memberRepository.save(member);
@@ -48,10 +46,13 @@ public class MemberRepositoryTests {
 
     @Test
     public void testRead(){
-        Optional<Member> result = memberRepository.findByEmail("user1@email.com", false);
-        if(result.isPresent()) {
-            Member member = result.get();
-            System.out.println(member.getEmail());
-        }
+        Optional<Member> result = memberRepository.findByEmail("user9@email.com", false);
+
+        Member member = result.orElseThrow();
+
+        System.out.println(member);
+        System.out.println(member.getRoleSet());
+
+        member.getRoleSet().forEach(memberRole -> System.out.println(memberRole.name()));
     }
 }
