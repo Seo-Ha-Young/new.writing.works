@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+li {
+  list-style: none;
+}
+header {
+  border-bottom: 1px solid white;
+}
+header > div {
+  width: 90%;
+  min-width: 0;
+  max-width: 1200px;
+  height: 80px;
+  margin: 0 auto;
+}
+header .logo {
+  float: left;
+}
+header .logo img {
+  height: 60px;
+  margin-top: 10px;
+}
+
+header .glb {
+  float: right;
+}
+
+header .glb li {
+  display: inline-block;
+  margin-left: 30px;
+  margin-top: 25px;
+}
+
+header .glb li:first-child {
+  margin-left: 0;
+}
