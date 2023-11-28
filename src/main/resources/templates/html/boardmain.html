@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/css.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
+        $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+        $("#sidebar").load("sidebar.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- <div id="sidebar"></div> -->
+    <div id="header"></div>
+    <h1 class="boardTop">게시판</h1>
+    <table>
+      <thead>
+        <tr>
+          <th id="category">분류</th>
+          <th id="title">제목</th>
+          <th id="writer">작성자</th>
+          <th id="viewCount">조회수</th>
+          <th id="wirtedate">작성일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="#">
+          <td th:each="#">이미지</td>
+          <td th:each="#" id="board_title">내가쓴글제목</td>
+          <td th:each="#">작성자</td>
+          <td th:each="#">12</td>
+          <td th:each="#">2023-11-28</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
