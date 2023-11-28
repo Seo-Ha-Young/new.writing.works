@@ -1,50 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="content">
+<th:block th:fragment="content">
 
-        <form th:action="@{/wcs/image/view}">
-            <div class="form-group">
-                <input type="text" class="custom-file-input files" name="no">
-                <tr th:each="dto : ${result.dtoList}">
-                      <th>
-                        <a>
-                            [[${dto.no}]]
-                        </a>
-                      </th>
-                    <td>
-                        <img th:src="|/wcs/image/display?fileName=${dto.img_name}|">
-                    </td>
-                </tr>
-            </div>
-            <div class="box">
+    <form th:action="@{/wcs/image/view}">
+        <div class="form-group">
+            <input type="text" class="custom-file-input files" name="no">
+            <tr th:each="dto : ${result.dtoList}">
+                <th>
+                    <a>
+                        [[${dto.no}]]
+                    </a>
+                </th>
+                <td>
+                    <img th:src="|/wcs/image/display?fileName=${dto.img_name}|">
+                </td>
+            </tr>
+        </div>
+        <div class="box">
 
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <style>
-            .uploadResult {
-                width: 100%;
-                background-color: gray;
-                margin-top: 10px;
-            }
-            .uploadResult ul{
-                display: flex;
-                flex-flow: row;
-                justify-content: center;
-                align-items: center;
-                vertical-align: top;
-                overflow: auto;
-            }
-            .uploadResult ul li {
-                list-style: none;
-                padding: 10px;
-                margin-left: 2em;
-            }
-            .uploadResult ul li img {
-                width: 100px;
-            }
-        </style>
-
-    </th:block>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </th:block>
 </html>

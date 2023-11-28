@@ -6,10 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -18,16 +18,19 @@ import java.util.Date;
 @Getter
 public class Member extends BaseEntity {
 
-    private String name;
-    private Date dateOfBirth;
-    private String address;
-    private String id;
-    private String password;
-    private String nickName;
-    private String email;
+    @Id
+    private Long no; // 계정번호
+    private String email; // 이메일
+    private String password; // 비밀번호
+    private String nickname; // 닉네임
+    private String name; // 이름
+    private boolean fromSocial; // 소셜로그인 여부
 
-    @LastModifiedDate
-    @Column(name ="modDate")
-    private LocalDateTime modDate;
+    @ElementCollection(fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<MemberRole> roleSet = new HashSet<>(); // 권한
 
+    public void addMemberRole(MemberRole memberRole){
+        roleSet.add(memberRole);
+    }
 }

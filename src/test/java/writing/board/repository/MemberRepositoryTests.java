@@ -3,59 +3,56 @@ package writing.board.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
-import writing.board.entity.Image;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import writing.board.entity.Member;
+import writing.board.entity.MemberRole;
 
-import javax.transaction.Transactional;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
+
 
 @SpringBootTest
 public class MemberRepositoryTests {
     @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
     private MemberRepository memberRepository;
-    @Commit
-    @Transactional
     @Test
-    public void insertMember() {
-        IntStream.rangeClosed(1,10).forEach(i ->{
+    public void testEncode(){
+        String password = "1111";
+        String enPw = passwordEncoder.encode(password);
+        System.out.println("enPw: "+enPw);
+        boolean matchResult = passwordEncoder.matches(password, enPw);
+        System.out.println("matchResult: "+matchResult);
+    }
+
+
+    @Test
+    public void insertDummies(){
+        IntStream.rangeClosed(1,10).forEach(i->{
             Member member = Member.builder()
-                    .address("address"+i)
-                    .name("name"+i)
-                    .id("id"+i)
-                    .password("password"+i)
-                    .dateOfBirth(new Date())
-                    .email("email"+i+"@email.com")
-                    .nickName("nickName"+i)
+                    .email("user"+i+"@email.com")
+                    .password(passwordEncoder.encode("1111"))
+                    .nickname("닉네임"+i)
+                    .name("사용자"+i)
+                    .fromSocial(false)
                     .build();
-            System.out.println("=======================================================");
+            member.addMemberRole(MemberRole.USER);
+            if(i == 9)
+                member.addMemberRole(MemberRole.ADMIN);
             memberRepository.save(member);
-            System.out.println("--------------------------------------------------------");
         });
     }
 
     @Test
-    public void testGetMemberWithAll() {
-        List<Object[]> result = memberRepository.getMemberWithAll(4L);
-        System.out.println("-----------------------------------------------------");
-        System.out.println(result);
-        for(Object[] arr : result){
-            System.out.println(Arrays.toString(arr));
-            System.out.println("-----------------------------------------------------");
-        }
-    }
+    public void testRead(){
+        Optional<Member> result = memberRepository.findByEmail("user9@email.com", false);
 
-    @Test
-    public void testGetMemberWithAll2() {
-        List<Object[]> result = memberRepository.getMemberWithAll();
-        System.out.println("-----------------------------------------------------");
-        System.out.println(result);
-        for(Object[] arr : result){
-            System.out.println(Arrays.toString(arr));
-            System.out.println("-----------------------------------------------------");
-        }
+        Member member = result.orElseThrow();
+
+        System.out.println(member);
+        System.out.println(member.getRoleSet());
+
+        member.getRoleSet().forEach(memberRole -> System.out.println(memberRole.name()));
     }
 }
