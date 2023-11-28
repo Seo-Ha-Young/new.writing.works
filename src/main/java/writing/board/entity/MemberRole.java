@@ -1,5 +1,5 @@
 package writing.board.entity;
 
-public enum UserRole {
+public enum MemberRole {
     USER, ADMIN;
 }
