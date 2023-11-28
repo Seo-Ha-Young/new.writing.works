@@ -25,7 +25,7 @@ public class EssayController {
         log.info("essay "+essayDTO);
         Long no = essayService.register(essayDTO);
         redirectAttributes.addFlashAttribute("msg", no+"번 에세이가 등록됨");
-        return "redirect:/upload/essay";
+        return "redirect:/wcs/upload/essay";
     }
 
 
