@@ -10,11 +10,12 @@ const $inputAddr = document.getElementById("main_address");
 const $inputSubAddr = document.getElementById("sub_address");
 const int_area = document.querySelector(".int-area");
 
-let elSuccessMessage = document.querySelector(".success-message"); // div.success-message.hide
+const elSuccessMessage = document.querySelector(".success-message"); // div.success-message.hide
 // 3. 실패 메시지 정보 가져오기 (글자수 제한 4~12글자)
-let elFailureMessage = document.querySelector(".failure-message"); // div.failure-message.hide
-let elFailureMessageName = document.querySelector(".failure-message-name"); // div.failure-message-name.hide
-let elFailureMessageNickName = document.querySelector(
+const elFailureMessage = document.querySelector(".failure-message"); // div.failure-message.hide
+const elFailureMessageName = document.querySelector(".failure-message-name"); // div.failure-message-name.hide
+const elFailureMessageEmail = document.querySelector(".failure-message-Email"); // div.failure-message-name.hide
+const elFailureMessageNickName = document.querySelector(
   ".failure-message-nickname"
 ); // div.failure-message-nickname.hide
 // 4. 실패 메시지2 정보 가져오기 (영어 또는 숫자)
@@ -80,20 +81,7 @@ function isMatch(password1, password2) {
   return password1 === password2;
 }
 function regChk() {
-  var email = $inputEmail.value;
-  var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-  if (!$inputEmail.value) {
-    $inputEmail.style.border = "2px solid red";
-    $inputEmail.focus();
-  } else if (exptext.test(email) == false) {
-    //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
-    elMismatchMessage.classList.remove("hide");
-    $inputEmail.focus();
-
-    return false;
-  } else {
-    $inputEmail.style.border = "2px solid green";
-  }
+  onkeyEmail();
   if (!$inputId.value) {
     $inputId.style.border = "2px solid red";
     elFailureMessage.classList.remove("hide");
@@ -109,19 +97,9 @@ function regChk() {
     elMismatchMessage.classList.remove("hide");
     $inputPw2.focus();
   }
-  if (!$inputName.value) {
-    $inputName.style.border = "2px solid red";
-    elFailureMessage.classList.remove("hide");
-    $inputName.focus();
-  } else {
-    $inputName.style.border = "2px solid green";
-  }
-  if (!$inputNickName.value) {
-    $inputNickName.style.border = "2px solid red";
-    $inputNickName.focus();
-  } else {
-    $inputNickName.style.border = "2px solid green";
-  }
+  onkeyName();
+
+  onkeyNickName();
   if (!$inputAddr.value) {
     $inputAddr.style.border = "2px solid red";
     $inputAddr.focus();
@@ -208,7 +186,7 @@ $inputPw2.onkeyup = function () {
   }
 };
 
-$inputName.onkeyup = function () {
+const onkeyName = ($inputName.onkeyup = function () {
   if (!$inputName.value) {
     elFailureMessageName.classList.remove("hide"); // 실패 메시지가 보여야 함
     $inputName.style.border = "2px solid red";
@@ -219,8 +197,8 @@ $inputName.onkeyup = function () {
     elFailureMessageName.classList.add("hide"); // 실패 메시지가 가려져야 함
     $inputName.style.border = "2px solid green";
   }
-};
-$inputNickName.onkeyup = function () {
+});
+const onkeyNickName = ($inputNickName.onkeyup = function () {
   if (!$inputNickName.value) {
     elFailureMessageNickName.classList.remove("hide"); // 실패 메시지가 보여야 함
     $inputNickName.style.border = "2px solid red";
@@ -231,19 +209,28 @@ $inputNickName.onkeyup = function () {
     elFailureMessageNickName.classList.add("hide"); // 실패 메시지가 가려져야 함
     $inputNickName.style.border = "2px solid green";
   }
-};
-$inputNickName.onkeyup = function () {
-  if (!$inputNickName.value) {
-    elFailureMessageNickName.classList.remove("hide"); // 실패 메시지가 보여야 함
-    $inputNickName.style.border = "2px solid red";
-  } else if ($inputNickName.value.length === 0) {
-    $inputPw2.style.border = "";
-    elFailureMessageNickName.classList.add("hide"); // 실패 메시지가 가려져야 함
+});
+
+const onkeyEmail = ($inputEmail.onkeyup = function () {
+  var email = $inputEmail.value;
+  var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+  if (!$inputEmail.value) {
+    $inputEmail.style.border = "2px solid red";
+    elFailureMessageEmail.classList.remove("hide");
+    $inputEmail.focus();
+  } else if (exptext.test(email) == false) {
+    //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
+    elFailureMessageEmail.classList.remove("hide");
+    $inputEmail.style.border = "2px solid red";
+    $inputEmail.focus();
+  } else if ($inputEmail.value.length === 0) {
+    $inputEmail.style.border = "";
+    elFailureMessageEmail.classList.add("hide");
   } else {
-    elFailureMessageNickName.classList.add("hide"); // 실패 메시지가 가려져야 함
-    $inputNickName.style.border = "2px solid green";
+    elFailureMessageEmail.classList.add("hide");
+    $inputEmail.style.border = "2px solid green";
   }
-};
+});
 
 // if (!email_id) {
 //   alert("이메일을 입력해주세요");

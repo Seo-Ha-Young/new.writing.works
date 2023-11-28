@@ -502,12 +502,19 @@ input[type="date"]:valid::before {
 .hide {
   display: none;
 }
-
+.failure-message-nickname,
+.failure-message-name,
 .int-area .strongPassword-message,
 .int-area .mismatch-message,
 .int-area .failure-message,
 .int-area .failure-message2 {
-  margin-left: 100px;
+  margin-left: 24%;
+  color: red;
+  font-weight: bold;
+}
+.int-area .success-message {
+  margin-left: 25%;
+  color: green;
 }
 /* .int-area #email {
   width: 15%;

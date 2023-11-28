@@ -53,6 +53,64 @@ const sentences = [
   "내가 꿈꾸는 것을 이룰 수 있다는 것을, 이제는 알게 되었다.",
   "나는 삶에서 언제나, 새로운 도전을 찾고자 노력했다.",
 ];
+const emoticons = [
+  "img01.jpg",
+  "img02.jpg",
+  "img03.jpg",
+  "img04.jpg",
+  "img05.jpg",
+  "img06.jpg",
+  "img07.jpg",
+  "img08.jpg",
+  "img09.jpg",
+  "img10.jpg",
+  "img11.jpg",
+  "img12.jpg",
+  "img13.jpg",
+  "img14.jpg",
+  "img15.jpg",
+  "img16.jpg",
+  "img17.jpg",
+  "img18.jpg",
+  "img19.jpg",
+  "img20.jpg",
+  "img21.jpg",
+  "img22.jpg",
+  "img23.jpg",
+  "img24.jpg",
+  "img25.jpg",
+  "img26.jpg",
+  "img27.jpg",
+  "img28.jpg",
+  "img29.jpg",
+  "img30.jpg",
+  "img31.jpg",
+  "img32.jpg",
+  "img33.jpg",
+  "img34.jpg",
+  "img35.jpg",
+  "img36.jpg",
+  "img37.jpg",
+  "img38.jpg",
+  "img39.jpg",
+  "img40.jpg",
+  "img41.jpg",
+  "img42.jpg",
+  "img43.jpg",
+  "img44.jpg",
+  "img45.jpg",
+  "img46.jpg",
+];
+
+const todayEmoticon = emoticons[Math.floor(Math.random() * emoticons.length)];
+
+const etImg = document.createElement("img"); //랜덤으로 돌려서 나온 이미지
+etImg.src = `../img/${todayEmoticon}`;
+etImg.width = 300;
+
+const homePage = document.getElementById("img");
+homePage.appendChild(etImg);
+
 function getRandomSentence() {
   const index = Math.floor(Math.random() * sentences.length);
   return sentences[index];
