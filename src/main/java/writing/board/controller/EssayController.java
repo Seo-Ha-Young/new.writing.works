@@ -11,7 +11,7 @@ import writing.board.dto.EssayDTO;
 import writing.board.service.EssayService;
 
 @Controller
-@RequestMapping("/upload")
+@RequestMapping("/wcs/upload")
 @Log4j2
 @RequiredArgsConstructor
 public class EssayController {
