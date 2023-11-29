@@ -11,7 +11,7 @@ import writing.board.entity.PostWritten;
 
 import java.util.List;
 
-public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>, QuerydslPredicateExecutor<Image> {
+public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>, QuerydslPredicateExecutor<PostWritten> {
 
     @Query("select no, regDate, post_content, writer, image_no from PostWritten where no = :no")
     List<Object[]> getPostWithAll(Long no);

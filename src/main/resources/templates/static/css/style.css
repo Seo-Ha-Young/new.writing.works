@@ -1,0 +1,531 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+input:focus {
+  outline: none;
+}
+:root {
+  --linecolor: #b1bdc5;
+  --textcolor: ;
+}
+html {
+  font-size: 15px;
+  font-family: "Hahmlet", serif;
+  background-image: linear-gradient(
+    to right bottom,
+    #b3c1d6,
+    #c8cfe0,
+    #dcdfea,
+    #eeeef4,
+    #ffffff
+  );
+  height: 120%;
+}
+body {
+  text-align: center;
+}
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: indianred;
+}
+
+.wirte_mode1,
+.board_wrap {
+  width: 1000px;
+  margin: 50px auto;
+  text-align: left;
+}
+
+.board_title {
+  margin-bottom: 30px;
+  color: black;
+  width: 500px;
+  position: relative;
+}
+.board_title strong {
+  font-size: 3rem;
+}
+.board_title .q {
+  display: none;
+  color: black;
+  width: 500px;
+}
+.board_wrap .board_title:hover .q {
+  /* display: none; */
+  position: absolute;
+  background-color: #dadde2;
+  border: 1px solid var(--linecolor);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: block;
+  font-size: 1.4rem;
+  color: black;
+}
+.board_title p {
+  margin-top: 5px;
+  font-size: 1.5rem;
+}
+
+/* 버튼 */
+.bt_wrap {
+  margin-top: 30px;
+  font-size: 0;
+  text-align: center;
+}
+
+.bt_wrap a {
+  display: inline-block;
+  min-width: 80px;
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #b1bdc5;
+  background: #dadde2;
+  border-radius: 2px;
+  font-size: 1.4rem;
+  color: black;
+}
+
+.bt_wrap a:first-child {
+  margin-left: 0;
+}
+
+.bt_wrap a:hover {
+  background: #b1bdc5;
+  color: black;
+}
+
+.board_page {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0;
+}
+
+.board_page a {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border: 1px solid #dadde2;
+  color: black;
+  border-left: 0;
+  line-height: 100%;
+  font-weight: 100;
+}
+
+.board_page a.bt {
+  font-size: 1.2rem;
+  padding: 10px;
+  letter-spacing: -1px;
+}
+.board_page a.num {
+  font-size: 1.4rem;
+  padding: 9px;
+}
+
+.board_page a.num:hover {
+  border-color: #b1bdc5;
+  background-color: #dadde2;
+  color: black;
+}
+.board_page a:first-child {
+  border-left: 1px solid #ddd;
+}
+/* 게시물 */
+
+.board_list {
+  width: 100%;
+  border-top: 2px solid #889fa5;
+}
+.board_list > div {
+  border-bottom: 1px solid #889fa5;
+}
+.board_list > div.top {
+  border-color: #889fa5;
+}
+.board_list > div:last-child {
+  border-bottom: 1px solid #889fa5;
+}
+.board_list > div > div {
+  display: inline-block;
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 15px 0;
+}
+.board_list .top .title {
+  text-align: center;
+  color: black;
+}
+.board_list > div.top > div {
+  font-weight: 600;
+}
+.board_list .num {
+  width: 10%;
+}
+.board_list .title {
+  width: 40%;
+  text-align: left;
+  color: black;
+}
+.board_list .type {
+  width: 10%;
+}
+.board_list .writer {
+  width: 10%;
+}
+.board_list .date {
+  width: 10%;
+}
+.board_list .num {
+  width: 10%;
+}
+.board_list a {
+  color: black;
+}
+
+/* 뷰페이지 */
+
+.board_view {
+  width: 100%;
+  border-top: 2px solid #889fa5;
+  font-size: 1.4rem;
+}
+
+.board_view .title {
+  padding: 20px 15px;
+  border-bottom: 1px dashed #889fa5;
+  font-size: 2rem;
+}
+.board_view .info {
+  padding: 15px;
+  border-bottom: 1px solid #889fa5;
+  /* font-size: 0; */
+}
+
+.board_view .info dl {
+  display: inline-block;
+  padding: 0 20px;
+  position: relative;
+}
+
+.board_view .info dl:first-child {
+  padding-left: 0;
+}
+
+.board_view .info dl dd,
+.board_view .info dl dt {
+  display: inline-block;
+  font-size: 1.4rem;
+}
+.board_view .info dl:first-child:before {
+  display: none;
+}
+.board_view .info dl::before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 1px;
+  left: 0;
+  width: 1px;
+  height: 13px;
+  background: #889fa5;
+}
+
+.board_view .info dt dd {
+  margin-left: 10px;
+  color: #777;
+}
+
+.board_view .cont {
+  padding: 15px;
+  border-bottom: 1px solid #889fa5;
+  line-height: 160%;
+  font-size: 1.4rem;
+}
+
+/* 작성페이지 */
+.write_warp {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: arial;
+  font-size: 24px;
+  outline: solid 1px white;
+  /* 자식 요소(.child)를 중앙 정렬하기 */
+  display: inline-block;
+  justify-content: center;
+  background: #ccdaee;
+}
+.write_warp .modeSelect,
+.write_warp .timer {
+  width: 50%;
+  height: 30%;
+  display: inline-block;
+}
+.write_warp .timer {
+  margin-top: 40px;
+}
+
+.write_warp .modeSelect dl,
+.write_warp .timer dl {
+  display: inline-block;
+  padding: 0 20px;
+  position: relative;
+}
+.write_warp .modeSelect dl dt,
+.write_warp .timer dl dt {
+  font-size: 30px;
+}
+.write_warp .modeSelect dl dd,
+.write_warp .timer dl dd {
+  height: 50px;
+  margin-top: 10px;
+}
+.write_warp .timer input {
+  width: 100%;
+  height: 50%;
+  border-radius: 3px;
+  border-color: #999;
+  font-size: 20px;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.write_warp .modeSelect select {
+  width: 60%;
+  border-radius: 3px;
+}
+.write_warp .btn {
+  display: inline-block;
+  width: 150px;
+}
+.wirte_mode1 #upload,
+.write_warp .btn button {
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+  background: #dadde2;
+  transition: background-color 0.5s ease;
+  border-color: #889fa5;
+}
+.wirte_mode1 #upload:hover,
+.write_warp .btn button:hover {
+  background-color: #b1bdc5;
+  border-color: azure;
+}
+
+/* 이미지 모드 */
+.wirte_mode1 {
+  width: 80%;
+  height: 90%;
+  text-align: center;
+  margin-top: 10px;
+}
+.wirte_mode2 #timers2,
+.wirte_mode1 #timers {
+  font-size: 30px;
+  margin-bottom: 40px;
+  width: 60%;
+  margin: 0 auto;
+  background-color: #97afd3;
+  color: #474554;
+}
+
+.wirte_mode1 #je {
+  font-size: 30px;
+}
+
+.wirte_mode1 img {
+  width: 400px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.wirte_mode1 #write_word {
+  width: 700px;
+  height: 300px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 4px;
+  border: 1px solid #dadde2;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-size: 1.4rem;
+  color: black;
+}
+.wirte_mode2 #upload2,
+.wirte_mode1 #upload {
+  width: 90px;
+  height: 50px;
+}
+
+/* 에세이모드 */
+
+.wirte_mode2 {
+  width: 80%;
+  text-align: center;
+  margin-left: 200px;
+}
+.wirte_mode2 #write_word2 {
+  width: 700px;
+  height: 300px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 4px;
+  border: 1px solid #dadde2;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-size: 1.4rem;
+  color: black;
+}
+.wirte_mode2 #timers2 {
+  margin-top: 20px;
+}
+
+/* 로그인 */
+
+#loginDiv {
+  width: 400px;
+  height: 100%;
+  place-items: center;
+  display: grid;
+  margin: 0 auto;
+  margin-top: 190px;
+  padding: 30px;
+  border: 1px ridge var(--linecolor);
+}
+#loginDiv input[type="password"],
+#loginDiv input[type="text"] {
+  border-radius: 4px;
+  border: 1px solid var(--linecolor);
+  width: 200px;
+  height: 30px;
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+#loginDiv input[type="radio"] {
+}
+#loginDiv #sign-in,
+#loginDiv #login {
+  width: 200px;
+  height: 30px;
+  border: 2px solid var(--linecolor);
+  background: #dadde2;
+  margin-top: 20px;
+}
+
+#loginDiv #login:hover {
+  background-color: #b1bdc5;
+  border-color: azure;
+}
+#loginDiv #sign-in:hover {
+  background-color: #d3e3ec;
+  border-color: azure;
+}
+
+/* 회원가입 */
+.register_div {
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+  box-sizing: border-box;
+  width: 40%;
+
+  /* From https://css.glass */
+  background: rgba(197, 223, 255, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.3px);
+  -webkit-backdrop-filter: blur(1.3px);
+  border: 1px solid rgba(197, 223, 255, 0.09);
+}
+
+.register_form {
+  position: relative;
+  z-index: 2;
+}
+
+.register .register_div .int-area {
+  margin-top: 10px;
+}
+.int-area {
+  position: relative;
+  z-index: 2;
+}
+.int-area input {
+  width: 50%;
+  height: 20px;
+  padding: 10px 10px 10px;
+  border: 1px solid var(--linecolor);
+  border-radius: 2px;
+  margin: 5px;
+}
+
+.int-area > div {
+  text-align: left;
+  margin-left: 35%;
+}
+
+input[type="date"]::before {
+  content: attr(data-placeholder);
+  width: 100%;
+  color: #7c7c7c;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+  display: none;
+}
+
+.int-area button {
+  width: 20%;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--linecolor);
+}
+
+.int-area button:hover {
+  color: var(--textcolor);
+  background: #b6b6b6;
+}
+.hide {
+  display: none;
+}
+
+.int-area .failure-message-Email,
+.int-area .failure-message-nickname,
+.int-area .failure-message-name,
+.int-area .strongPassword-message,
+.int-area .mismatch-message,
+.int-area .failure-message,
+.int-area .failure-message2 {
+  margin-left: 24%;
+  color: red;
+  font-weight: bold;
+}
+.int-area .success-message {
+  margin-left: 25%;
+  color: green;
+}
+/* .int-area #email {
+  width: 15%;
+}
+.int-area #emailSel {
+  width: 30%;
+  height: 40px;
+  padding: 10px;
+} */

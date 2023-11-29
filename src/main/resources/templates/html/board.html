@@ -42,23 +42,27 @@
             <div class="count">조회수</div>
           </div>
         </div>
-      </form>
+
         <div class="board_page">
-          <a href="#" class="bt first"><<</a>
-          <a href="#" class="bt prev"><</a>
-          <a href="#" class="num">1</a>
-          <a href="#" class="num">2</a>
-          <a href="#" class="num">3</a>
-          <a href="#" class="num">4</a>
-          <a href="#" class="num">5</a>
-          <a href="#" class="bt next">></a>
-          <a href="#" class="bt last">>></a>
+          <b th:if="${result.prev}">
+            <a class="bt first"  th:href="@{/html/board(page= ${1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}" > << </a>
+            <a class="bt prev"  th:href="@{/html/board(page= ${result.start -1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}" tabindex="-1"> < </a>
+          </b>
+            <b  th:each="page: ${result.pageList}" >
+              <a class="num" th:href="@{/html/board(page= ${page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}">[[${page}]]</a>
+            </b>
+          <b th:if="${result.next}">
+            <a class="bt next"  th:href="@{/html/board(page= ${result.end +1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}"> > </a>
+            <a class="bt last"  th:href="@{/html/board(page= ${result.totalPage}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}" > >> </a>
+          </b>
         </div>
+
         <div class="bt_wrap">
           <a href="write.html" class="'on">등록</a>
           <!-- <a href="#">수정</a> -->
         </div>
       </div>
+      </form>
     </div>
   </body>
 </html>
