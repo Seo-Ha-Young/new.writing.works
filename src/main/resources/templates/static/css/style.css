@@ -171,9 +171,12 @@ a {
   width: 10%;
 }
 .board_list .title {
-  width: 60%;
+  width: 40%;
   text-align: left;
   color: black;
+}
+.board_list .type {
+  width: 10%;
 }
 .board_list .writer {
   width: 10%;
@@ -502,8 +505,10 @@ input[type="date"]:valid::before {
 .hide {
   display: none;
 }
-.failure-message-nickname,
-.failure-message-name,
+
+.int-area .failure-message-Email,
+.int-area .failure-message-nickname,
+.int-area .failure-message-name,
 .int-area .strongPassword-message,
 .int-area .mismatch-message,
 .int-area .failure-message,

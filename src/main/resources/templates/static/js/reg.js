@@ -18,6 +18,10 @@ const elFailureMessageEmail = document.querySelector(".failure-message-Email"); 
 const elFailureMessageNickName = document.querySelector(
   ".failure-message-nickname"
 ); // div.failure-message-nickname.hide
+const elFailureMessageAddr = document.querySelector(".failure-message-Addr");
+const elFailureMessageSubAddr = document.querySelector(
+  ".failure-message-SubAddr"
+);
 // 4. 실패 메시지2 정보 가져오기 (영어 또는 숫자)
 let elFailureMessageTwo = document.querySelector(".failure-message2"); // div.failure-message2.hide
 // 3. 실패 메시지 정보 가져오기 (비밀번호 불일치)
@@ -98,16 +102,8 @@ function regChk() {
     $inputPw2.focus();
   }
   onkeyName();
-
   onkeyNickName();
-  if (!$inputAddr.value) {
-    $inputAddr.style.border = "2px solid red";
-    $inputAddr.focus();
-  }
-  if (!$inputSubAddr.value) {
-    $inputSubAddr.style.border = "2px solid red";
-    $inputSubAddr.focus();
-  }
+  onkeyAddr();
 }
 //여기부터 해라
 document
@@ -229,6 +225,26 @@ const onkeyEmail = ($inputEmail.onkeyup = function () {
   } else {
     elFailureMessageEmail.classList.add("hide");
     $inputEmail.style.border = "2px solid green";
+  }
+});
+
+const onkeyAddr = ($inputSubAddr.onkeyup = function () {
+  if (!$inputAddr && !$inputSubAddr) {
+    elFailureMessageAddr.classList.remove("hide");
+    elFailureMessageSubAddr.classList.remove("hide");
+    $inputAddr.style.border = "2px solid red";
+    $inputSubAddr.style.border = "2px solid red";
+  } else if (!$inputAddr) {
+    elFailureMessageAddr.classList.remove("hide");
+    $inputAddr.style.border = "2px solid red";
+  } else if (!$inputSubAddr) {
+    elFailureMessageSubAddr.classList.remove("hide");
+    $inputSubAddr.style.border = "2px solid red";
+  } else {
+    elFailureMessageAddr.classList.add("hide");
+    elFailureMessageSubAddr.classList.add("hide");
+    $inputAddr.style.border = "2px solid green";
+    $inputSubAddr.style.border = "2px solid green";
   }
 });
 
