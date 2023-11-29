@@ -104,8 +104,19 @@ function regChk() {
   onkeyName();
   onkeyNickName();
   onkeyAddr();
+
+  let address = $inputAddr.value + $inputSubAddr.value;
+  console.log(address);
+  console.log($inputId.value);
+  console.log($inputPw.value);
+  console.log($inputPw2.value);
+  console.log($inputEmail.value);
+  console.log($inputName.value);
+  console.log($inputNickName.value);
+  console.log($inputDate.value);
+  console.log($inputAddr.value);
 }
-//여기부터 해라
+
 document
   .getElementById("reg_form")
   .addEventListener("submit", function (event) {
@@ -229,15 +240,10 @@ const onkeyEmail = ($inputEmail.onkeyup = function () {
 });
 
 const onkeyAddr = ($inputSubAddr.onkeyup = function () {
-  if (!$inputAddr && !$inputSubAddr) {
-    elFailureMessageAddr.classList.remove("hide");
-    elFailureMessageSubAddr.classList.remove("hide");
-    $inputAddr.style.border = "2px solid red";
-    $inputSubAddr.style.border = "2px solid red";
-  } else if (!$inputAddr) {
+  if (!$inputAddr.value) {
     elFailureMessageAddr.classList.remove("hide");
     $inputAddr.style.border = "2px solid red";
-  } else if (!$inputSubAddr) {
+  } else if (!$inputSubAddr.value) {
     elFailureMessageSubAddr.classList.remove("hide");
     $inputSubAddr.style.border = "2px solid red";
   } else {

@@ -76,9 +76,9 @@ a {
 
 /* 버튼 */
 .bt_wrap {
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 0;
-  text-align: center;
+  text-align: right;
 }
 
 .bt_wrap a {
@@ -89,8 +89,9 @@ a {
   border: 1px solid #b1bdc5;
   background: #dadde2;
   border-radius: 2px;
-  font-size: 1.4rem;
+  font-size: 16px;
   color: black;
+  text-align: center;
 }
 
 .bt_wrap a:first-child {
@@ -249,6 +250,34 @@ a {
   border-bottom: 1px solid #889fa5;
   line-height: 160%;
   font-size: 1.4rem;
+}
+
+/* 댓글 */
+.reply_content {
+  margin-top: 40px;
+}
+.form-group {
+  display: flex;
+}
+.form-group #reply {
+  margin-left: 40px;
+  width: 800px;
+  height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: solid 2px #1e90ff;
+  border-radius: 5px;
+  font-size: 16px;
+
+  resize: none;
+}
+.btn_reply {
+  width: 100px;
+  height: 50px;
+  margin-left: 20px;
+  margin-top: 40px;
+  border-radius: 4px;
+  border: 1px solid var(--linecolor);
 }
 
 /* 작성페이지 */
@@ -444,7 +473,6 @@ a {
   padding: 50px;
   box-sizing: border-box;
   width: 40%;
-
   /* From https://css.glass */
   background: rgba(197, 223, 255, 0.35);
   border-radius: 16px;
@@ -505,7 +533,8 @@ input[type="date"]:valid::before {
 .hide {
   display: none;
 }
-
+.int-area .failure-message-SubAddr,
+.int-area .failure-message-Addr,
 .int-area .failure-message-Email,
 .int-area .failure-message-nickname,
 .int-area .failure-message-name,

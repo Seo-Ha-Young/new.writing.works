@@ -58,6 +58,7 @@
         </div>
         <div class="int-area" id="dateBox">
           <input
+            id="date_of_birth"
             type="date"
             name="date_of_birth"
             min="1940-01-01"
@@ -92,6 +93,7 @@
           <input
             type="text"
             id="sub_address"
+            name="subaddress"
             placeholder="상세 주소를 입력해 주세요"
           />
           <div class="failure-message-Addr hide">주소를 입력해 주세요</div>
@@ -118,7 +120,6 @@
             } else {
               addr = data.jibunAddress;
             }
-
             $("#main_address").val(addr);
           },
         }).open();

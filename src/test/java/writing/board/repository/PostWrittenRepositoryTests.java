@@ -21,11 +21,10 @@ public class PostWrittenRepositoryTests {
     @Transactional
     @Test
     public void insertPost() {
-        IntStream.rangeClosed(1,10).forEach(i ->{
+        IntStream.rangeClosed(11,20).forEach(i ->{
             PostWritten postWritten = PostWritten.builder()
-                    .post_content("post_content"+i)
-                    .image_no((long) i)
-                    .writer("writer"+i)
+                    .post_content("작성내용"+i)
+                    .writer("닉네임"+i)
                     .build();
             System.out.println("=======================================================");
             postWrittenRepository.save(postWritten);

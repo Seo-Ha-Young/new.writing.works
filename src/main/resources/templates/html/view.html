@@ -26,15 +26,15 @@
           <div class="info">
             <dl>
               <dt>번호</dt>
-              <dd>1</dd>
+              <dd>[[${dto.no}]]</dd>
             </dl>
             <dl>
               <dt>글쓴이</dt>
-              <dd>ㄹㄹㄹ</dd>
+              <dd>[[${dto.writer}]]</dd>
             </dl>
             <dl>
               <dt>작성일</dt>
-              <dd>2023.11.21</dd>
+              <dd>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</dd>
             </dl>
             <dl>
               <dt>조회수</dt>
@@ -46,10 +46,18 @@
             들어가는 구역<br />글 내용이 들어가는 구역<br />
           </div>
         </div>
-
         <div class="bt_wrap">
           <a href="board.html" class="'on">목록</a>
           <a href="#">수정</a>
+        </div>
+        <div class="reply_content">
+          <form onsubmit="addComment(event)">
+            <div class="form-group">
+              <textarea name="reply" id="reply"></textarea>
+              <button type="submit" class="btn_reply">작성</button>
+            </div>
+          </form>
+          <div class="comments mt-3"></div>
         </div>
       </div>
     </div>
