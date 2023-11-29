@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 @Getter
 public class PostWritten extends BaseEntity {
 
+    private String post_name;
     private String post_content;
     private String writer;
     private Long image_no;

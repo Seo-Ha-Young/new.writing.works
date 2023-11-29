@@ -17,6 +17,7 @@ public interface BoardService {
     default PostWrittenDTO entitiesToDTO(PostWritten postWritten){
         PostWrittenDTO postWrittenDTO = PostWrittenDTO.builder()
                 .no(postWritten.getNo())
+                .name(postWritten.getPost_name())
                 .post_content(postWritten.getPost_content())
                 .regDate(postWritten.getRegDate())
                 .writer(postWritten.getWriter())

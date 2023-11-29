@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class PostWrittenDTO {
 
     private Long no;
+    private String name;
     private String post_content;
     private String writer;
     private Long image_no;
