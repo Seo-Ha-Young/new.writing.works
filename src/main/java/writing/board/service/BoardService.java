@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public interface BoardService {
     PageResultDTO<PostWrittenDTO, PostWritten> getList(PageRequestDTO requestDTO);
 
+    PostWrittenDTO read(Long no);
     default PostWrittenDTO entitiesToDTO(PostWritten postWritten){
         PostWrittenDTO postWrittenDTO = PostWrittenDTO.builder()
                 .no(postWritten.getNo())

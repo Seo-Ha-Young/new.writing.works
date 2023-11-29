@@ -16,6 +16,7 @@ import writing.board.entity.QPostWritten;
 import writing.board.repository.PostWrittenRepository;
 
 
+import java.util.Optional;
 import java.util.function.Function;
 
 @Service
@@ -33,6 +34,13 @@ public class BoardServiceImpl implements BoardService{
         return new PageResultDTO<>(result, fn);
 
     }
+
+    @Override
+    public PostWrittenDTO read(Long no) {
+        Optional<PostWritten> result = postRepository.findById(no);
+        return result.isPresent() ? entitiesToDTO(result.get()) : null;
+    }
+
 
     private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
         String type = requestDTO.getType();
