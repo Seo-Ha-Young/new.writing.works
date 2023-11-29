@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>게시물</title>
-    <link rel="stylesheet" href="../static/css/css.css" />
+    <link rel="stylesheet" href="/css/css.css" />
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
@@ -26,11 +26,11 @@
           <div class="info">
             <dl>
               <dt>번호</dt>
-              <dd>1</dd>
+              <dd>[[${dto.no}]]</dd>
             </dl>
             <dl>
               <dt>글쓴이</dt>
-              <dd>ㄹㄹㄹ</dd>
+              <dd>[[$</dd>
             </dl>
             <dl>
               <dt>작성일</dt>
@@ -48,7 +48,9 @@
         </div>
 
         <div class="bt_wrap">
-          <a href="board.html" class="'on">목록</a>
+          <a th:href="@{/html/board(page= ${requestDTO.page}, type= ${requestDTO.type}, keyword= ${requestDTO.keyword})}" class="'on">
+            목록
+          </a>
           <a href="#">수정</a>
         </div>
       </div>
