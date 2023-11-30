@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import writing.board.dto.ImageDTO;
 import writing.board.dto.PageRequestDTO;
+import writing.board.entity.Image;
 import writing.board.service.ImageService;
 import writing.server.config.FileStorageProperties;
 
@@ -37,6 +39,32 @@ public class ImageController {
     @GetMapping("/display")
     public ResponseEntity<byte[]> getFiles(String fileName, String size) {
         //  ResponseEntity<byte[]> result = null;
+        try {
+            String srcFileName = URLDecoder.decode(fileName, "UTF-8");
+            log.info("fileName : "+srcFileName);
+            File file = new File(uploadDir.getUploadDir()+File.separator+srcFileName);
+            if(size != null && size.equals("1")){
+                file = new File(file.getParent(), file.getName().substring(2));
+            }
+            log.info("file : "+file);
+            HttpHeaders header = new HttpHeaders();
+            header.add("Content-Type", Files.probeContentType(file.toPath()));
+            //  result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+            return new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        //return result;
+    }
+
+    @GetMapping("/display2")
+    public ResponseEntity<byte[]> getFiles(long fileNo, String size) {
+        //  ResponseEntity<byte[]> result = null;
+        ImageDTO imageDTO = imageService.getImage(fileNo);
+        log.info("문제:"+imageDTO);
+        String fileName = imageDTO.getImg_name();
+
         try {
             String srcFileName = URLDecoder.decode(fileName, "UTF-8");
             log.info("fileName : "+srcFileName);

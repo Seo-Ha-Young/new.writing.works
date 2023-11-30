@@ -19,6 +19,7 @@ import writing.board.repository.ImageRepository;
 
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -44,6 +45,14 @@ public class ImageServiceImpl implements ImageService{
         Page<Image> result = imageRepository.findAll(booleanBuilder, pageable);
         Function<Image, ImageDTO> fn = (entity -> entityToDto(entity));
         return new PageResultDTO<>(result, fn);
+    }
+
+    @Override
+    public ImageDTO getImage(long no) {
+        List<Object[]> result1 = imageRepository.getImageWithAll(no);
+        Long _no =(Long) result1.get(0)[0];
+        String img_name = (String) result1.get(0)[2];
+        return ImageDTO.builder().no(_no).img_name(img_name).build();
     }
 
     private BooleanBuilder getSearch(PageRequestDTO requestDTO) {

@@ -15,6 +15,7 @@ public interface ImageService {
     Long register(ImageDTO imageDTO);
     PageResultDTO<ImageDTO, Image> getList(PageRequestDTO requestDTO);
 
+    ImageDTO getImage(long no);
     default Map<String, Object> dtoToEntity(ImageDTO imageDTO) {
         Map<String, Object> entityMap = new HashMap<>();
         Image image = Image.builder()

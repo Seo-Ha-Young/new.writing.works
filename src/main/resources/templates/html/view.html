@@ -15,8 +15,8 @@
     </script>
   </head>
   <body>
-  <b th:if="dto.image_no == null" > <!--에세이 파트 -->
-    <div id="header"></div>
+  <b th:if="${dto.image_no} == null" > <!--에세이 파트 -->
+    <div id="header "></div>
     <div class="board_wrap">
       <div class="board_title">
         <strong>이미지</strong>
@@ -44,6 +44,7 @@
             </dl>
           </div>
           <div class="cont">
+            에세이 문장
             [[${dto.post_content}]]
           </div>
         </div>
@@ -59,7 +60,7 @@
   </b>
 
   <!-- 이미지 파트 -->
-  <b th:if="dto.image_no != null" >
+  <b th:if="${dto.image_no} != null" >
     <div id="header"></div>
     <div class="board_wrap">
       <div class="board_title">
@@ -88,6 +89,7 @@
             </dl>
           </div>
           <div class="cont">
+            <img th:src="|/wcs/image/display2?fileNo=${dto.image_no}|"><br>
             [[${dto.post_content}]]
           </div>
         </div>
