@@ -8,8 +8,13 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
+        $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
         $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+
+        $('.count').on("change"), function() {
+          var no = $(result.dtoList.no);
+          console.log(no);
+          }
       });
     </script>
   </head>
@@ -21,7 +26,6 @@
         <strong>이미지</strong>
         <p>이미지</p>
       </div>
-      <form th:action="@{/html/view}">
       <div class="board_list_wrap">
         <div class="board_list">
           <div class="top">
@@ -30,7 +34,7 @@
             <div class="title">제목</div>
             <div class="writer">글쓴이</div>
             <div class="date">작성일</div>
-            <div class="count">조회수</div>
+            <div class="count">추천수</div>
           </div>
           <div th:each="dto : ${result.dtoList}">
             <div class="num">[[${dto.no}]]</div>
@@ -42,8 +46,9 @@
               </a>
             </div>
             <div class="writer">[[${dto.writer}]]</div>
-            <div class="date" >[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</div>
-            <div class="count">조회수</div>
+            <div class="date" >[[${#temporals.format(dto.regDate, 'yy/MM/dd')}]]</div>
+            <div class="count"> 추천수
+            </div>
           </div>
         </div>
 
@@ -66,7 +71,7 @@
           <!-- <a href="#">수정</a> -->
         </div>
       </div>
-      </form>
     </div>
   </body>
+
 </html>
