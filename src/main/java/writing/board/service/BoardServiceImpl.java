@@ -38,6 +38,7 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public PostWrittenDTO read(Long no) {
         Optional<PostWritten> result = postRepository.findById(no);
+        postRepository.getPostWritten_no(no);
         return result.isPresent() ? entitiesToDTO(result.get()) : null;
     }
 
