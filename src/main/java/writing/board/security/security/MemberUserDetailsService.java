@@ -14,19 +14,21 @@ import writing.board.entity.Member;
 import writing.board.repository.MemberRepository;
 import writing.board.security.dto.AuthMemberDTO;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @Log4j2
 @RequiredArgsConstructor
+@Transactional
 public class MemberUserDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("loadUserByUsername: " + username);
-        Optional<Member> result = memberRepository.findByEmail(username, false);
+        Optional<Member> result = memberRepository.findByEmail(username);
 
         if(result.isEmpty()) {
             throw new UsernameNotFoundException("username is Empty........");
@@ -40,7 +42,8 @@ public class MemberUserDetailsService implements UserDetailsService {
                 member.getPassword(),
                 member.getNickname(),
                 member.getName(),
-                member.isFromSocial(),
+                member.getBirth(),
+                member.getAddress(),
                 member.getRoleSet().stream().map(memberRole -> new SimpleGrantedAuthority("ROLE_" + memberRole.name())).collect(Collectors.toList())
         );
         log.info("AuthMemberDTO: " + authMemberDTO);

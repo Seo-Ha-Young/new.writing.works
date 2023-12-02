@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import writing.board.entity.Member;
 import writing.board.entity.MemberRole;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -35,10 +36,11 @@ public class MemberRepositoryTests {
                     .password(passwordEncoder.encode("1111"))
                     .nickname("닉네임"+i)
                     .name("사용자"+i)
-                    .fromSocial(false)
+                    .birth(LocalDate.now())
+                    .address("주소"+i)
                     .build();
             member.addMemberRole(MemberRole.USER);
-            if(i == 9)
+            if(i == 1)
                 member.addMemberRole(MemberRole.ADMIN);
             memberRepository.save(member);
         });
@@ -46,7 +48,7 @@ public class MemberRepositoryTests {
 
     @Test
     public void testRead(){
-        Optional<Member> result = memberRepository.findByEmail("user9@email.com", false);
+        Optional<Member> result = memberRepository.findByEmail("user1@email.com");
 
         Member member = result.orElseThrow();
 
@@ -55,4 +57,6 @@ public class MemberRepositoryTests {
 
         member.getRoleSet().forEach(memberRole -> System.out.println(memberRole.name()));
     }
+
+
 }
