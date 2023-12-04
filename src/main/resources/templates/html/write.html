@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Team02작성</title>
-    <link rel="stylesheet" href="../static/css/css.css" />
+    <link rel="stylesheet" href="../css/css.css" />
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +18,7 @@
         $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
       });
     </script>
-    <link rel="javascript" href="js/test.js" />
+    <link rel="javascript" href="../static/js/test.js" />
   </head>
 
   <body>
@@ -62,19 +62,19 @@
       </div>
     </div>
 
-    <div class="wirte_mode1" id="wirte_mode1" style="display: none">
+    <div class="write_mode1" id="write_mode1" style="display: none">
       <div id="img"></div>
       <div id="timers"></div>
       <textarea id="write_word"></textarea><br />
-      <button id="upload" style="display: none">등록</button>
+      <button id="upload" style="display: none" onclick="savePost()">등록</button>
     </div>
-    <div class="wirte_mode2" id="wirte_mode2" style="display: none">
+    <div class="write_mode2" id="write_mode2" style="display: none">
       <form>
         <div id="timers2"></div>
         <textarea id="write_word2"></textarea><br />
-        <button id="upload2" style="display: none">등록</button>
+        <button id="upload2" style="display: none" onclick="savePost()">등록</button>
       </form>
     </div>
-    <script type="text/javascript" src="../static/js/test.js"></script>
+    <script type="application/javascript" src="../static/js/test.js"></script>
   </body>
 </html>

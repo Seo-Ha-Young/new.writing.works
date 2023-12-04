@@ -1,14 +1,9 @@
 package writing.board.service;
 
-import writing.board.dto.ImageDTO;
 import writing.board.dto.PageRequestDTO;
 import writing.board.dto.PageResultDTO;
 import writing.board.dto.PostWrittenDTO;
-import writing.board.entity.Image;
 import writing.board.entity.PostWritten;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public interface BoardService {
     PageResultDTO<PostWrittenDTO, PostWritten> getList(PageRequestDTO requestDTO);
@@ -27,3 +22,4 @@ public interface BoardService {
         return postWrittenDTO;
     }
 }
+

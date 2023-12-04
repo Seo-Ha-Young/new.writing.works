@@ -166,11 +166,11 @@ function buttonClick() {
   console.log($timer.value);
 
   if (selectedValue === "1") {
-    selectMode = wirte_mod1;
+    selectMode = write_mod1;
     selectWord = $write_word;
     uploadBtn = $upload;
   } else if (selectedValue === "2") {
-    selectMode = wirte_mod2;
+    selectMode = write_mod2;
     selectWord = $write_word2;
     uploadBtn = $upload2;
   }
@@ -190,4 +190,35 @@ function buttonClick() {
     fadeOutElement("#write_warp");
     $write_word2.value = getRandomSentence();
   }
+}
+
+function savePost() {
+  // 데이터를 가져오거나 생성합니다 (예: 제목, 내용 등)
+  const post_content = document.getElementById('write_word').value;
+  alert(title);
+
+  // 서버로 전송할 데이터 객체를 생성합니다
+  // Ajax를 이용해 서버에 데이터를 전송합니다
+  fetch('/savePost', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(post_content)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // 서버로부터 받은 응답에 대한 처리를 수행합니다
+    console.log('글이 성공적으로 저장되었습니다:', data);
+    // 저장 후 필요한 작업을 수행합니다 (예: 화면 갱신, 메시지 표시 등)
+  })
+  .catch(error => {
+    // 오류 발생 시 처리합니다
+    console.error('글을 저장하는 중 오류가 발생했습니다:', error);
+  });
 }
