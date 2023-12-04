@@ -6,9 +6,9 @@ import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
 
@@ -22,16 +22,18 @@ public class AuthMemberDTO extends User {
     private String password; // 비밀번호
     private String nickname; // 닉네임
     private String name; // 이름
-    private boolean fromSocial; // 소셜로그인 여부
+    private LocalDate birth;
+    private String address;
 
-    public AuthMemberDTO(Long no, String username, String password, String nickname, String name, boolean fromSocial, Collection<? extends GrantedAuthority> authorities) {
+    public AuthMemberDTO(Long no, String username, String password, String nickname, String name, LocalDate birth, String address, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
         this.no = no;
         this.email = username;
         this.password = password;
         this.nickname = nickname;
         this.name = name;
-        this.fromSocial = fromSocial;
+        this.birth = birth;
+        this.address = address;
     }
 
 }
