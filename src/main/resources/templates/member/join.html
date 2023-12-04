@@ -5,11 +5,26 @@
     <title>join</title>
 </head>
 <body>
-<form method="post" th:action="@{/user/save}">
-    아이디 : <input type="text" name="id">
-    패스워드 : <input type="password" name="password">
-    이름 : <input type="text" name="name">
-    <button>가입하기</button>
+<form method="post" action="/member/join">
+    <div>
+        이메일 : <input type="text" id="email" name="email">
+    </div>
+    <div>
+        패스워드 : <input type="password" id="password" name="password">
+    </div>
+    <div>
+        닉네임 : <input type="text" id="nickname" name="nickname">
+    </div>
+    <div>
+        이름 : <input type="text" id="name" name="name">
+    </div>
+    <div>
+        생년월일 : <input type="date" id="birth" name="birth">
+    </div>
+    <div>
+        주소 : <input type="text" id="address" name="address">
+    </div>
+    <button type="submit">가입하기</button>
 </form>
 </body>
 </html>

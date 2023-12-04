@@ -28,7 +28,7 @@ public class Member extends BaseEntity {
     private String password; // 비밀번호
     private String nickname; // 닉네임
     private String name; // 이름
-    private LocalDate birth; // 생년월일
+    private String birth; // 생년월일
     private String address; // 주소
 
 
