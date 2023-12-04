@@ -3,8 +3,8 @@ let selectMode = "";
 let selectWord = "";
 let uploadBtn = "";
 const $write_warp = document.getElementById("write_warp");
-const $wirte_mode1 = document.getElementById("wirte_mode1");
-const $wirte_mode2 = document.getElementById("wirte_mode2");
+const $write_mode1 = document.getElementById("write_mode1");
+const $write_mode2 = document.getElementById("write_mode2");
 const $upload = document.getElementById("upload");
 const $upload2 = document.getElementById("upload2");
 const $mod = document.querySelector("#mod");
@@ -12,8 +12,8 @@ const $timer = document.querySelector("#timer");
 const $write_word = document.getElementById("write_word");
 const $write_word2 = document.getElementById("write_word2");
 let $boarder_wrap = document.getElementById("#board_wrap");
-let wirte_mod1 = document.querySelector("#timers");
-let wirte_mod2 = document.querySelector("#timers2");
+let write_mod1 = document.querySelector("#timers");
+let write_mod2 = document.querySelector("#timers2");
 
 let timer = $timer.value; //기준시간 작성
 
@@ -181,12 +181,12 @@ function buttonClick() {
   } else if (selectedValue === "1") {
     startTimer($timer.value);
     fadeOutElement("#board_wrap");
-    fadeInElement("#wirte_mode1");
+    fadeInElement("#write_mode1");
     fadeOutElement("#write_warp");
   } else if (selectedValue === "2") {
     startTimer($timer.value);
     fadeOutElement("#board_wrap");
-    fadeInElement("#wirte_mode2");
+    fadeInElement("#write_mode2");
     fadeOutElement("#write_warp");
     $write_word2.value = getRandomSentence();
   }

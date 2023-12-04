@@ -36,9 +36,8 @@
             <div class="type" th:if="${dto.image_no == null}">에세이</div>
             <div class="type" th:if="${dto.image_no != null}">이미지</div>
             <div class="title">
-              <a th:href="@{/html/view(no=${dto.no}, page=${result.page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}">
-                [[${dto.post_name}]]
-              </a>
+              <a th:if="${dto.image_no == null}" th:href="@{/html/view_essay(no=${dto.no}, page=${result.page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}">[[${dto.post_name}]]</a>
+              <a  th:if="${dto.image_no != null}" th:href="@{/html/view_image(no=${dto.no}, page=${result.page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}">[[${dto.post_name}]]</a>
             </div>
             <div class="writer">[[${dto.writer}]]</div>
             <div class="date" >[[${#temporals.format(dto.regDate, 'yy/MM/dd')}]]</div>
