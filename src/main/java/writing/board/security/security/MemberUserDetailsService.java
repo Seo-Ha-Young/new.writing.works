@@ -31,6 +31,20 @@ public class MemberUserDetailsService implements UserDetailsService {
         return memberRepository.save(memberDTO.toEntity()).getNo();
     }
 
+    public MemberDTO findById(Long no) {
+        Optional<Member> result = memberRepository.findById(no);
+        if(result.isPresent()) {
+            return MemberDTO.toDTO(result.get());
+        }
+        else {
+            return null;
+        }
+    }
+
+    public void deleteMember(Long no) {
+        memberRepository.deleteById(no);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("loadUserByUsername: " + username);

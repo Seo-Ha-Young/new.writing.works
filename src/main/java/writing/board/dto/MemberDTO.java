@@ -7,7 +7,9 @@ import writing.board.entity.MemberRole;
 
 
 @Data
+
 public class MemberDTO {
+    private Long no;
     private String email; // 이메일
     private String password; // 비밀번호
     private String nickname; // 닉네임
@@ -27,5 +29,16 @@ public class MemberDTO {
                 .build();
         member.addMemberRole(MemberRole.USER);
         return member;
+    }
+
+    public static MemberDTO toDTO(Member member) {
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setNo(memberDTO.getNo());
+        memberDTO.setEmail(member.getEmail());
+        memberDTO.setPassword(member.getPassword());
+        memberDTO.setNickname(member.getNickname());
+        memberDTO.setBirth(member.getBirth());
+        memberDTO.setAddress(member.getAddress());
+        return memberDTO;
     }
 }

@@ -36,8 +36,28 @@ public class MemberRepositoryTests {
                 .birth("2000-11-11")
                 .address("주소")
                 .build();
+        member.addMemberRole(MemberRole.USER);
         member.addMemberRole(MemberRole.ADMIN);
         memberRepository.save(member);
+    }
+
+    @Test
+    public void insertDummy() {
+        Member member = Member.builder()
+                .email("user1@email.com")
+                .password(passwordEncoder.encode("user1"))
+                .nickname("user1")
+                .name("유저")
+                .birth("2000-11-11")
+                .address("주소")
+                .build();
+        member.addMemberRole(MemberRole.USER);
+        memberRepository.save(member);
+    }
+
+    @Test
+    public void deleteDummy() {
+        memberRepository.deleteById(2L);
     }
 
     @Test
