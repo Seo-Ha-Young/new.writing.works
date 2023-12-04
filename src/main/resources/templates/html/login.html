@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
+    <link rel="stylesheet" href="/css/css.css" />
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,11 +14,11 @@
     />
     <script type="text/javascript">
       $(document).ready(function () {
-        $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
+        $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
         $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
       });
     </script>
-    <link rel="javascript" href="../../static/js/test.js" />
+    <link rel="javascript" href="/js/test.js" />
   </head>
   <body>
     <div id="header"></div>
@@ -43,6 +43,6 @@
         Sign In
       </button>
     </div>
-    <script src="../../static/js/login.js"></script>
+    <script src="/js/login.js"></script>
   </body>
 </html>
