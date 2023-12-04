@@ -5,16 +5,16 @@
     <form th:action="@{/wcs/image/view}">
         <div class="form-group">
             <input type="text" class="custom-file-input files" name="no">
-            <tr th:each="dto : ${result.dtoList}">
-                <th>
-                    <a>
+            <table th:each="dto : ${result.dtoList}">
+                <tr>
+                    <th>
                         [[${dto.no}]]
-                    </a>
-                </th>
+                    </th>
+                </tr>
                 <td>
                     <img th:src="|/wcs/image/display?fileName=${dto.img_name}|">
                 </td>
-            </tr>
+            </table>
         </div>
         <div class="box">
 

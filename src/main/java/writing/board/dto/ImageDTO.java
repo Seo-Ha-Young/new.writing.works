@@ -17,4 +17,6 @@ public class ImageDTO {
     private String img_name;
     private LocalDateTime regDate;
 
+
+
 }

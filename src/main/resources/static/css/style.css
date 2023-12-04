@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+input:focus {
+  outline: none;
+}
 :root {
   --linecolor: #b1bdc5;
   --textcolor: ;
@@ -73,9 +76,9 @@ a {
 
 /* 버튼 */
 .bt_wrap {
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 0;
-  text-align: center;
+  text-align: right;
 }
 
 .bt_wrap a {
@@ -86,8 +89,9 @@ a {
   border: 1px solid #b1bdc5;
   background: #dadde2;
   border-radius: 2px;
-  font-size: 1.4rem;
+  font-size: 16px;
   color: black;
+  text-align: center;
 }
 
 .bt_wrap a:first-child {
@@ -168,9 +172,12 @@ a {
   width: 10%;
 }
 .board_list .title {
-  width: 60%;
+  width: 40%;
   text-align: left;
   color: black;
+}
+.board_list .type {
+  width: 10%;
 }
 .board_list .writer {
   width: 10%;
@@ -243,6 +250,34 @@ a {
   border-bottom: 1px solid #889fa5;
   line-height: 160%;
   font-size: 1.4rem;
+}
+
+/* 댓글 */
+.reply_content {
+  margin-top: 40px;
+}
+.form-group {
+  display: flex;
+}
+.form-group #reply {
+  margin-left: 40px;
+  width: 800px;
+  height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: solid 2px #1e90ff;
+  border-radius: 5px;
+  font-size: 16px;
+
+  resize: none;
+}
+.btn_reply {
+  width: 100px;
+  height: 50px;
+  margin-left: 20px;
+  margin-top: 40px;
+  border-radius: 4px;
+  border: 1px solid var(--linecolor);
 }
 
 /* 작성페이지 */
@@ -388,3 +423,138 @@ a {
 .wirte_mode2 #timers2 {
   margin-top: 20px;
 }
+
+/* 로그인 */
+
+#loginDiv {
+  width: 400px;
+  height: 100%;
+  place-items: center;
+  display: grid;
+  margin: 0 auto;
+  margin-top: 190px;
+  padding: 30px;
+  border: 1px ridge var(--linecolor);
+}
+#loginDiv input[type="password"],
+#loginDiv input[type="text"] {
+  border-radius: 4px;
+  border: 1px solid var(--linecolor);
+  width: 200px;
+  height: 30px;
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+#loginDiv input[type="radio"] {
+}
+#loginDiv #sign-in,
+#loginDiv #login {
+  width: 200px;
+  height: 30px;
+  border: 2px solid var(--linecolor);
+  background: #dadde2;
+  margin-top: 20px;
+}
+
+#loginDiv #login:hover {
+  background-color: #b1bdc5;
+  border-color: azure;
+}
+#loginDiv #sign-in:hover {
+  background-color: #d3e3ec;
+  border-color: azure;
+}
+
+/* 회원가입 */
+.register_div {
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+  box-sizing: border-box;
+  width: 40%;
+  /* From https://css.glass */
+  background: rgba(197, 223, 255, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.3px);
+  -webkit-backdrop-filter: blur(1.3px);
+  border: 1px solid rgba(197, 223, 255, 0.09);
+}
+
+.register_form {
+  position: relative;
+  z-index: 2;
+}
+
+.register .register_div .int-area {
+  margin-top: 10px;
+}
+.int-area {
+  position: relative;
+  z-index: 2;
+}
+.int-area input {
+  width: 50%;
+  height: 20px;
+  padding: 10px 10px 10px;
+  border: 1px solid var(--linecolor);
+  border-radius: 2px;
+  margin: 5px;
+}
+
+.int-area > div {
+  text-align: left;
+  margin-left: 35%;
+}
+
+input[type="date"]::before {
+  content: attr(data-placeholder);
+  width: 100%;
+  color: #7c7c7c;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+  display: none;
+}
+
+.int-area button {
+  width: 20%;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--linecolor);
+}
+
+.int-area button:hover {
+  color: var(--textcolor);
+  background: #b6b6b6;
+}
+.hide {
+  display: none;
+}
+.int-area .failure-message-SubAddr,
+.int-area .failure-message-Addr,
+.int-area .failure-message-Email,
+.int-area .failure-message-nickname,
+.int-area .failure-message-name,
+.int-area .strongPassword-message,
+.int-area .mismatch-message,
+.int-area .failure-message,
+.int-area .failure-message2 {
+  margin-left: 24%;
+  color: red;
+  font-weight: bold;
+}
+.int-area .success-message {
+  margin-left: 25%;
+  color: green;
+}
+/* .int-area #email {
+  width: 15%;
+}
+.int-area #emailSel {
+  width: 30%;
+  height: 40px;
+  padding: 10px;
+} */
