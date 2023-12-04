@@ -1,18 +1,11 @@
 package writing.board.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import writing.board.dto.MemberDTO;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Collections;
+
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 @Builder
