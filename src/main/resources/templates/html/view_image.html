@@ -30,13 +30,11 @@
               str += '</div>';
             });
              console.log(str);
-            $(".reviewList").html(str);
+            $("#reviewList").html(str);
           });
         }
 
          getPostReviews();
-         console.log(getPostReviews());
-
 
       });
     </script>
@@ -84,24 +82,8 @@
 
 
 
-        <div class="list-group reviewList">
+        <div class="list-group reviewList" id="reviewList">
 
-        </div>
-
-        <div class="card">
-          <div class="card-header">댓글 리스트</div>
-          <ul id="reply-box" class="list-group">
-            <c:forEach var="reply" items="${board.replys}">
-
-              <li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
-                <div>${reply.content}</div>
-                <div class="d-flex">
-                  <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
-                </div>
-              </li>
-
-            </c:forEach>
-          </ul>
         </div>
 
         <div class="reply_content">
