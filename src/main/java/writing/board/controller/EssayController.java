@@ -18,7 +18,7 @@ public class EssayController {
 
     private final EssayService essayService;
     @GetMapping("/essay")
-    public void essay() { };
+    public void essay() { }
 
     @PostMapping("/essay")
     public String addEssay(EssayDTO essayDTO, RedirectAttributes redirectAttributes) {

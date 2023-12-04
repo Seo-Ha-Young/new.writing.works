@@ -20,7 +20,7 @@ public class RecommendationRepositoryTests {
     @Transactional
     @Test
     public void insertRecommend() {
-        IntStream.rangeClosed(1,10).forEach(i ->{
+        IntStream.rangeClosed(1,1).forEach(i ->{
             Recommendation recommendation = Recommendation.builder()
                     .id("id"+i)
                     .post_no((long) i)

@@ -52,4 +52,14 @@ Consider defining a bean of type 'image.board.service.ImageService' in your conf
  - 실행 어플리케이션 위치가 server안에 있었어서 그랬었음, 이제 이상 무
 
  11월 29일
- 맵핑에 임의의 정보를 넣을시 {xx}로 사용할 것,
+ 맵핑에 임의의 정보를 넣을시 {xx}로 사용할 것, ex) getMapping("/board/no") X -> getMapping("/board/{no}")
+
+11월 30일
+header 부분을 연결 하던 중 발생
+Caused by: org.attoparser.ParseException: Could not parse as expression: "/header.html" (template: "html/board" - line 20, col 22)
+ -> th:link X => th:fragment와 th:replace를 사용해서 연결
+
+ 게시글 추천수 반영을 위한 repository 작업 중 발생
+ writing.board.repository.PostWrittenRepository.getPostWithAll(java.lang.Long); Reason: Validation failed for query for method public abstract java.util.List
+ -> select를 dto가 아닌 object[]로 받았기 때문에 쿼리문 뒤에 nativeQuery=true 추가
+
