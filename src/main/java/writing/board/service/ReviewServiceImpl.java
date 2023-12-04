@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 public class ReviewServiceImpl implements ReviewService{
     private  final ReviewRepository reviewRepository;
     @Override
-    public List<ReviewDTO> getListOfPost(Long no) {
-            PostWrittenDTO postWritten = PostWrittenDTO.builder().no(no).build();
-            log.info("정보"+postWritten);
-            List<Review> result = reviewRepository.findByPostWritten(postWritten);
-            return result.stream().map(review -> entityToDto(review)).collect(Collectors.toList());
+    public List<ReviewDTO> getListOfPost(Long post_no) {
+        log.info("정보"+post_no);
+        List<Review> result = reviewRepository.findByPostWritten(post_no);
+        log.info("정보2"+result.stream().map(review -> entityToDto(review)).collect(Collectors.toList()));
+        return result.stream().map(review -> entityToDto(review)).collect(Collectors.toList());
 
     }
 }

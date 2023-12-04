@@ -16,14 +16,15 @@ import java.util.List;
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-@RequestMapping("reviews")
+@RequestMapping("/reviews")
 public class ReviewController {
     private final ReviewService reviewService;
-    @GetMapping("/{no}/all")
+    @GetMapping("/{no}")
     public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("no") Long no) {
         log.info("-----------------------list---------------------");
         log.info("no : "+no);
         List<ReviewDTO> reviewDTOList = reviewService.getListOfPost(no);
+        log.info("정보들 : "+reviewDTOList);
         return new ResponseEntity<>(reviewDTOList, HttpStatus.OK);
     }
 }

@@ -51,7 +51,9 @@
         <div class="bt_wrap">
           <a th:href="@{/html/board(page= ${requestDTO.page}, type= ${requestDTO.type}, keyword= ${requestDTO.keyword})}" class="'on">
             목록
-          </a>        </div>
+          </a>
+        </div>
+
         <div class="reply_content">
           <form onsubmit="addComment(event)">
             <div class="form-group">

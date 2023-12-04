@@ -8,9 +8,36 @@
     <link rel="stylesheet" href="/css/css.css" />
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
-      $(document).ready(function () {
+      $(document).ready(function (e) {
         $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
         $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+
+         var no = [[${dto.no}]];
+         console.log(no);
+
+        function getPostReviews() {
+           function formatTime(str) {
+                          var date = new Date(str);
+                          return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
+           }
+          $.getJSON("/reviews/"+no, function(arr) {
+            var str="";
+            $.each(arr, function(idx, review) {
+              str += '<div class="no" data-no='+review.post_no+' >';
+              str += '<h6 class="id">'+review.id+'</h6>';
+              str += '<h5 class="content">'+review.review_content+'</h5>';
+              str += '<p class="text">'+formatTime(review.regDate)+'</p>';
+              str += '</div>';
+            });
+             console.log(str);
+            $(".reviewList").html(str);
+          });
+        }
+
+         getPostReviews();
+         console.log(getPostReviews());
+
+
       });
     </script>
   </head>
@@ -52,7 +79,31 @@
         <div class="bt_wrap">
             <a th:href="@{/html/board(page= ${requestDTO.page}, type= ${requestDTO.type}, keyword= ${requestDTO.keyword})}" class="'on">
                 목록
-            </a>        </div>
+            </a>
+        </div>
+
+
+
+        <div class="list-group reviewList">
+
+        </div>
+
+        <div class="card">
+          <div class="card-header">댓글 리스트</div>
+          <ul id="reply-box" class="list-group">
+            <c:forEach var="reply" items="${board.replys}">
+
+              <li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
+                <div>${reply.content}</div>
+                <div class="d-flex">
+                  <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
+                </div>
+              </li>
+
+            </c:forEach>
+          </ul>
+        </div>
+
         <div class="reply_content">
           <form onsubmit="addComment(event)">
             <div class="form-group">
@@ -60,7 +111,9 @@
               <button type="submit" class="btn_reply">작성</button>
             </div>
           </form>
-          <div class="comments mt-3"></div>
+          <div class="comments mt-3">
+
+          </div>
         </div>
       </div>
     </div>
