@@ -2,16 +2,18 @@ package writing.board.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import writing.board.dto.MemberDTO;
+import writing.board.entity.Member;
 import writing.board.security.dto.AuthMemberDTO;
 import writing.board.security.security.MemberUserDetailsService;
 
@@ -63,11 +65,24 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
+    @DeleteMapping("/delete/{no}")
+    public String deleteMember(@PathVariable Long no) {
+        memberService.deleteMember(no);
+        return "redirect:/member/all";
+    }
 
+    @GetMapping("/memberinfo/{no}")
+    public String memberInfo(@PathVariable("no") Long no, Model model) {
+        log.info("memberinfo page..............");
+        MemberDTO memberDTO = memberService.findById(no);
+        model.addAttribute("member", memberDTO);
+        return "/member/memberinfo";
+    }
 
     @GetMapping("/all")
-    public void exAll() {
+    public void exAll(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
         log.info("exAll................");
+        model.addAttribute("member", authMemberDTO);
     }
 
     @GetMapping("/member")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<sec:html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -15,5 +15,8 @@
     <div sec:authentication="name"></div>
     Authenticated user roles:
     <div sec:authentication="principal.authorities"></div>
+    <a href="/member/all" type="button">메인페이지이동</a>
 </body>
-</html>
+
+
+</sec:html>
