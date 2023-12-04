@@ -26,7 +26,19 @@ public class MemberRepositoryTests {
         boolean matchResult = passwordEncoder.matches(password, enPw);
         System.out.println("matchResult: "+matchResult);
     }
-
+    @Test
+    public void insertAdminAccount() {
+        Member member = Member.builder()
+                .email("admin@email.com")
+                .password(passwordEncoder.encode("admin"))
+                .nickname("관리자")
+                .name("관리자")
+                .birth("2000-11-11")
+                .address("주소")
+                .build();
+        member.addMemberRole(MemberRole.ADMIN);
+        memberRepository.save(member);
+    }
 
     @Test
     public void insertDummies(){
@@ -36,7 +48,7 @@ public class MemberRepositoryTests {
                     .password(passwordEncoder.encode("1111"))
                     .nickname("닉네임"+i)
                     .name("사용자"+i)
-                    .birth(LocalDate.now())
+                    .birth("2000-11-11")
                     .address("주소"+i)
                     .build();
             member.addMemberRole(MemberRole.USER);

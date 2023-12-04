@@ -1,18 +1,11 @@
 package writing.board.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import writing.board.dto.MemberDTO;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Collections;
+
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 @Builder
@@ -28,7 +21,7 @@ public class Member extends BaseEntity {
     private String password; // 비밀번호
     private String nickname; // 닉네임
     private String name; // 이름
-    private LocalDate birth; // 생년월일
+    private String birth; // 생년월일
     private String address; // 주소
 
 
