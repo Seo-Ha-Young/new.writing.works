@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>member</h1>
+
     <div sec:authorize="hasRole('USER')">has USER role</div>
     <div sec:authorize="hasRole('ADMIN')">has ADMIN role</div>
     <div sec:authorize="isAuthenticated()">

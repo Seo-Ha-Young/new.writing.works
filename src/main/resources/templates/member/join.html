@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
 <head>
     <meta charset="UTF-8">
     <title>join</title>
 </head>
 <body>
-<form method="post" th:action="@{/user/save}">
-    아이디 : <input type="text" name="id">
-    패스워드 : <input type="password" name="password">
-    이름 : <input type="text" name="name">
-    <button>가입하기</button>
-</form>
+<h1>회원가입 페이지</h1>
+<div>
+    <form action="/member/join" method="post">
+        <input type="text" id="email" name="email" placeholder="이메일입력">
+        <input type="password" id="password" name="password" placeholder="비밀번호입력">
+        <input type="text" id="nickname" name="nickname" placeholder="닉네임입력">
+        <input type="text" id="name" name="name" placeholder="이름입력">
+        <input type="date" id="birth" name="birth" placeholder="생년월일입력">
+        <input type="text" id="address" name="address" placeholder="주소입력">
+        <button type="submit">가입하기</button>
+    </form>
+</div>
 </body>
 </html>

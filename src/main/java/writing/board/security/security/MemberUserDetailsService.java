@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import writing.board.dto.MemberDTO;
 import writing.board.entity.Member;
 import writing.board.repository.MemberRepository;
 import writing.board.security.dto.AuthMemberDTO;
@@ -21,9 +22,22 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-@Transactional
 public class MemberUserDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
+    @Transactional
+    public Long joinMember(MemberDTO memberDTO){
+        Optional<Member> result = memberRepository.findByEmail(memberDTO.getEmail());
+
+        if(result.isPresent()) {
+
+        }
+        else {
+
+        }
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        memberDTO.setPassword(bCryptPasswordEncoder.encode(memberDTO.getPassword()));
+        return memberRepository.save(memberDTO.toEntity()).getNo();
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,7 +45,7 @@ public class MemberUserDetailsService implements UserDetailsService {
         Optional<Member> result = memberRepository.findByEmail(username);
 
         if(result.isEmpty()) {
-            throw new UsernameNotFoundException("username is Empty........");
+            throw new UsernameNotFoundException("사용자가 없습니다.");
         }
 
         Member member = result.get();
