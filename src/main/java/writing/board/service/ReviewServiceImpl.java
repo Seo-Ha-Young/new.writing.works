@@ -10,6 +10,7 @@ import writing.board.entity.Review;
 import writing.board.repository.ReviewRepository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,5 +25,13 @@ public class ReviewServiceImpl implements ReviewService{
         log.info("정보2"+result.stream().map(review -> entityToDto(review)).collect(Collectors.toList()));
         return result.stream().map(review -> entityToDto(review)).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public Long register(ReviewDTO reviewDTO) {
+        Map<String, Object> entityMap = dtoToEntity(reviewDTO);
+        Review review = (Review) entityMap.get("review");
+        reviewRepository.save(review);
+        return review.getPost_no();
     }
 }

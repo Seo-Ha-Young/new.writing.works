@@ -20,14 +20,14 @@
                           var date = new Date(str);
                           return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
            }
-          $.getJSON("/reviews/"+no, function(arr) {
+          $.getJSON("/reviews/"+no+"/all", function(arr) {
             var str="";
             $.each(arr, function(idx, review) {
-              str += '<div class="no" data-no='+review.post_no+' >';
-              str += '<h6 class="id">'+review.id+'</h6>';
-              str += '<h5 class="content">'+review.review_content+'</h5>';
-              str += '<p class="text">'+formatTime(review.regDate)+'</p>';
-              str += '</div>';
+              str += '<div class="no" data-no='+review.post_no+' ><br>';
+              str += '<a class="id">'+review.id+'</a><br>';
+              str += '<a class="content">'+review.review_content+'</a><br>';
+              str += '<a class="text">'+formatTime(review.regDate)+'</a>';
+              str += '</div><br>';
             });
              console.log(str);
             $("#reviewList").html(str);
@@ -35,6 +35,27 @@
         }
 
          getPostReviews();
+
+         var id = "닉네임"+(Math.floor(Math.random()*5));
+         var content = $('textarea[name="reply"]');
+
+         $(".btn_reply").click(function(){
+            var data = {no:post_no, review_content:content.val(), id:id.val() };
+            console.log(data);
+
+            $.ajax({
+                url:"/reviews/"+no,
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json; charset=utf-8",
+                dataType:"text",
+                success: function(result){
+                    console.log("result :"+result);
+                    self.location.reload();
+                }
+            });
+         });
+
 
       });
     </script>
@@ -79,8 +100,6 @@
                 목록
             </a>
         </div>
-
-
 
         <div class="list-group reviewList" id="reviewList">
 
