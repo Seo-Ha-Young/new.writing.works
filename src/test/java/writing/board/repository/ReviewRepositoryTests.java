@@ -22,7 +22,7 @@ public class ReviewRepositoryTests {
     public void insertReview() {
         IntStream.rangeClosed(1,10).forEach(i ->{
             Review review = Review.builder()
-                    .id("id"+i)
+                    .id("닉네임"+i)
                     .post_no((long) i)
                     .review_content("review_content"+i)
                     .build();
