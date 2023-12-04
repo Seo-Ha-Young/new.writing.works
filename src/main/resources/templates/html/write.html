@@ -18,7 +18,7 @@
         $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
       });
     </script>
-    <link rel="javascript" href="../static/js/test.js" />
+    <link rel="javascript" href="/js/test.js" />
   </head>
 
   <body>
@@ -65,16 +65,16 @@
     <div class="write_mode1" id="write_mode1" style="display: none">
       <div id="img"></div>
       <div id="timers"></div>
-      <textarea id="write_word"></textarea><br />
-      <button id="upload" style="display: none" onclick="savePost()">등록</button>
+        <textarea id="write_word" name="img_mode"></textarea><br />
+        <button id="upload" style="display: none" onclick="savePost()">등록</button>
     </div>
     <div class="write_mode2" id="write_mode2" style="display: none">
       <form>
         <div id="timers2"></div>
-        <textarea id="write_word2"></textarea><br />
-        <button id="upload2" style="display: none" onclick="savePost()">등록</button>
+          <textarea id="write_word2" name="Essay-mode"></textarea><br />
+          <button id="upload2" style="display: none" onclick="savePost()">등록</button>
       </form>
     </div>
-    <script type="application/javascript" src="../static/js/test.js"></script>
+    <script type="application/javascript" src="/js/test.js"></script>
   </body>
 </html>
