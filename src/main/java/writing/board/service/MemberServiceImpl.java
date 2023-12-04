@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final  BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public Long saveMember(MemberDTO memberDTO) {

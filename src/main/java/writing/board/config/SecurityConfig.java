@@ -14,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Log4j2
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
-    PasswordEncoder passwordEncoder(){
+    BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
