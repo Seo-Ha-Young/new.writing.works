@@ -22,10 +22,10 @@ public class AuthMemberDTO extends User {
     private String password; // 비밀번호
     private String nickname; // 닉네임
     private String name; // 이름
-    private LocalDate birth;
+    private String birth;
     private String address;
 
-    public AuthMemberDTO(Long no, String username, String password, String nickname, String name, LocalDate birth, String address, Collection<? extends GrantedAuthority> authorities) {
+    public AuthMemberDTO(Long no, String username, String password, String nickname, String name, String birth, String address, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
         this.no = no;
         this.email = username;
