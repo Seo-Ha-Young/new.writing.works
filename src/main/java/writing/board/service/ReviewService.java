@@ -23,7 +23,7 @@ public interface ReviewService {
         Map<String, Object> entityMap = new HashMap<>();
         Review review = Review.builder()
                 .review_content(reviewDTO.getReview_content())
-                .id(reviewDTO.getReview_content())
+                .id(reviewDTO.getId())
                 .post_no(reviewDTO.getPost_no()).build();
         entityMap.put("review", review);
         return entityMap;

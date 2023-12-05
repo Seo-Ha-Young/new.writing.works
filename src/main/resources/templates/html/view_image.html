@@ -12,18 +12,18 @@
         $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
         $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
 
-         var no = [[${dto.no}]];
-         console.log(no);
+         var post_no = [[${dto.no}]];
+         console.log(post_no);
 
         function getPostReviews() {
            function formatTime(str) {
                           var date = new Date(str);
                           return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
            }
-          $.getJSON("/reviews/"+no+"/all", function(arr) {
+          $.getJSON("/reviews/"+post_no+"/all", function(arr) {
             var str="";
             $.each(arr, function(idx, review) {
-              str += '<div class="no" data-no='+review.post_no+' ><br>';
+              str += '<div class="post_no" data-no='+review.post_no+' ><br>';
               str += '<a class="id">'+review.id+'</a><br>';
               str += '<a class="content">'+review.review_content+'</a><br>';
               str += '<a class="text">'+formatTime(review.regDate)+'</a>';
@@ -40,19 +40,18 @@
          var content = $('textarea[name="reply"]');
 
          $(".btn_reply").click(function(){
-            var data = {no:post_no, review_content:content.val(), id:id.val() };
+            var data = { post_no:post_no, review_content:content.val(), id:id };
             console.log(data);
 
             $.ajax({
-                url:"/reviews/"+no,
-                type:"post",
+                url:'/reviews/'+post_no,
+                type:'POST',
                 data:JSON.stringify(data),
-                contentType:"application/json; charset=utf-8",
-                dataType:"text",
+                contentType:'application/json; charset=utf-8',
                 success: function(result){
                     console.log("result :"+result);
-                    self.location.reload();
                 }
+
             });
          });
 
@@ -109,7 +108,7 @@
           <form onsubmit="addComment(event)">
             <div class="form-group">
               <textarea name="reply" id="reply"></textarea>
-              <button type="submit" class="btn_reply">작성</button>
+              <button type="button" class="btn_reply">작성</button>
             </div>
           </form>
           <div class="comments mt-3">

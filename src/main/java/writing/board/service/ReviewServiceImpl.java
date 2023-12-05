@@ -29,9 +29,11 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public Long register(ReviewDTO reviewDTO) {
+        log.info("reviewDTO = "+reviewDTO);
         Map<String, Object> entityMap = dtoToEntity(reviewDTO);
         Review review = (Review) entityMap.get("review");
+        log.info("review : "+review.getId()+review.getReview_content()+review.getPost_no());
         reviewRepository.save(review);
-        return review.getPost_no();
+        return review.getNo();
     }
 }
