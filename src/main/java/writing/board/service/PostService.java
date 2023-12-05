@@ -13,11 +13,17 @@ public class PostService {
         this.postWrittenRepository = postWrittenRepository;
     }
 
-/*
-       public Post savePost(Post post) {
-        return PostWrittenRepository.save(post);*//*
+    public void savePost(PostWrittenDTO postWrittenDTO) {
+        // PostWrittenDTO를 Post 엔티티로 변환하여 저장하는 예시
+        Post post = new Post();
+        post.setContent(postWrittenDTO.getContent());
+        // 작성자, 날짜 등의 정보도 필요한 경우에 설정
 
+        postRepository.save(post);
     }
-*/
+
+    public List<Post> getAllPosts() {
+        return postRepository.findAll();
+    }
 
 }
