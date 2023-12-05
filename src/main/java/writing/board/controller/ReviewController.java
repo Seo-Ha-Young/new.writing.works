@@ -34,4 +34,14 @@ public class ReviewController {
         return new ResponseEntity<>(no, HttpStatus.OK);
     }
 
+    @PutMapping("")
+    public ResponseEntity<Long> modifyReview(@RequestBody ReviewDTO reviewDTO) {
+        log.info("modify-review");
+        log.info("new review "+reviewDTO);
+        reviewService.modify(reviewDTO);
+        return new ResponseEntity<>(reviewDTO.getNo(), HttpStatus.OK);
+    }
+
+
+
 }

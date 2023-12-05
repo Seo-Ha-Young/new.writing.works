@@ -10,6 +10,7 @@ import java.util.Map;
 public interface ReviewService {
     List<ReviewDTO> getListOfPost(Long post_no);
     Long register(ReviewDTO reviewDTO);
+    void modify(ReviewDTO reviewDTO);
     default ReviewDTO entityToDto(Review review) {
         ReviewDTO reviewDTO = ReviewDTO.builder()
                 .no(review.getNo())
@@ -28,6 +29,7 @@ public interface ReviewService {
         entityMap.put("review", review);
         return entityMap;
     }
+
 
 
 }
