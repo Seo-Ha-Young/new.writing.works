@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/reviews")
 public class ReviewController {
     private final ReviewService reviewService;
-    @GetMapping("/{no}/all")
-    public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("no") Long no) {
+    @GetMapping("/{post_no}/all")
+    public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("post_no") Long no) {
         log.info("-----------------------list---------------------");
         log.info("no : "+no);
         List<ReviewDTO> reviewDTOList = reviewService.getListOfPost(no);
@@ -25,12 +25,13 @@ public class ReviewController {
         return new ResponseEntity<>(reviewDTOList, HttpStatus.OK);
     }
 
-    @PostMapping("{no}")
+    @PostMapping("/{post_no}")
     public ResponseEntity<Long> addReview(@RequestBody ReviewDTO reviewDTO) {
         log.info(("----------------------add Review--------------------"));
-        log.info("review DTO "+reviewDTO);
-        Long post_no = reviewService.register(reviewDTO);
-        return new ResponseEntity<>(post_no, HttpStatus.OK);
+        log.info("reviewDTO "+reviewDTO);
+        Long no = reviewService.register(reviewDTO);
+        log.info("review_no : "+no);
+        return new ResponseEntity<>(no, HttpStatus.OK);
     }
 
 }

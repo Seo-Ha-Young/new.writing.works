@@ -63,3 +63,9 @@ Caused by: org.attoparser.ParseException: Could not parse as expression: "/heade
  writing.board.repository.PostWrittenRepository.getPostWithAll(java.lang.Long); Reason: Validation failed for query for method public abstract java.util.List
  -> select를 dto가 아닌 object[]로 받았기 때문에 쿼리문 뒤에 nativeQuery=true 추가
 
+12월 5일
+게시글 등록 작업중
+Optional long parameter 'no' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.
+->.html에 오표기 문제(서버와 클라이언트가 표기가 달라서 값이 누락됨)-x / 중간에 단순 오타문제 -X, 대체 왜 안넘어가나,,봤더니..
+  button이 type=submit 선언이 되어있는게 문제였다.. submit는 form값을 넘겨주는 역할(+새로고침)을 하는데..난 지금 ajax(javascript-jquery)를 사용하려는데 자꾸 form값을 넘기겠다고 우기니 안될수밖애,,
+  type=button 선언 후 잘 작동한다..(button은 javascript를 기능구현에 많이 사용함)
