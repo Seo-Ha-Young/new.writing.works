@@ -353,14 +353,15 @@ a {
 }
 
 /* 이미지 모드 */
-.wirte_mode1 {
+.write_mode1 {
   width: 80%;
   height: 90%;
   text-align: center;
-  margin-top: 10px;
+  margin: auto;
+  margin-top: 40px;
 }
-.wirte_mode2 #timers2,
-.wirte_mode1 #timers {
+.write_mode2 #timers2,
+.write_mode1 #timers {
   font-size: 30px;
   margin-bottom: 40px;
   width: 60%;
@@ -369,17 +370,17 @@ a {
   color: #474554;
 }
 
-.wirte_mode1 #je {
+.write_mode1 #je {
   font-size: 30px;
 }
 
-.wirte_mode1 img {
+.write_mode1 #img {
   width: 400px;
-  margin-top: 50px;
-  margin-bottom: 10px;
+  margin: auto;
+  margin-bottom: 40px;
 }
 
-.wirte_mode1 #write_word {
+.write_mode1 #write_word {
   width: 700px;
   height: 300px;
   margin-bottom: 20px;
@@ -392,21 +393,22 @@ a {
   z-index: 1;
   font-size: 1.4rem;
   color: black;
+  resize: none;
 }
-.wirte_mode2 #upload2,
-.wirte_mode1 #upload {
+.write_mode2 #upload2,
+.write_mode1 #upload {
   width: 90px;
   height: 50px;
 }
 
 /* 에세이모드 */
 
-.wirte_mode2 {
+.write_mode2 {
   width: 80%;
   text-align: center;
   margin-left: 200px;
 }
-.wirte_mode2 #write_word2 {
+.write_mode2 #write_word2 {
   width: 700px;
   height: 300px;
   margin-bottom: 20px;
@@ -419,8 +421,9 @@ a {
   z-index: 1;
   font-size: 1.4rem;
   color: black;
+  resize: none;
 }
-.wirte_mode2 #timers2 {
+.write_mode2 #timers2 {
   margin-top: 20px;
 }
 
