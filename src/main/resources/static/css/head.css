@@ -14,9 +14,16 @@ a {
   list-style: none;
 }
 header {
-  margin-top: 20px;
   border-bottom: 1px solid #dadde2;
-  background: #c6d9f5;
+  background-image: linear-gradient(
+    to right bottom,
+    #000000,
+    #030303,
+    #070707,
+    #0a0a0a,
+    #0d0d0d
+  );
+  color: white;
 }
 header > div {
   width: 90%;
