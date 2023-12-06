@@ -47,4 +47,9 @@ public class ReviewServiceImpl implements ReviewService{
             reviewRepository.save(review);
         }
     }
+
+    @Override
+    public void remove(Long reviewNo) {
+        reviewRepository.deleteById(reviewNo);
+    }
 }

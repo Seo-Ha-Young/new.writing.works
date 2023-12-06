@@ -11,6 +11,7 @@ public interface ReviewService {
     List<ReviewDTO> getListOfPost(Long post_no);
     Long register(ReviewDTO reviewDTO);
     void modify(ReviewDTO reviewDTO);
+    void remove(Long reviewNo);
     default ReviewDTO entityToDto(Review review) {
         ReviewDTO reviewDTO = ReviewDTO.builder()
                 .no(review.getNo())
