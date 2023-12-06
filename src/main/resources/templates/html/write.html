@@ -65,15 +65,24 @@
       <div id="img"></div>
       <div id="timers"></div>
         <textarea id="write_word" name="img_mode"></textarea><br />
-        <button id="upload" style="display: none" onclick="savePost()">등록</button>
+        <button id="upload" style="display: none" onclick="upload()">등록</button>
     </div>
     <div class="write_mode2" id="write_mode2" style="display: none">
       <form>
         <div id="timers2"></div>
           <textarea id="write_word2" name="Essay-mode"></textarea><br />
-          <button id="upload2" style="display: none" onclick="savePost()">등록</button>
+          <button id="upload2" style="display: none" onclick="upload()">등록</button>
       </form>
     </div>
     <script defer src="/js/test.js"></script>
+    <script src="/js/write.js"></script>
+    <script>
+      document.getElementById('upload').addEventListener('click', function() {
+       savePost();
+   });
+      document.getElementById('upload2').addEventListener('click', function() {
+       savePost();
+   });
+    </script>
   </body>
 </html>
