@@ -37,18 +37,7 @@ private  final RecommendationService recommendationService;
         model.addAttribute("dto", dto);
     }
 
-    @GetMapping("/view(image)")
-    public void view1(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
-        log.info("게시글 번호 No = "+no);
-        PostWrittenDTO dto = boardService.read(no);
-        model.addAttribute("dto", dto);
-    }
-    @GetMapping("/view(essay)")
-    public void view2(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
-        log.info("게시글 번호 No = "+no);
-        PostWrittenDTO dto = boardService.read(no);
-        model.addAttribute("dto", dto);
-    }
+
     @PostMapping("recommends")
     public void recommends(Long no , Model model) {
         model.addAttribute("recommend", recommendationService.find_no(no));

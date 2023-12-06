@@ -11,6 +11,7 @@ import writing.board.repository.ReviewRepository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,5 +36,20 @@ public class ReviewServiceImpl implements ReviewService{
         log.info("review : "+review.getId()+review.getReview_content()+review.getPost_no());
         reviewRepository.save(review);
         return review.getNo();
+    }
+
+    @Override
+    public void modify(ReviewDTO reviewDTO) {
+        Optional<Review> result = reviewRepository.findById(reviewDTO.getNo());
+        if(result.isPresent()) {
+            Review review = result.get();
+            review.changeContent(reviewDTO.getReview_content());
+            reviewRepository.save(review);
+        }
+    }
+
+    @Override
+    public void remove(Long reviewNo) {
+        reviewRepository.deleteById(reviewNo);
     }
 }

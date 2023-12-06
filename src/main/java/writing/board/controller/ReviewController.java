@@ -34,4 +34,21 @@ public class ReviewController {
         return new ResponseEntity<>(no, HttpStatus.OK);
     }
 
+    @PutMapping("")
+    public ResponseEntity<Long> modifyReview(@RequestBody ReviewDTO reviewDTO) {
+        log.info("modify-review");
+        log.info("new review "+reviewDTO);
+        reviewService.modify(reviewDTO);
+        return new ResponseEntity<>(reviewDTO.getNo(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{review_no}")
+    public ResponseEntity<Long> removeReview(@PathVariable Long review_no) {
+        log.info("review delete");
+        log.info("review no: "+review_no);
+        reviewService.remove(review_no);
+        return new ResponseEntity<>(review_no, HttpStatus.OK);
+    }
+
+
 }

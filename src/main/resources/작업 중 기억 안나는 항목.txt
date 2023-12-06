@@ -1,1 +1,0 @@
-@RequestParam("x") = html 내부에서 name="x" 값을 가져온다.
