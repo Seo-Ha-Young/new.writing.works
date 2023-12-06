@@ -16,6 +16,7 @@ import writing.board.entity.QPostWritten;
 import writing.board.repository.PostWrittenRepository;
 
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -26,20 +27,26 @@ public class BoardServiceImpl implements BoardService{
     private final PostWrittenRepository postRepository;
 
     @Override
-    public PageResultDTO<PostWrittenDTO, PostWritten> getList(PageRequestDTO requestDTO) {
+    public PageResultDTO<PostWrittenDTO, Object[]> getList(PageRequestDTO requestDTO) {
         Pageable pageable = requestDTO.getPageable(Sort.by("no").descending());
-        BooleanBuilder booleanBuilder = getSearch(requestDTO);
-        Page<PostWritten> result = postRepository.findAll(booleanBuilder, pageable);
-        Function<PostWritten, PostWrittenDTO> fn = (entity -> entitiesToDTO(entity));
+        Page<Object[]> result = postRepository.getListPage(pageable);
+        Function<Object[], PostWrittenDTO> fn = (entity -> entitiesToDTO(
+                (PostWritten) entity[0],
+                (Long) entity[1],
+                (Long) entity[2]
+        ));
         return new PageResultDTO<>(result, fn);
 
     }
 
     @Override
     public PostWrittenDTO read(Long no) {
-        Optional<PostWritten> result = postRepository.findById(no);
+        List<Object[]> result = postRepository.getPostWithAll(no);
+        PostWritten postWritten = (PostWritten) result.get(0)[0];
+        Long goodCnt = (Long) result.get(0)[1];
+        Long badCnt = (Long) result.get(0)[2];
         postRepository.getPostWritten_no(no);
-        return result.isPresent() ? entitiesToDTO(result.get()) : null;
+        return entitiesToDTO(postWritten, goodCnt, badCnt);
     }
 
 

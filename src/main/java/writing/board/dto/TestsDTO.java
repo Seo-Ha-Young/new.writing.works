@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import writing.board.entity.BaseEntity;
 
 import java.time.LocalDateTime;
 
@@ -11,15 +12,13 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostWrittenDTO {
+public class TestsDTO extends BaseEntity {
 
     private Long no;
-    private String post_name;
-    private String post_content;
-    private String writer;
-    private Long image_no;
+    private String id;
+    private Long post_no;
+    private boolean good;
+    private boolean bad;
     private LocalDateTime regDate;
-    private int badCnt;
-    private int goodCnt;
 
 }
