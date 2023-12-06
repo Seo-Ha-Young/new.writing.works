@@ -30,12 +30,13 @@ private  final RecommendationService recommendationService;
         model.addAttribute("result", boardService.getList(requestDTO));
     }
 
-    @GetMapping("/view")
+    @GetMapping({"/view_image", "/view_essay"})
     public void view(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         log.info("게시글 번호 No = "+no);
         PostWrittenDTO dto = boardService.read(no);
         model.addAttribute("dto", dto);
     }
+
 
     @PostMapping("recommends")
     public void recommends(Long no , Model model) {

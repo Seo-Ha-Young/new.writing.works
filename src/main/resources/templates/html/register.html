@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,12 +8,12 @@
 
     <script type="text/javascript">
       $(document).ready(function () {
-        $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
-        $("#footers").load("footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+        $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
+        $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
       });
     </script>
-    <link rel="javascript" href="../../static/js/reg.js" />
-    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
+    <link rel="javascript" href="/js/reg.js" />
+    <link rel="stylesheet" href="/css/css.css" />
   </head>
 
   <body>
@@ -106,7 +106,7 @@
         </div>
       </form>
     </div>
-    <link rel="javascript" href="../js/test.js" />
+    <link rel="javascript" href="/js/test.js" />
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
       /* 카카오 API */
@@ -125,7 +125,6 @@
         }).open();
       }
     </script>
-    <script src="../../static/js/reg.js"></script>
-    <div id="footers"></div>
+    <script src="/js/reg.js"></script>
   </body>
 </html>

@@ -18,4 +18,6 @@ public class Review extends BaseEntity {
     private String id;
     private Long post_no;
 
+    public void changeContent(String review_content) {this.review_content = review_content;}
+
 }

@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>이미지</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
+    <link rel="stylesheet" href="/css/css.css" />
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
-        $("#footers").load("footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+        $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
+        $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
       });
     </script>
   </head>
@@ -36,56 +36,27 @@
             <div class="type" th:if="${dto.image_no == null}">에세이</div>
             <div class="type" th:if="${dto.image_no != null}">이미지</div>
             <div class="title">
-              <a
-                th:href="@{/html/view(no=${dto.no}, page=${result.page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}"
-              >
-                [[${dto.post_name}]]
-              </a>
+              <a th:if="${dto.image_no == null}" th:href="@{/html/view_essay(no=${dto.no}, page=${result.page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}">[[${dto.post_name}]]</a>
+              <a  th:if="${dto.image_no != null}" th:href="@{/html/view_image(no=${dto.no}, page=${result.page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}">[[${dto.post_name}]]</a>
             </div>
             <div class="writer">[[${dto.writer}]]</div>
-            <div class="date">
-              [[${#temporals.format(dto.regDate, 'yy/MM/dd')}]]
+            <div class="date" >[[${#temporals.format(dto.regDate, 'yy/MM/dd')}]]</div>
+            <div class="count"> 추천수
             </div>
-            <div class="count">추천수</div>
           </div>
         </div>
 
         <div class="board_page">
           <b th:if="${result.prev}">
-            <a
-              class="bt first"
-              th:href="@{/html/board(page= ${1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}"
-            >
-              <<
-            </a>
-            <a
-              class="bt prev"
-              th:href="@{/html/board(page= ${result.start -1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}"
-              tabindex="-1"
-            >
-              <
-            </a>
+            <a class="bt first"  th:href="@{/html/board(page= ${1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}" > << </a>
+            <a class="bt prev"  th:href="@{/html/board(page= ${result.start -1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}" tabindex="-1"> < </a>
           </b>
-          <b th:each="page: ${result.pageList}">
-            <a
-              class="num"
-              th:href="@{/html/board(page= ${page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}"
-              >[[${page}]]</a
-            >
-          </b>
+            <b  th:each="page: ${result.pageList}" >
+              <a class="num" th:href="@{/html/board(page= ${page}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}">[[${page}]]</a>
+            </b>
           <b th:if="${result.next}">
-            <a
-              class="bt next"
-              th:href="@{/html/board(page= ${result.end +1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}"
-            >
-              >
-            </a>
-            <a
-              class="bt last"
-              th:href="@{/html/board(page= ${result.totalPage}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}"
-            >
-              >>
-            </a>
+            <a class="bt next"  th:href="@{/html/board(page= ${result.end +1}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}"> > </a>
+            <a class="bt last"  th:href="@{/html/board(page= ${result.totalPage}, type= ${pageRequestDTO.type}, keyword= ${pageRequestDTO.keyword})}" > >> </a>
           </b>
         </div>
 
@@ -95,6 +66,5 @@
         </div>
       </div>
     </div>
-    <div id="footers"></div>
   </body>
 </html>
