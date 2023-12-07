@@ -88,7 +88,9 @@
 
         <div class="like" style="text-align:center;">
             <button class="btn goodBtn" type="button">👍</button>
+            <c th:if="${dto.goodCnt != 0}">[[${dto.goodCnt}]] &nbsp;</c>
             <button class="btn badBtn" type="button">👎</button>
+            <c th:if="${dto.badCnt != 0}">[[${dto.badCnt}]]</c>
         </div>
 
         <div class="bt_wrap">
