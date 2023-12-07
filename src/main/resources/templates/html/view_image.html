@@ -10,8 +10,43 @@
     <script src="/js/review.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-  $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
-  $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+            $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
+            $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+
+            var likes = new Array();
+            var likex = [[${like}]];
+            var post_no = [[${dto.no}]];
+            var id = "닉네임"+(Math.floor(Math.random()*5+1));
+            var good = 1;
+            console.log("id ="+id);
+            for(i=0; i<likex.length; i++) {
+                var likey = [[${like[i]}]];
+                likes[i] = likey[i];
+            }
+            console.log(likes);
+
+<!--            function getLike() {-->
+<!--                $.ajax({-->
+<!--                url:"/html/view_image",-->
+<!--                type:"GET",-->
+
+<!--            }-->
+
+            $(".goodBtn").on("click", function() {
+                var data = { post_no:post_no, good:good, id:id };
+                console.log(data);
+                $.ajax({
+                  url:"/like/"+post_no+"/good",
+                  type:'POST',
+                  data:JSON.stringify(data),
+                  contentType:'application/json; charset=utf-8',
+                  dataType: 'text',
+                  success: function(result){
+                      console.log("result :"+result);
+                      alert("이 글을 추천하셨습니다.");
+                  }
+                });
+            });
         });
     </script>
     <style>

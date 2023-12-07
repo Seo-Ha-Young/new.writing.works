@@ -14,4 +14,8 @@ public interface PreferenceRepository extends JpaRepository<Preference, Long> {
     @Query("select no, regDate, id,  good, bad from Preference")
     List<Object[]> getTestWithAll();
 
+    @Query(value = "select no, reg_date, id, good, bad, post_written_no from Preference  "
+            +"where post_written_no = :no", nativeQuery = true)
+    List<Preference> getTestWithPost_No(Long no);
+
 }

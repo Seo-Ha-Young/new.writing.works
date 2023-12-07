@@ -9,6 +9,7 @@ import writing.board.repository.PreferenceRepository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -35,5 +36,12 @@ public class PreferenceServiceImpl implements PreferenceService {
                 .no(_no).id(id).post_no(post_no).good(good).bad(bad)
                 .build();
         return dto;
+    }
+
+    @Override
+    public List<PreferenceDTO> find_post_no(Long post_no) {
+        List<Preference> preferences = repository.getTestWithPost_No(post_no);
+        return preferences.stream().map(preference -> entityToDto(preference, post_no)).collect(Collectors.toList());
+
     }
 }

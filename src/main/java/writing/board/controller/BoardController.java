@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import writing.board.dto.PageRequestDTO;
 import writing.board.dto.PostWrittenDTO;
+import writing.board.dto.PreferenceDTO;
 import writing.board.service.BoardService;
 import writing.board.service.PreferenceService;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/html")
@@ -18,6 +22,7 @@ import writing.board.service.PreferenceService;
 @Log4j2
 public class BoardController {
 private final BoardService boardService;
+private final PreferenceService preferenceService;
     @GetMapping("/board")
     public void board(PageRequestDTO requestDTO, Model model) {
         log.info("board page................"+requestDTO);
@@ -29,7 +34,13 @@ private final BoardService boardService;
     public void view(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         log.info("게시글 번호 No = "+no);
         PostWrittenDTO dto = boardService.read(no);
+        log.info("게시글 정보 :"+dto);
         model.addAttribute("dto", dto);
+        Long good_no = dto.getNo();
+        List<PreferenceDTO> like = preferenceService.find_post_no(good_no);
+        log.info("좋아요 정보 :"+Arrays.asList(like));
+        log.info("좋아요 정보2 :"+like);
+        model.addAttribute("like", like);
     }
 
 

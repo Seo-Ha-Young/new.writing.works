@@ -5,12 +5,15 @@ import writing.board.entity.PostWritten;
 import writing.board.entity.Preference;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public interface PreferenceService {
     Long register(PreferenceDTO testsDTO);
 
     PreferenceDTO find_no(Long no);
+
+    List<PreferenceDTO> find_post_no(Long no);
 
     default Map<String, Object> dtoToEntity(PreferenceDTO dto) {
         Map<String, Object> entityMap = new HashMap<>();
@@ -22,5 +25,16 @@ public interface PreferenceService {
                 .build();
         entityMap.put("preference", preference);
         return entityMap;
+    }
+
+    default PreferenceDTO entityToDto(Preference preference, Long post_no) {
+        PreferenceDTO preferenceDTO = PreferenceDTO.builder()
+                .no(preference.getNo())
+                .id(preference.getId())
+                .bad(preference.getBad())
+                .good(preference.getGood())
+                .post_no(post_no)
+                .build();
+        return preferenceDTO;
     }
 }
