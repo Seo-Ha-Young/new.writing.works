@@ -18,7 +18,6 @@ import writing.board.service.PreferenceService;
 @Log4j2
 public class BoardController {
 private final BoardService boardService;
-private  final PreferenceService testsService;
     @GetMapping("/board")
     public void board(PageRequestDTO requestDTO, Model model) {
         log.info("board page................"+requestDTO);
