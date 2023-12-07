@@ -10,6 +10,10 @@
       $(document).ready(function () {
         $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
         $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+
+
+
+
       });
     </script>
   </head>
@@ -41,7 +45,16 @@
             </div>
             <div class="writer">[[${dto.writer}]]</div>
             <div class="date" >[[${#temporals.format(dto.regDate, 'yy/MM/dd')}]]</div>
-            <div class="count"> 추천수
+            <div class="count">
+              <c th:if="${dto.goodCnt != 0}">
+              👍[[${dto.goodCnt}]]
+              </c>
+              <c th:if="${dto.goodCnt != 0} and ${dto.badCnt != 0}">
+                  /
+              </c>
+              <c th:if="${dto.badCnt != 0}">
+              👎[[${dto.badCnt}]]
+              </c>
             </div>
           </div>
         </div>
