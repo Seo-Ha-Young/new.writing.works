@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TestsDTO extends BaseEntity {
+public class PreferenceDTO extends BaseEntity {
 
     private Long no;
     private String id;

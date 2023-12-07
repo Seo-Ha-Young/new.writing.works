@@ -1,28 +1,26 @@
 package writing.board.service;
 
-import writing.board.dto.RecommendationDTO;
-import writing.board.dto.TestsDTO;
+import writing.board.dto.PreferenceDTO;
 import writing.board.entity.PostWritten;
-import writing.board.entity.Recommendation;
-import writing.board.entity.Tests;
+import writing.board.entity.Preference;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public interface TestsService {
-    Long register(TestsDTO testsDTO);
+public interface PreferenceService {
+    Long register(PreferenceDTO testsDTO);
 
-    TestsDTO find_no(Long no);
+    PreferenceDTO find_no(Long no);
 
-    default Map<String, Object> dtoToEntity(TestsDTO dto) {
+    default Map<String, Object> dtoToEntity(PreferenceDTO dto) {
         Map<String, Object> entityMap = new HashMap<>();
-        Tests tests = Tests.builder()
+        Preference preference = Preference.builder()
                 .id(dto.getId())
                 .postWritten(PostWritten.builder().no(dto.getPost_no()).build())
                 .good(dto.getGood())
                 .bad(dto.getBad())
                 .build();
-        entityMap.put("tests", tests);
+        entityMap.put("preference", preference);
         return entityMap;
     }
 }
