@@ -13,12 +13,12 @@ import java.util.List;
 
 public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>, QuerydslPredicateExecutor<PostWritten> {
 
-    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, p.badCnt(r.bad), p.goodCnt(r.good) from Post_Written p "
-            +"left join Tests r on r.post_written = p"
-            +"where p.no = :no", nativeQuery = true)
+    @Query("select p, count(r.bad), count(r.good) from PostWritten p "
+            +"left outer join Tests r on r.postWritten = p "
+            +"where p.no = :no group by p")
     List<Object[]> getPostWithAll(Long no);
 
-    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, p.badCnt(r.bad), p.goodCnt(r.good) from Post_Written p "
+    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, p.count(r.bad), p.count(r.good) from Post_Written p "
             +"left join Tests r on r.post_written = p", nativeQuery = true)
     List<Object[]> getPostWithAll();
 
@@ -28,7 +28,7 @@ public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>,
             +"where p.no = :no ")
     List<Object[]> getPostWritten_no(long no);
 
-    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, count(r.bad), count(r.good) from PostWritten p "
+    @Query(value = "select p, count(r.bad) as badCnt, count(r.good) as goodCnt from PostWritten p "
             +"left outer join Tests r on r.postWritten = p "
             +"group by p")
     Page<Object[]> getListPage(Pageable pageable);

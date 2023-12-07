@@ -17,8 +17,8 @@ public class TestsDTO extends BaseEntity {
     private Long no;
     private String id;
     private Long post_no;
-    private boolean good;
-    private boolean bad;
+    private Long good;
+    private Long bad;
     private LocalDateTime regDate;
 
 }

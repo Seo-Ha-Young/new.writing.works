@@ -9,8 +9,10 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="/js/review.js"></script>
     <script type="text/javascript">
-        $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
-        $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+        $(document).ready(function () {
+  $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
+  $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+        });
     </script>
     <style>
         .modal {
@@ -82,6 +84,11 @@
                 <img th:src="|/wcs/image/display2?fileNo=${dto.image_no}|"><br>
                 [[${dto.post_content}]]
             </div>
+        </div>
+
+        <div class="like" style="text-align:center;">
+            <button class="btn goodBtn" type="button">👍</button>
+            <button class="btn badBtn" type="button">👎</button>
         </div>
 
         <div class="bt_wrap">

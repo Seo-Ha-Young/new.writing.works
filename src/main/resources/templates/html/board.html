@@ -46,7 +46,15 @@
             <div class="writer">[[${dto.writer}]]</div>
             <div class="date" >[[${#temporals.format(dto.regDate, 'yy/MM/dd')}]]</div>
             <div class="count">
-                  [[${dto.goodCnt}]]
+              <c th:if="${dto.goodCnt != 0}">
+              👍[[${dto.goodCnt}]]
+              </c>
+              <c th:if="${dto.goodCnt != 0} and ${dto.badCnt != 0}">
+                  /
+              </c>
+              <c th:if="${dto.badCnt != 0}">
+              👎[[${dto.badCnt}]]
+              </c>
             </div>
           </div>
         </div>

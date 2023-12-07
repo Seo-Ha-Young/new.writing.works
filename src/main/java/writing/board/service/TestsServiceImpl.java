@@ -32,8 +32,8 @@ public class TestsServiceImpl implements TestsService{
         Long _no = (Long) result.get(0)[0];
         String id = (String) result.get(0)[2];
         Long post_no = (Long) result.get(0)[3];
-        Boolean good = (Boolean) result.get(0)[4];
-        Boolean bad = (Boolean) result.get(0)[5];
+        Long good = (Long) result.get(0)[4];
+        Long bad = (Long) result.get(0)[5];
         TestsDTO dto= TestsDTO.builder()
                 .no(_no).id(id).post_no(post_no).good(good).bad(bad)
                 .build();

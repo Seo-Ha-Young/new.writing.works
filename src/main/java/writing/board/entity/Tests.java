@@ -2,9 +2,8 @@ package writing.board.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Builder
@@ -14,10 +13,16 @@ import javax.persistence.ManyToOne;
 @ToString(exclude = "postWritten")
 public class Tests extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long no;
     private String id;
     @ManyToOne(fetch = FetchType.LAZY)
     private PostWritten postWritten;
-    private boolean good;
-    private boolean bad;
+    private Long good;
+    @Column()
+    private Long bad;
+
+
 
 }

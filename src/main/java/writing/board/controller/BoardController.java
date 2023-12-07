@@ -29,7 +29,6 @@ private  final TestsService testsService;
     public void board(PageRequestDTO requestDTO, Model model) {
         log.info("board page................"+requestDTO);
         model.addAttribute("result", boardService.getList(requestDTO));
-        model.addAttribute("tests", boardService.getList(requestDTO));
 
     }
 

@@ -19,8 +19,8 @@ public interface TestsService {
         Tests tests = Tests.builder()
                 .id(dto.getId())
                 .postWritten(PostWritten.builder().no(dto.getPost_no()).build())
-                .good(dto.isGood())
-                .bad(dto.isBad())
+                .good(dto.getGood())
+                .bad(dto.getBad())
                 .build();
         entityMap.put("tests", tests);
         return entityMap;

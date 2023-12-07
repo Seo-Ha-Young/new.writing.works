@@ -20,12 +20,11 @@ public class TestsRepositoryTests {
     @Transactional
     @Test
     public void insertRecommend() {
-        IntStream.rangeClosed(1,4).forEach(i ->{
+        IntStream.rangeClosed(1,5).forEach(i ->{
             Tests tests = Tests.builder()
-                    .id("id"+(i+3))
+                    .id("id"+(i+4))
                     .postWritten((PostWritten.builder().no((long)i)).build())
-                    .good(true)
-                    .bad(false)
+                    .bad((long)1)
                     .build();
             System.out.println("=======================================================");
             testRepository.save(tests);
