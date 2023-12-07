@@ -13,24 +13,29 @@
             $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
             $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
 
+            var size = [[${dto.goodCnt}]];
             var likes = new Array();
-            var likex = [[${like}]];
+            likes = '[[${like}]]';
             var post_no = [[${dto.no}]];
             var id = "닉네임"+(Math.floor(Math.random()*5+1));
             var good = 1;
             console.log("id ="+id);
-            for(i=0; i<likex.length; i++) {
-                var likey = [[${like[i]}]];
-                likes[i] = likey[i];
+            console.log(size);
+            console.log(likes[0]);
+
+            function getLikes() {
+                $.ajax({
+                    url:"/like/"+post_no+"/all",
+                    type:"GET",
+                    success: function(result){
+                     for (const [index, element] of result.entries()) {
+                        console.log(index, element);
+                     }
+                        console.log("추천 리스트: "+Object.entries(result));
+                    }
+                });
             }
-            console.log(likes);
-
-<!--            function getLike() {-->
-<!--                $.ajax({-->
-<!--                url:"/html/view_image",-->
-<!--                type:"GET",-->
-
-<!--            }-->
+            getLikes();
 
             $(".goodBtn").on("click", function() {
                 var data = { post_no:post_no, good:good, id:id };

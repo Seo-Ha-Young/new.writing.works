@@ -17,6 +17,12 @@ import java.util.List;
 public class PreferenceController {
     private final PreferenceService preferenceService;
 
+    @GetMapping("/{post_no}/all")
+    public List<PreferenceDTO> getLikeList(@PathVariable("post_no")  Long post_no) {
+        List<PreferenceDTO> preferenceDTOList = preferenceService.find_post_no(post_no);
+        return preferenceDTOList;
+    }
+
     @PostMapping("/{post_no}/good")
     public void addGoodCnt(@RequestBody PreferenceDTO preferenceDTO) {
         log.info("add Preference");
