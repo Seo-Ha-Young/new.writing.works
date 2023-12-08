@@ -44,4 +44,10 @@ public class PreferenceServiceImpl implements PreferenceService {
         return preferences.stream().map(preference -> entityToDto(preference, post_no)).collect(Collectors.toList());
 
     }
+
+    @Override
+    public void remove(String id) {
+        log.info("취소아이디:"+id);
+        repository.deleteByUserId(id);
+    }
 }

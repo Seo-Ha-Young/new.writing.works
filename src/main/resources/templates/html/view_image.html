@@ -8,35 +8,39 @@
     <link rel="stylesheet" href="/css/css.css"/>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="/js/review.js"></script>
+    <script type="module" src="/js/axios.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
             $("#footers").load("common/footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
 
-            var size = [[${dto.goodCnt}]];
-            var likes = new Array();
-            likes = '[[${like}]]';
             var post_no = [[${dto.no}]];
             var id = "닉네임"+(Math.floor(Math.random()*5+1));
             var good = 1;
-            console.log("id ="+id);
-            console.log(size);
-            console.log(likes[0]);
-
-            function getLikes() {
+            var like = [];
+            var result_id = [];
+            var promise = function() {
                 $.ajax({
-                    url:"/like/"+post_no+"/all",
-                    type:"GET",
-                    success: function(result){
-                     for (const [index, element] of result.entries()) {
-                        console.log(index, element);
-                     }
-                        console.log("추천 리스트: "+Object.entries(result));
-                    }
+                            url:"/like/"+post_no+"/all",
+                            type:"GET",
+                            dataType:"json",
+                            success: function(result){
+                            var result_id = result.map(row=>row.id);
+                            like=result_id;
+                            return like;
+                            }
                 });
             }
-            getLikes();
 
+
+            console.log("id ="+id);
+            console.log(Array.isArray(like));
+            console.log(promise);
+            console.log(result_id);
+
+
+            //누르면 추천 기능
             $(".goodBtn").on("click", function() {
                 var data = { post_no:post_no, good:good, id:id };
                 console.log(data);
@@ -52,7 +56,94 @@
                   }
                 });
             });
-        });
+
+            //다시 누르면 추천 취소 기능
+             $(".goodBtnD").on("click", function() {
+                console.log(id);
+                $.ajax({
+                  url:"/like/"+id,
+                  type:'DELETE',
+                  contentType:'application/json; charset=utf-8',
+                  dataType: 'text',
+                  success: function(result){
+                      console.log("result :"+result);
+
+                  }
+                });
+            });
+
+<!-- promise 사용 1 -->
+        function getData(callback) {
+  // new Promise() 추가
+  return new Promise(function(resolve, reject) {
+    $.get("/like/"+post_no+"/all", function(response) {
+      // 데이터를 받으면 resolve() 호출
+      resolve(response);
+      console.log(response);
+    });
+  });
+}
+
+// getData()의 실행이 끝나면 호출되는 then()
+getData().then(function(tableData) {
+  // resolve()의 결과 값이 여기로 전달됨
+  console.log(tableData); // $.get()의 reponse 값이 tableData에 전달됨
+});
+console.log(getData());
+
+<!-- promise 사용 2 -->
+ async function showAvatar() {
+  // JSON 읽기
+  let response = await fetch("/like/"+post_no+"/all");
+  let user = await response.json();
+
+  return user;
+}
+
+const promise2 = showAvatar();
+const getData2 = () => {
+  promise2.then((appData) => {
+    console.log(appData);
+  });
+};
+
+getData2()
+
+<!--async render() {-->
+<!--const response = await fetch("/like/"+post_no+"/all");-->
+
+<!--if (response.ok) {-->
+<!--const getDatas = await response.json();-->
+<!--}-->
+<!--}-->
+<!--console.log(getDatas);-->
+});
+<!--           function getLikes() {-->
+<!--                var post_no = [[${dto.no}]];-->
+<!--                let like;-->
+<!--                $.ajax({-->
+<!--                    url:"/like/"+post_no+"/all",-->
+<!--                    type:"POST",-->
+<!--                    async: "false",-->
+<!--                    dataType:"json",-->
+<!--                    success: function(result){-->
+<!--                       var result_id = result.map(row=>row.id);-->
+<!--                        like=result_id;-->
+<!--                        console.log(like);-->
+<!--                        return like;-->
+<!--                    },-->
+<!--                    error: function (e) {-->
+<!--                        alert("error");-->
+<!--                    }-->
+<!--                });-->
+<!--            };-->
+            function deepCopy(o) {
+
+              if (typeof o === "object" && o !== null)
+                for (i in o) result[i] = deepCopy(o[i]);
+              else result = o;
+              return result;
+            }
     </script>
     <style>
         .modal {
@@ -128,6 +219,7 @@
 
         <div class="like" style="text-align:center;">
             <button class="btn goodBtn" type="button">👍</button>
+            <button class="btn goodBtnD" type="button">취소</button>
             <c th:if="${dto.goodCnt != 0}">[[${dto.goodCnt}]] &nbsp;</c>
             <button class="btn badBtn" type="button">👎</button>
             <c th:if="${dto.badCnt != 0}">[[${dto.badCnt}]]</c>

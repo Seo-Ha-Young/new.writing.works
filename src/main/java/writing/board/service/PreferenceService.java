@@ -15,6 +15,7 @@ public interface PreferenceService {
 
     List<PreferenceDTO> find_post_no(Long no);
 
+    void remove(String id);
     default Map<String, Object> dtoToEntity(PreferenceDTO dto) {
         Map<String, Object> entityMap = new HashMap<>();
         Preference preference = Preference.builder()
