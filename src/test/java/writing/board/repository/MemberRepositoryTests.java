@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import writing.board.dto.MemberDTO;
 import writing.board.entity.Member;
 import writing.board.entity.MemberRole;
+import writing.board.security.security.MemberUserDetailsService;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -18,6 +20,9 @@ public class MemberRepositoryTests {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private MemberUserDetailsService memberService;
     @Test
     public void testEncode(){
         String password = "1111";
@@ -57,7 +62,12 @@ public class MemberRepositoryTests {
 
     @Test
     public void deleteDummy() {
-        memberRepository.deleteById(2L);
+        memberService.deleteMember("user1@email.com", passwordEncoder.encode("user1"));
+    }
+
+    @Test
+    public void updateDummy() {
+
     }
 
     @Test
