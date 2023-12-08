@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,15 +12,18 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import writing.board.dto.MemberDTO;
 import writing.board.entity.Member;
+import writing.board.handler.MessageHandler;
 import writing.board.security.dto.AuthMemberDTO;
 import writing.board.security.security.MemberUserDetailsService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 @Log4j2
@@ -27,6 +31,7 @@ import javax.validation.Valid;
 @RequestMapping("/member")
 public class MemberController {
     private final MemberUserDetailsService memberService;
+    private final MessageHandler messageHandler;
 
     @GetMapping("/login")
     public String login() {
@@ -53,10 +58,16 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String joinPost(@Valid MemberDTO memberDTO, BindingResult bindingResult, Model model) {
+    public String joinPost(@Valid MemberDTO memberDTO, Errors errors, Model model) {
         log.info("join post..................");
-        if (bindingResult.hasErrors()) {
+        if (errors.hasErrors()) {
             model.addAttribute("memberDTO", memberDTO);
+
+            Map<String, String> validatorResult = memberService.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                model.addAttribute(key, validatorResult.get(key));
+            }
+
             return "member/join";
         }
 
@@ -65,18 +76,52 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-    @DeleteMapping("/delete/{no}")
-    public String deleteMember(@PathVariable Long no) {
-        memberService.deleteMember(no);
-        return "redirect:/member/all";
-    }
-
     @GetMapping("/memberinfo/{no}")
     public String memberInfo(@PathVariable("no") Long no, Model model) {
         log.info("memberinfo page..............");
         MemberDTO memberDTO = memberService.findById(no);
         model.addAttribute("member", memberDTO);
         return "/member/memberinfo";
+    }
+
+    @GetMapping("/delete")
+    public String deleteGet() {
+        return "/member/delete";
+    }
+
+    @PostMapping("/delete")
+    public String deletePost(@RequestParam String password, Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        boolean result = memberService.deleteMember(userDetails.getUsername(), password);
+
+        if (result) {
+            return "redirect:/member/logout";
+        } else {
+            model.addAttribute("wrongPassword", "비밀번호가 맞지 않습니다.");
+            return "/member/delete";
+        }
+    }
+
+    @GetMapping("/update/email")
+    public String updateUsernameForm(Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        MemberDTO memberDTO = memberService.findMember(userDetails.getUsername());
+        model.addAttribute("member", memberDTO);
+
+        return "/member/updateemail";
+    }
+
+    @PostMapping("/update/email")
+    public String updateUsername(@Valid MemberDTO memberDTO, Errors errors, Model model, Authentication authentication) {
+        if (errors.hasErrors()) {
+            model.addAttribute("member", memberDTO);
+            messageHandler.messageHandling(errors, model);
+            return "/member/updateemail";
+        }
+
+        memberService.updateMember(memberDTO);
+
+        return "redirect:/member/memberinfo";
     }
 
     @GetMapping("/all")
