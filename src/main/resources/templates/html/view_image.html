@@ -17,10 +17,23 @@
 
             var post_no = [[${dto.no}]];
             var id = "닉네임"+(Math.floor(Math.random()*5+1));
-
-
-
             console.log("id ="+id);
+
+            function likeList() {
+                var data = { post_no:post_no, good:1, id:id };
+                console.log(data);
+                $.ajax({
+                  url:"/like/"+post_no+id,
+                  type:'POST',
+                  data:JSON.stringify(data),
+                  contentType:'application/json; charset=utf-8',
+                  dataType: 'text',
+                  success: function(result){
+                      console.log("result :"+result);
+                  }
+                });
+
+            likeList();
 
             //누르면 추천 기능
             $(".goodBtn").on("click", function() {
