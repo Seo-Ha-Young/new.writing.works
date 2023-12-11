@@ -295,7 +295,6 @@ a {
 #reviewList::-webkit-scrollbar-track {
   background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
 }
-
 #reviewList:hover {
   overflow-y: auto;
 }
