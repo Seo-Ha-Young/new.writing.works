@@ -23,9 +23,10 @@ public class AuthMemberDTO extends User {
     private String nickname; // 닉네임
     private String name; // 이름
     private String birth;
-    private String address;
+    private String mainaddress;
+    private String subaddress;
 
-    public AuthMemberDTO(Long no, String username, String password, String nickname, String name, String birth, String address, Collection<? extends GrantedAuthority> authorities) {
+    public AuthMemberDTO(Long no, String username, String password, String nickname, String name, String birth, String mainaddress, String subaddress, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
         this.no = no;
         this.email = username;
@@ -33,7 +34,8 @@ public class AuthMemberDTO extends User {
         this.nickname = nickname;
         this.name = name;
         this.birth = birth;
-        this.address = address;
+        this.mainaddress = mainaddress;
+        this.subaddress = subaddress;
     }
 
 }

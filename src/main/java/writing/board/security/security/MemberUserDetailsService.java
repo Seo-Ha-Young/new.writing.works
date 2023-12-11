@@ -108,7 +108,8 @@ public class MemberUserDetailsService implements UserDetailsService {
                 member.getNickname(),
                 member.getName(),
                 member.getBirth(),
-                member.getAddress(),
+                member.getMainaddress(),
+                member.getSubaddress(),
                 member.getRoleSet().stream().map(memberRole -> new SimpleGrantedAuthority("ROLE_" + memberRole.name())).collect(Collectors.toList())
         );
         log.info("AuthMemberDTO: " + authMemberDTO);
