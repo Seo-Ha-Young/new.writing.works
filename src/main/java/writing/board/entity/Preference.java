@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString(exclude = "postWritten")
+@ToString(exclude = {"postWritten", "member"})
 public class Preference extends BaseEntity {
 
     @Id
@@ -18,8 +18,10 @@ public class Preference extends BaseEntity {
     private String id;
     @ManyToOne(fetch = FetchType.LAZY)
     private PostWritten postWritten;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="nickname", columnDefinition = "varchar(255)", referencedColumnName = "nickname") // 만들 컬럼 이름: nickname, 속성:varchar(255), 참조열 이름:nickname
+    private Member member;
     private Long good;
-    @Column()
     private Long bad;
 
 

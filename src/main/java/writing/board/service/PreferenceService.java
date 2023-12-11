@@ -1,5 +1,6 @@
 package writing.board.service;
 
+import org.springframework.data.crossstore.ChangeSetPersister;
 import writing.board.dto.PreferenceDTO;
 import writing.board.entity.PostWritten;
 import writing.board.entity.Preference;
@@ -9,9 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface PreferenceService {
-    Long register(PreferenceDTO testsDTO);
 
-    PreferenceDTO find_no(Long no);
+    Preference register(PreferenceDTO preferenceDTO) throws Exception;
+
+    List<Preference> find_nickname(PreferenceDTO preferenceDTO);
 
     List<PreferenceDTO> find_post_no(Long no);
 
@@ -38,4 +40,6 @@ public interface PreferenceService {
                 .build();
         return preferenceDTO;
     }
+
+
 }

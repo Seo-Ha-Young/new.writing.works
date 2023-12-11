@@ -17,32 +17,14 @@
 
             var post_no = [[${dto.no}]];
             var id = "닉네임"+(Math.floor(Math.random()*5+1));
-            var good = 1;
-            var like = [];
-            var result_id = [];
-            var promise = function() {
-                $.ajax({
-                            url:"/like/"+post_no+"/all",
-                            type:"GET",
-                            dataType:"json",
-                            success: function(result){
-                            var result_id = result.map(row=>row.id);
-                            like=result_id;
-                            return like;
-                            }
-                });
-            }
+
 
 
             console.log("id ="+id);
-            console.log(Array.isArray(like));
-            console.log(promise);
-            console.log(result_id);
-
 
             //누르면 추천 기능
             $(".goodBtn").on("click", function() {
-                var data = { post_no:post_no, good:good, id:id };
+                var data = { post_no:post_no, good:1, id:id };
                 console.log(data);
                 $.ajax({
                   url:"/like/"+post_no+"/good",
@@ -52,98 +34,26 @@
                   dataType: 'text',
                   success: function(result){
                       console.log("result :"+result);
-                      alert("이 글을 추천하셨습니다.");
                   }
                 });
             });
 
-            //다시 누르면 추천 취소 기능
-             $(".goodBtnD").on("click", function() {
-                console.log(id);
+          $(".badBtn").on("click", function() {
+                var data = { post_no:post_no, bad:1, id:id };
+                console.log(data);
                 $.ajax({
-                  url:"/like/"+id,
-                  type:'DELETE',
+                  url:"/like/"+post_no+"/bad",
+                  type:'POST',
+                  data:JSON.stringify(data),
                   contentType:'application/json; charset=utf-8',
                   dataType: 'text',
                   success: function(result){
                       console.log("result :"+result);
-
                   }
                 });
-            });
+          });
 
-<!-- promise 사용 1 -->
-        function getData(callback) {
-  // new Promise() 추가
-  return new Promise(function(resolve, reject) {
-    $.get("/like/"+post_no+"/all", function(response) {
-      // 데이터를 받으면 resolve() 호출
-      resolve(response);
-      console.log(response);
-    });
-  });
-}
-
-// getData()의 실행이 끝나면 호출되는 then()
-getData().then(function(tableData) {
-  // resolve()의 결과 값이 여기로 전달됨
-  console.log(tableData); // $.get()의 reponse 값이 tableData에 전달됨
-});
-console.log(getData());
-
-<!-- promise 사용 2 -->
- async function showAvatar() {
-  // JSON 읽기
-  let response = await fetch("/like/"+post_no+"/all");
-  let user = await response.json();
-
-  return user;
-}
-
-const promise2 = showAvatar();
-const getData2 = () => {
-  promise2.then((appData) => {
-    console.log(appData);
-  });
-};
-
-getData2();
-//(find로 내부에 있는 id 찾을 수 있는 지 확인)!
-<!--async render() {-->
-<!--const response = await fetch("/like/"+post_no+"/all");-->
-
-<!--if (response.ok) {-->
-<!--const getDatas = await response.json();-->
-<!--}-->
-<!--}-->
-<!--console.log(getDatas);-->
-});
-<!--           function getLikes() {-->
-<!--                var post_no = [[${dto.no}]];-->
-<!--                let like;-->
-<!--                $.ajax({-->
-<!--                    url:"/like/"+post_no+"/all",-->
-<!--                    type:"POST",-->
-<!--                    async: "false",-->
-<!--                    dataType:"json",-->
-<!--                    success: function(result){-->
-<!--                       var result_id = result.map(row=>row.id);-->
-<!--                        like=result_id;-->
-<!--                        console.log(like);-->
-<!--                        return like;-->
-<!--                    },-->
-<!--                    error: function (e) {-->
-<!--                        alert("error");-->
-<!--                    }-->
-<!--                });-->
-<!--            };-->
-            function deepCopy(o) {
-
-              if (typeof o === "object" && o !== null)
-                for (i in o) result[i] = deepCopy(o[i]);
-              else result = o;
-              return result;
-            }
+        });
     </script>
     <style>
         .modal {
@@ -219,7 +129,6 @@ getData2();
 
         <div class="like" style="text-align:center;">
             <button class="btn goodBtn" type="button">👍</button>
-            <button class="btn goodBtnD" type="button">취소</button>
             <c th:if="${dto.goodCnt != 0}">[[${dto.goodCnt}]] &nbsp;</c>
             <button class="btn badBtn" type="button">👎</button>
             <c th:if="${dto.badCnt != 0}">[[${dto.badCnt}]]</c>
