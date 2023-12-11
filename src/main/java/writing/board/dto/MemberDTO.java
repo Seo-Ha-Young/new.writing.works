@@ -26,8 +26,10 @@ public class MemberDTO {
     private String name; // 이름
     @NotBlank(message = "생년월일을 입력해주세요.")
     private String birth; // 생년월일
-    @NotBlank(message = "주소를 입력해주세요.")
-    private String address; // 주소
+//    @NotBlank(message = "주소를 입력해주세요.")
+//    private String address; // 주소
+    private String mainaddress;
+    private String subaddress;
 
     /* DTO -> Entity */
     public Member toEntity() {
@@ -37,7 +39,9 @@ public class MemberDTO {
                 .nickname(nickname)
                 .name(name)
                 .birth(birth)
-                .address(address)
+                //.address(address)
+                .mainaddress(mainaddress)
+                .subaddress(subaddress)
                 .build();
         member.addMemberRole(MemberRole.USER);
         return member;
@@ -51,7 +55,9 @@ public class MemberDTO {
         memberDTO.setNickname(member.getNickname());
         memberDTO.setName(member.getName());
         memberDTO.setBirth(member.getBirth());
-        memberDTO.setAddress(member.getAddress());
+        //memberDTO.setAddress(member.getAddress());
+        memberDTO.setMainaddress(member.getMainaddress());
+        memberDTO.setSubaddress(member.getSubaddress());
         return memberDTO;
     }
 }

@@ -39,7 +39,9 @@ public class MemberRepositoryTests {
                 .nickname("관리자")
                 .name("관리자")
                 .birth("2000-11-11")
-                .address("주소")
+                .mainaddress("메인주소")
+                .subaddress("상세주소")
+                //.address("주소")
                 .build();
         member.addMemberRole(MemberRole.USER);
         member.addMemberRole(MemberRole.ADMIN);
@@ -54,7 +56,9 @@ public class MemberRepositoryTests {
                 .nickname("user1")
                 .name("유저")
                 .birth("2000-11-11")
-                .address("주소")
+                .mainaddress("메인주소")
+                .subaddress("상세주소")
+                //.address("주소")
                 .build();
         member.addMemberRole(MemberRole.USER);
         memberRepository.save(member);
@@ -79,7 +83,9 @@ public class MemberRepositoryTests {
                     .nickname("닉네임"+i)
                     .name("사용자"+i)
                     .birth("2000-11-11")
-                    .address("주소"+i)
+                    .mainaddress("메인주소")
+                    .subaddress("상세주소")
+                    //.address("주소"+i)
                     .build();
             member.addMemberRole(MemberRole.USER);
             if(i == 1)

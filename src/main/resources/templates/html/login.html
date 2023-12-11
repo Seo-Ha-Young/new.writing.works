@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,26 +23,44 @@
   <body>
     <div id="header"></div>
     <div id="loginDiv">
-      <form class="loginForm" id="loginForm" action="#">
+      <form id="registerForm" class="loginForm" action="/html/login" method="post">
         <div class="idInput">
-          <input type="text" placeholder="ID" name="id" id="id" /><br />
+          <input type="text" name="email" class="form-control" placeholder="EMAIL">
         </div>
         <div class="pwInput">
-          <input
-            type="password"
-            placeholder="PW"
-            name="password"
-            id="password"
-          />
+          <input type="password" name="password" class="form-control" placeholder="PASSWORD">
         </div>
-        <br />
-        <input type="radio" /> ID 저장<br />
-        <button type="submit" id="login" onclick="loginChk()">Login</button>
-      </form>
-      <button id="sign-in" onclick="location.href='register.html'">
-        Sign In
-      </button>
+        <div class="my-4">
+          <div class="float-end">
+            <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+            <button type="submit" id="login" class="btn btn-primary submitBtn">LOGIN</button>
+            <button type="button" id="sign-in" class="btn btn-primary" onClick="location.href='/html/join'">REGISTER</button>
+          </div>
+        </div>
+       </form>
     </div>
+<!--    <div id="header"></div>-->
+<!--    <div id="loginDiv">-->
+<!--      <form class="loginForm" id="loginForm" action="#">-->
+<!--        <div class="idInput">-->
+<!--          <input type="text" placeholder="ID" name="id" id="id" /><br />-->
+<!--        </div>-->
+<!--        <div class="pwInput">-->
+<!--          <input-->
+<!--            type="password"-->
+<!--            placeholder="PW"-->
+<!--            name="password"-->
+<!--            id="password"-->
+<!--          />-->
+<!--        </div>-->
+<!--        <br />-->
+<!--        <input type="radio" /> ID 저장<br />-->
+<!--        <button type="submit" id="login" onclick="loginChk()">Login</button>-->
+<!--      </form>-->
+<!--      <button id="sign-in" onclick="location.href='register.html'">-->
+<!--        Sign In-->
+<!--      </button>-->
+<!--    </div>-->
     <script src="/js/login.js"></script>
   </body>
 </html>
