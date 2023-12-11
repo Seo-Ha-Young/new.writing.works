@@ -22,8 +22,9 @@ public class Member extends BaseEntity {
     private String nickname; // 닉네임
     private String name; // 이름
     private String birth; // 생년월일
-    private String address; // 주소
-
+    //private String address; // 주소
+    private String mainaddress;
+    private String subaddress;
 
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
@@ -31,6 +32,13 @@ public class Member extends BaseEntity {
 
     public void addMemberRole(MemberRole memberRole){
         roleSet.add(memberRole);
+    }
+
+    public void updateEmail(String email) {
+        this.email = email;
+    }
+    public void updatePassword(String password) {
+        this.password = password;
     }
 
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>개인정보</title>
+</head>
+<body>
+    <h1>개인정보 페이지</h1>
+    <p th:text="${member.no}"></p>
+    <p th:text="${member.email}"></p>
+    <p th:text="${member.nickname}"></p>
+    <p th:text="${member.name}"></p>
+    <p th:text="${member.birth}"></p>
+    <p th:text="${member.address}"></p>
+
+    <a th:href="@{/member/update/email}">이메일 수정하기</a>
+    <a th:href="@{/member/delete/}">삭제하기</a>
+
+
+</body>
+</html>

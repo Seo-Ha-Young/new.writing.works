@@ -32,18 +32,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/member/all").permitAll()
-                .antMatchers("/member/member").hasRole("USER")
+                .antMatchers("/html/login").permitAll()
+                .antMatchers("html/board").hasRole("USER")
                 .antMatchers("/member/admin").hasRole("ADMIN");//antMatcher: ?: 한 글자, *: 임의의 파일 , **: 임의의 경로
         http.formLogin()
-                .loginPage("/member/login")
-                .defaultSuccessUrl("/member/member")
+                .loginPage("/html/login")
+                .defaultSuccessUrl("/html/board")
                 .usernameParameter("email")
-                .failureUrl("/member/error")
+                .failureUrl("/html/error")
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/member/logout")).logoutSuccessUrl("/member/login").invalidateHttpSession(true)
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/html/logout")).logoutSuccessUrl("/html/board").invalidateHttpSession(true)
                 .and()
-                .exceptionHandling().accessDeniedPage("/member/denied");
+                .exceptionHandling().accessDeniedPage("/html/denied");
 
         http.csrf().disable();
     }
