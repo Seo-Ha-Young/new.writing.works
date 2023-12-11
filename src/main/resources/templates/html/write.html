@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Team02작성</title>
-    <link rel="stylesheet" href="/static/css/css.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -66,20 +66,37 @@
       <div id="img"></div>
       <div id="timers"></div>
       <textarea id="write_word" name="img_mode"></textarea><br />
-      <button id="upload" style="display: none" onclick="savePost()">
+      <button
+        id="upload"
+        class="upload"
+        style="display: none"
+        onclick="savePost()"
+      >
         등록
+      </button>
+      <button onClick="window.location.reload()" class="refresh">
+        처음으로
       </button>
     </div>
     <div class="write_mode2" id="write_mode2" style="display: none">
       <form>
         <div id="timers2"></div>
         <textarea id="write_word2" name="Essay-mode"></textarea><br />
-        <button id="upload2" style="display: none" onclick="savePost()">
+
+        <button
+          id="upload2"
+          class="upload"
+          style="display: none"
+          onclick="savePost()"
+        >
           등록
+        </button>
+        <button onClick="window.location.reload()" class="refresh">
+          처음으로
         </button>
       </form>
     </div>
-    <script defer src="/js/test.js"></script>
+    <script defer src="/src/main/resources/static/js/test.js"></script>
     <div id="footers"></div>
   </body>
 </html>

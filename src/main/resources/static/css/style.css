@@ -355,7 +355,7 @@ a {
   display: inline-block;
   width: 150px;
 }
-.wirte_mode1 #upload,
+.refresh,
 .write_warp .btn button {
   width: 150px;
   height: 50px;
@@ -364,9 +364,20 @@ a {
   transition: background-color 0.5s ease;
   border-color: #889fa5;
 }
-.wirte_mode1 #upload:hover,
+.write_mode2 #upload2,
+.write_mode1 #upload {
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+  background: #d9e6fa;
+  transition: background-color 0.5s ease;
+  border-color: #d9e6fa;
+}
+.refresh:hover,
+.write_mode1 #upload:hover,
+.write_mode2 #upload2:hover,
 .write_warp .btn button:hover {
-  background-color: #b1bdc5;
+  background-color: #dae8f1;
   border-color: azure;
 }
 
@@ -413,11 +424,11 @@ a {
   color: black;
   resize: none;
 }
-.write_mode2 #upload2,
+/* .write_mode2 #upload2,
 .write_mode1 #upload {
   width: 90px;
   height: 50px;
-}
+} */
 
 /* 에세이모드 */
 
