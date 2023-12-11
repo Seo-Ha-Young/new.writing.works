@@ -6,16 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import writing.board.dto.PageRequestDTO;
-import writing.board.dto.PageResultDTO;
 import writing.board.dto.PostWrittenDTO;
-import writing.board.entity.PostWritten;
 import writing.board.service.BoardService;
-import writing.board.service.RecommendationService;
-
-import java.util.List;
+import writing.board.service.PreferenceService;
 
 @Controller
 @RequestMapping("/html")
@@ -23,11 +18,11 @@ import java.util.List;
 @Log4j2
 public class BoardController {
 private final BoardService boardService;
-private  final RecommendationService recommendationService;
     @GetMapping("/board")
     public void board(PageRequestDTO requestDTO, Model model) {
         log.info("board page................"+requestDTO);
         model.addAttribute("result", boardService.getList(requestDTO));
+
     }
 
     @GetMapping({"/view_image", "/view_essay"})
@@ -38,8 +33,4 @@ private  final RecommendationService recommendationService;
     }
 
 
-    @PostMapping("recommends")
-    public void recommends(Long no , Model model) {
-        model.addAttribute("recommend", recommendationService.find_no(no));
-    }
 }

@@ -6,10 +6,10 @@ import writing.board.dto.PostWrittenDTO;
 import writing.board.entity.PostWritten;
 
 public interface BoardService {
-    PageResultDTO<PostWrittenDTO, PostWritten> getList(PageRequestDTO requestDTO);
+    PageResultDTO<PostWrittenDTO, Object[]> getList(PageRequestDTO requestDTO);
 
     PostWrittenDTO read(Long no);
-    default PostWrittenDTO entitiesToDTO(PostWritten postWritten){
+    default PostWrittenDTO entitiesToDTO(PostWritten postWritten, Long badCnt, Long goodCnt){
         PostWrittenDTO postWrittenDTO = PostWrittenDTO.builder()
                 .no(postWritten.getNo())
                 .post_name(postWritten.getPost_name())
@@ -18,6 +18,8 @@ public interface BoardService {
                 .writer(postWritten.getWriter())
                 .image_no((postWritten.getImage_no()))
                 .build();
+        postWrittenDTO.setGoodCnt(goodCnt.intValue());
+        postWrittenDTO.setBadCnt(badCnt.intValue());
 
         return postWrittenDTO;
     }

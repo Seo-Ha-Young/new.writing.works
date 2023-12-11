@@ -1,5 +1,8 @@
 package writing.board.repository;
 
+import com.querydsl.core.types.Predicate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -7,15 +10,16 @@ import writing.board.entity.PostWritten;
 
 import java.util.List;
 
+
 public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>, QuerydslPredicateExecutor<PostWritten> {
 
-    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, r.push from PostWritten p "
-            +"left join Recommendation r on p.no = r.post_no"
-            +"where p.no = :no", nativeQuery = true)
+    @Query("select p, count(pr.bad), count(pr.good) from PostWritten p "
+            +"left outer join Preference pr on pr.postWritten = p "
+            +"where p.no = :no group by p")
     List<Object[]> getPostWithAll(Long no);
 
-    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, r.push from PostWritten p "
-            +"left join Recommendation r on p.no = r.post_no", nativeQuery = true)
+    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, p.count(r.bad), p.count(r.good) from Post_Written p "
+            +"left join Preference r on r.post_written = p", nativeQuery = true)
     List<Object[]> getPostWithAll();
 
     @Query("select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, i.img_name from PostWritten p "
@@ -23,4 +27,9 @@ public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>,
  //           +"left outer join Essay e.postWritten = p"
             +"where p.no = :no ")
     List<Object[]> getPostWritten_no(long no);
+
+    @Query(value = "select p, count(pr.bad) as badCnt, count(pr.good) as goodCnt from PostWritten p "
+            +"left outer join Preference pr on pr.postWritten = p "
+            +"group by p")
+    Page<Object[]> getListPage(Pageable pageable);
 }

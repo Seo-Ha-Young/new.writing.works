@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div>
+  <form method="post">
+    <div class="form-group">
+      <label class="form-label mt-4">회원 정보 수정</label>
+
+      <div class="form-floating mb-3">
+        <input type="text" name="no" class="form-control" id="floatingInput" th:value="${member.no}" readonly>
+        <label for="floatingInput">No</label>
+      </div>
+      <th:block th:if="${valid_email == null}">
+        <div class="form-floating mb-3">
+          <input type="email" name="email" class="form-control" id="floatingEmail" th:value="${member.email}">
+          <label for="floatingemail">User name</label>
+        </div>
+      </th:block>
+      <th:block th:unless="${valid_email == null}">
+        <div class="form-floating mb-3 has-danger">
+          <input type="email" name="email" class="form-control is-invalid" id="floatingEmail">
+          <label for="floatingInput">User name</label>
+          <div class="invalid-feedback" th:text="${valid_email}"></div>
+        </div>
+      </th:block>
+    </div>
+    <button type="submit" class="btn btn-primary">update</button>
+  </form>
+</div>
+</body>
+</html>

@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>join</title>
 </head>
 <body>
-<form method="post" action="/member/join">
+<form method="post" action="/member/join" modelAttribute="memberDTO">
     <div>
-        이메일 : <input type="text" id="email" name="email">
+        이메일 : <input type="text" id="email" name="email" th:value="${memberDTO.email}">
+        <span th:text="${valid_email}"></span>
     </div>
     <div>
         패스워드 : <input type="password" id="password" name="password">
+        <span th:text="${valid_password}"></span>
     </div>
     <div>
         닉네임 : <input type="text" id="nickname" name="nickname">
+        <span th:text="${valid_nickname}"></span>
     </div>
     <div>
         이름 : <input type="text" id="name" name="name">
+        <span th:text="${valid_name}"></span>
     </div>
     <div>
         생년월일 : <input type="date" id="birth" name="birth">
+        <span th:text="${valid_birth}"></span>
     </div>
     <div>
         주소 : <input type="text" id="address" name="address">
+        <span th:text="${valid_address}"></span>
     </div>
     <button type="submit">가입하기</button>
 </form>
