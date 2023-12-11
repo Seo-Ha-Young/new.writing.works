@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import writing.board.entity.Image;
 import writing.board.entity.Member;
 import writing.board.entity.PostWritten;
+import writing.board.service.ImageService;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
@@ -21,9 +23,10 @@ public class PostWrittenRepositoryTests {
     @Transactional
     @Test
     public void insertPost() {
-        IntStream.rangeClosed(31,50).forEach(i ->{
+        IntStream.rangeClosed(21,40).forEach(i ->{
             PostWritten postWritten = PostWritten.builder()
                     .post_name("제목"+i)
+                    .image_no((long) i)
                     .post_content("작성내용"+i)
                     .writer("닉네임"+((long) (Math.random() * 10)))
                     .build();
