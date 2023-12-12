@@ -1,6 +1,8 @@
 window.onload = function () {
   var post_no = document.getElementById("dto_no").textContent;
   console.log(post_no);
+  var id = document.getElementById("member_info").textContent;
+  console.log("id=", id);
 
   //전체 리뷰 보여주기 기능
   function getPostReviews() {
@@ -33,13 +35,12 @@ window.onload = function () {
   }
   getPostReviews();
 
-  var id = "닉네임" + Math.floor(Math.random() * 5 + 1);
   var content = $('textarea[name="reply"]');
   //리뷰 등록 기능
   $(".btn_reply").click(function () {
     var data = { post_no: post_no, review_content: content.val(), id: id };
     console.log(data);
-
+    if(id != "") {
     $.ajax({
       url: "/reviews/" + post_no,
       type: "POST",
@@ -49,8 +50,12 @@ window.onload = function () {
       success: function (result) {
         console.log("result :" + result);
         getPostReviews();
-      },
+      }
     });
+     } else {
+      alert("로그인 후 이용하세요");
+      }
+
   });
 
   var modal = document.querySelector(".modal");
@@ -61,7 +66,7 @@ window.onload = function () {
   //리뷰 수정창 띄우기
   $(".reviewList").on("click", ".post_no", function () {
     var targetReview = $(this);
-
+   if(id != "") {
     review_no = targetReview.data("no");
     console.log("review_no:" + review_no);
     inputId.val(targetReview.find(".id").text());
@@ -69,7 +74,14 @@ window.onload = function () {
       targetReview.find(".content").clone().children().remove().end().text()
     );
     console.log("review : " + inputId.val() + " " + inputText.val());
+    if( inputId.val() == id) {
     modal.classList.toggle("show");
+    } else {
+        alert("다른 사람의 댓글을 수정할 수 없습니다.");
+    }
+         } else {
+          alert("로그인 후 수정 가능합니다.");
+          }
   });
 
   //리뷰 수정기능

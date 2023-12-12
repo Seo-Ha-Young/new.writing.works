@@ -1,8 +1,9 @@
 
 
   var post_no = document.getElementById("dto_no").textContent;
-
-            var id = "닉네임"+(Math.floor(Math.random()*5+1));
+  var id = document.getElementById("member_info").textContent;
+  console.log("id=", id);
+          //  var id = "닉네임"+(Math.floor(Math.random()*5+1));
             var txt;
             var good = "이미 추천을 했습니다."
             var bad = "이미 비추천을 했습니다.";
@@ -47,7 +48,7 @@
                           promise1.then(data => {
                             data = result;
                           });
-                              $(".like").load(window.location.href + " .like");
+                              $(".good_Cnt").load(location.href+" .good_Cnt a");
                           }
                      });
                 }

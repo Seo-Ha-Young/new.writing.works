@@ -36,9 +36,11 @@ private final PreferenceService preferenceService;
 
     @GetMapping({"/view_image", "/view_essay"})
     public void view(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, @AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
-        Member member = Member.builder().nickname(authMemberDTO.getNickname()).build();
-        log.info("현재 로그인 한 인원 닉네임 : "+ member);
-        model.addAttribute("member", authMemberDTO);
+        if(authMemberDTO != null) {
+            String member = authMemberDTO.getNickname();
+            log.info("현재 로그인 한 인원 닉네임 : " + member);
+            model.addAttribute("member", member);
+        }
         log.info("게시글 번호 No = "+no);
         PostWrittenDTO dto = boardService.read(no);
         log.info("게시글 정보 :"+dto);
