@@ -590,3 +590,21 @@ input[type="date"]:valid::before {
   height: 40px;
   padding: 10px;
 } */
+
+/* 회원정보 */
+.member_info {
+  margin-top: 10px;
+}
+.member_info #delet,
+.member_info #edit {
+  width: 20%;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--linecolor);
+}
+.member_info #delet:hover,
+.member_info #edit:hover {
+  color: var(--textcolor);
+  background: #b6b6b6;
+}
