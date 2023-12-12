@@ -7,7 +7,7 @@
 <body>
 <form method="post" action="/member/join" modelAttribute="memberDTO">
     <div>
-        이메일 : <input type="text" id="email" name="email" th:value="${memberDTO.email}">
+        이메일 : <input type="text" id="email" name="email">
         <span th:text="${valid_email}"></span>
     </div>
     <div>

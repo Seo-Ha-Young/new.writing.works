@@ -26,9 +26,9 @@ public class MemberDTO {
     private String name; // 이름
     @NotBlank(message = "생년월일을 입력해주세요.")
     private String birth; // 생년월일
-//    @NotBlank(message = "주소를 입력해주세요.")
-//    private String address; // 주소
+    @NotBlank(message = "메인주소를 입력해주세요.")
     private String mainaddress;
+    @NotBlank(message = "상세주소를 입력해주세요.")
     private String subaddress;
 
     /* DTO -> Entity */
