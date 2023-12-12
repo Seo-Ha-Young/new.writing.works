@@ -42,10 +42,10 @@ public class PreferenceController {
         log.info("DB 추천 닉네임 정보 : "+nickname.isEmpty());
         String word;
         if(nickname.isEmpty() == true){
-            word = "아직 기록이 없습니다";
+            word = "아직 기록이 없습니다.";
         } else {
             if(nickname.get(0).getGood() == null )
-                word = "이미 비추천을 했습니다";
+                word = "이미 비추천을 했습니다.";
             else {
                 word = "이미 추천을 했습니다.";
             }
