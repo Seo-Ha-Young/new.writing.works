@@ -1,0 +1,73 @@
+:root {
+  --linecolor: #b1bdc5;
+  --textcolor: ;
+}
+
+.container {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  outline: solid 1px black;
+
+  justify-content: center;
+}
+
+.modify_div {
+  width: 30%;
+  height: 60%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(197, 223, 255, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.3px);
+  -webkit-backdrop-filter: blur(1.3px);
+  border: 1px solid rgba(197, 223, 255, 0.09);
+}
+
+.modify_div .modify_items {
+  width: 80%;
+  height: 10%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+.modify_div .modify_items:first-child {
+  margin-top: 30px;
+}
+.modify_div label {
+  font-size: 20px;
+  margin-right: 10px;
+  font-weight: bold;
+  flex: 1;
+}
+
+.modify_div input {
+  flex: 2;
+  height: 30px;
+  border: 1px solid var(--linecolor);
+  border-radius: 3px;
+}
+
+.modify_items #modify_pw2 label[for="pw2"] {
+  font-size: 10px;
+}
+
+.modify_div button {
+  width: 100px;
+  height: 30px;
+  border: 1px solid var(--linecolor);
+  border-radius: 4px;
+}
+
+.modify_div button:hover {
+  width: 110px;
+  height: 35px;
+  border: 1px solid var(--linecolor);
+
+  background: #b1bdc5;
+}

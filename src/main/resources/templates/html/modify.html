@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
+        $("#footers").load("footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+      });
+    </script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <div class="container">
+      <div class="modify_div">
+        <div class="modify_items" id="modify_id">
+          <label for="id">아이디</label>
+          <input type="text" name="modify_id" />
+        </div>
+
+        <div class="modify_items" id="modify_pw">
+          <label for="pw">비밀번호</label>
+          <input type="text" name="modify_pw" />
+        </div>
+
+        <div class="modify_items" id="modify_pw2">
+          <label for="pw2">비밀번호 확인</label>
+          <input type="text" name="modify_pw2" />
+        </div>
+
+        <div class="modify_items" id="modify_nickname">
+          <label for="nickname">닉네임</label>
+          <input type="text" name="modify_nickname" />
+        </div>
+
+        <div class="modify_items" id="modify_email">
+          <label for="id">이메일</label>
+          <input type="text" />
+        </div>
+        <button>변경</button>
+      </div>
+    </div>
+    <div id="footers"></div>
+  </body>
+</html>
