@@ -279,7 +279,25 @@ a {
   border-radius: 4px;
   border: 1px solid var(--linecolor);
 }
-
+#reviewList {
+  margin-top: 20px;
+  overflow-y: hidden;
+  max-height: 200px;
+}
+#reviewList::-webkit-scrollbar {
+  width: 10px;
+}
+#reviewList::-webkit-scrollbar-thumb {
+  height: 10%; /* 스크롤바의 길이 */
+  background: #217af4; /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+#reviewList::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
+}
+#reviewList:hover {
+  overflow-y: auto;
+}
 /* 작성페이지 */
 .write_warp {
   width: 800px;
@@ -337,7 +355,7 @@ a {
   display: inline-block;
   width: 150px;
 }
-.wirte_mode1 #upload,
+.refresh,
 .write_warp .btn button {
   width: 150px;
   height: 50px;
@@ -346,21 +364,33 @@ a {
   transition: background-color 0.5s ease;
   border-color: #889fa5;
 }
-.wirte_mode1 #upload:hover,
+.write_mode2 #upload2,
+.write_mode1 #upload {
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+  background: #d9e6fa;
+  transition: background-color 0.5s ease;
+  border-color: #d9e6fa;
+}
+.refresh:hover,
+.write_mode1 #upload:hover,
+.write_mode2 #upload2:hover,
 .write_warp .btn button:hover {
-  background-color: #b1bdc5;
+  background-color: #dae8f1;
   border-color: azure;
 }
 
 /* 이미지 모드 */
-.wirte_mode1 {
+.write_mode1 {
   width: 80%;
   height: 90%;
   text-align: center;
-  margin-top: 10px;
+  margin: auto;
+  margin-top: 40px;
 }
-.wirte_mode2 #timers2,
-.wirte_mode1 #timers {
+.write_mode2 #timers2,
+.write_mode1 #timers {
   font-size: 30px;
   margin-bottom: 40px;
   width: 60%;
@@ -369,17 +399,17 @@ a {
   color: #474554;
 }
 
-.wirte_mode1 #je {
+.write_mode1 #je {
   font-size: 30px;
 }
 
-.wirte_mode1 img {
+.write_mode1 #img {
   width: 400px;
-  margin-top: 50px;
-  margin-bottom: 10px;
+  margin: auto;
+  margin-bottom: 40px;
 }
 
-.wirte_mode1 #write_word {
+.write_mode1 #write_word {
   width: 700px;
   height: 300px;
   margin-bottom: 20px;
@@ -392,21 +422,22 @@ a {
   z-index: 1;
   font-size: 1.4rem;
   color: black;
+  resize: none;
 }
-.wirte_mode2 #upload2,
-.wirte_mode1 #upload {
+/* .write_mode2 #upload2,
+.write_mode1 #upload {
   width: 90px;
   height: 50px;
-}
+} */
 
 /* 에세이모드 */
 
-.wirte_mode2 {
+.write_mode2 {
   width: 80%;
   text-align: center;
   margin-left: 200px;
 }
-.wirte_mode2 #write_word2 {
+.write_mode2 #write_word2 {
   width: 700px;
   height: 300px;
   margin-bottom: 20px;
@@ -419,8 +450,9 @@ a {
   z-index: 1;
   font-size: 1.4rem;
   color: black;
+  resize: none;
 }
-.wirte_mode2 #timers2 {
+.write_mode2 #timers2 {
   margin-top: 20px;
 }
 
@@ -558,3 +590,21 @@ input[type="date"]:valid::before {
   height: 40px;
   padding: 10px;
 } */
+
+/* 회원정보 */
+.member_info {
+  margin-top: 10px;
+}
+.member_info #delet,
+.member_info #edit {
+  width: 20%;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--linecolor);
+}
+.member_info #delet:hover,
+.member_info #edit:hover {
+  color: var(--textcolor);
+  background: #b6b6b6;
+}

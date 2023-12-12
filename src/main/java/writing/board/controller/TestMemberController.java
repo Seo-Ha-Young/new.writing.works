@@ -61,7 +61,9 @@ public class TestMemberController {
 
             Map<String, String> validatorResult = memberService.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
+                log.info(validatorResult.get(key));
                 model.addAttribute(key, validatorResult.get(key));
+
             }
 
             return "member/join";

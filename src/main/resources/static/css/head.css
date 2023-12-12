@@ -6,20 +6,30 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
+header h1 {
+  margin-top: 20px;
+}
 nav,
 a {
   list-style: none;
 }
 header {
   border-bottom: 1px solid #dadde2;
-  background: #c6d9f5;
+  background-image: linear-gradient(
+    to right bottom,
+    #000000,
+    #030303,
+    #070707,
+    #0a0a0a,
+    #0d0d0d
+  );
+  color: white;
 }
 header > div {
   width: 90%;
   min-width: 0;
   max-width: 1200px;
-  height: 50px;
+  height: 80px;
   margin: 0 auto;
 }
 header .logo {
@@ -32,13 +42,15 @@ header .logo img {
 
 header .glb {
   float: right;
+  margin-bottom: 10px;
 }
 
 header .glb a {
   display: inline-block;
   margin-left: 30px;
-  margin-top: 25px;
-  font-size: 15px;
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 header .glb a:first-child {
