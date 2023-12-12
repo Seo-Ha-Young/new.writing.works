@@ -2,14 +2,18 @@ package writing.board.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import writing.board.dto.PageRequestDTO;
 import writing.board.dto.PostWrittenDTO;
 import writing.board.dto.PreferenceDTO;
+import writing.board.entity.Member;
+import writing.board.security.dto.AuthMemberDTO;
 import writing.board.service.BoardService;
 import writing.board.service.PreferenceService;
 
@@ -31,7 +35,10 @@ private final PreferenceService preferenceService;
     }
 
     @GetMapping({"/view_image", "/view_essay"})
-    public void view(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
+    public void view(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, @AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
+        Member member = Member.builder().nickname(authMemberDTO.getNickname()).build();
+        log.info("현재 로그인 한 인원 닉네임 : "+ member);
+        model.addAttribute("member", authMemberDTO);
         log.info("게시글 번호 No = "+no);
         PostWrittenDTO dto = boardService.read(no);
         log.info("게시글 정보 :"+dto);
@@ -43,5 +50,10 @@ private final PreferenceService preferenceService;
         model.addAttribute("like", like);
     }
 
+    @PostMapping("/member_info")
+    public void member_info(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
+        log.info("header................");
+        model.addAttribute("member", authMemberDTO);
+    }
 
 }

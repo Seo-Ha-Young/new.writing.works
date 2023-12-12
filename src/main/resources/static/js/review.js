@@ -112,9 +112,22 @@ window.onload = function () {
     });
   });
 
-  //리뷰 수정창 닫기 기능
-  function close() {
-    modal.classList.remove("show");
-  }
-  $(".close").on("click", close);
-};
+      //리뷰 수정창 닫기 기능
+      function close() {
+        modal.classList.remove("show");
+      }
+      $(".close").on("click", close);
+
+      function addJavascript(jsname) {
+      	var th = document.getElementsByTagName('head')[0];
+      	var s = document.createElement('script');
+      	s.setAttribute('type','text/javascript');
+      	s.setAttribute('src',jsname);
+      	th.appendChild(s);
+      }
+
+      addJavascript('/js/like.js');
+
+  };
+
+

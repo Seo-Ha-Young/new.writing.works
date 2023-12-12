@@ -26,4 +26,8 @@ public class SampleController {
         model.addAttribute("member", authMemberDTO);
         return "/html/header";
     }
+    @GetMapping("/footer")
+    public String footer() {
+        return "/html/footer";
+    }
 }
