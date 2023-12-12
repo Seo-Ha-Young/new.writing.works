@@ -58,7 +58,9 @@
                           success: function(result){
                               console.log("result :"+result);
                               alert(result);
-                              getLatLng();
+                          promise1.then(data => {
+                            data = result;
+                          });
                               $(".like").load(window.location.href + " .like");
                           }
                      });
