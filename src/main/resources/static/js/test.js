@@ -190,4 +190,3 @@ function buttonClick() {
     $write_word2.value = getRandomSentence();
   }
 }
-
