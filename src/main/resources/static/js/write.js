@@ -1,11 +1,12 @@
+
 function savePost() {
 
   const postContent = document.getElementById('write_word').value;
-
+  console.log(postContent);
   const data = {
-    postContent: postContent
+    post_content: postContent
   };
-
+  console.log(data);
   fetch('/savePost', {
     method: 'POST',
     headers: {

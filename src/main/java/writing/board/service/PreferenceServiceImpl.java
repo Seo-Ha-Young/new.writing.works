@@ -23,8 +23,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PreferenceServiceImpl implements PreferenceService {
   private final PreferenceRepository repository;
-  private final MemberRepository memberRepository;
-  private  final PostWrittenRepository postWrittenRepository;
     @Override
     public Preference register(PreferenceDTO testsDTO) throws Exception {
         Map<String, Object> entityMap = dtoToEntity(testsDTO);

@@ -48,7 +48,7 @@
                           promise1.then(data => {
                             data = result;
                           });
-                              $(".good_Cnt").load(location.href+" .good_Cnt a");
+                              $(".good_Cnt").load(location.href+" .good_Cnt");
                           }
                      });
                 }
