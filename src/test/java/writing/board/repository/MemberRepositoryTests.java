@@ -58,7 +58,6 @@ public class MemberRepositoryTests {
                 .birth("2000-11-11")
                 .mainaddress("메인주소")
                 .subaddress("상세주소")
-                //.address("주소")
                 .build();
         member.addMemberRole(MemberRole.USER);
         memberRepository.save(member);
@@ -71,7 +70,17 @@ public class MemberRepositoryTests {
 
     @Test
     public void updateDummy() {
-
+        Member member = Member.builder()
+                .email("user1@email.com")
+                .password(passwordEncoder.encode("user1"))
+                .nickname("nickname1")
+                .name("유저")
+                .birth("2000-11-11")
+                .mainaddress("메인주소")
+                .subaddress("상세주소")
+                .build();
+        member.addMemberRole(MemberRole.USER);
+        
     }
 
     @Test
