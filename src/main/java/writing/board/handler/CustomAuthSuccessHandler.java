@@ -39,7 +39,7 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
         }
 
         // 기본 URI
-        String uri = "/";
+        String uri = "/html/board";
 
         /**
          * savedRequest 존재하는 경우 = 인증 권한이 없는 페이지 접근
@@ -50,7 +50,7 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
         } else if (prevPage != null && !prevPage.equals("")) {
             // 회원가입 - 로그인으로 넘어온 경우 "/"로 redirect
             if (prevPage.contains("/html/register")) {
-                uri = "/";
+                uri = "/html/board";
             } else {
                 uri = prevPage;
             }
