@@ -15,7 +15,7 @@ let $boarder_wrap = document.getElementById("#board_wrap");
 let write_mod1 = document.querySelector("#timers");
 let write_mod2 = document.querySelector("#timers2");
 
-let timer = $timer.value; //기준시간 작성
+/*let timer = $timer.value; //기준시간 작성*/
 
 const sentences = [
   "비가 구슬프게 쏟아지고 있었다.",
@@ -162,7 +162,7 @@ function startTimer(totalTime) {
 
 function buttonClick() {
   console.log("Selected Value:", selectedValue);
-  console.log($timer.value);
+/*  console.log($timer.value);*/
 
   if (selectedValue === "1") {
     selectMode = write_mod1;
@@ -174,16 +174,17 @@ function buttonClick() {
     uploadBtn = $upload2;
   }
 
-  if (!$timer.value) {
-    alert("목표 시간을 입력해 주세요");
+ /* if (!$timer.value) {
+    alert("시간이 설정됩니다!");
     $timer.focus();
-  } else if (selectedValue === "1") {
-    startTimer($timer.value);
+  } else*/
+  if (selectedValue === "1") {
+    startTimer(10);
     fadeOutElement("#board_wrap");
     fadeInElement("#write_mode1");
     fadeOutElement("#write_warp");
   } else if (selectedValue === "2") {
-    startTimer($timer.value);
+    startTimer(180);
     fadeOutElement("#board_wrap");
     fadeInElement("#write_mode2");
     fadeOutElement("#write_warp");
