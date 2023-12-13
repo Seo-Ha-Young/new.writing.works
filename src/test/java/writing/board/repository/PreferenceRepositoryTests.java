@@ -53,4 +53,11 @@ public class PreferenceRepositoryTests {
             System.out.println("-----------------------------------------------------");
         }
     }
+    @Test
+    public void testGetNicknameWithAll() {
+        List<Preference> result = preferenceRepository.getNicknameWithAll("닉네임3");
+        System.out.println("-----------------------------------------------------");
+        System.out.println(result);
+
+    }
 }
