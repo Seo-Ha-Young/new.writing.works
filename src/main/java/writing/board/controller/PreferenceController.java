@@ -36,15 +36,16 @@ public class PreferenceController {
     }
 
     @PostMapping("/{post_no}/id")
-    public ResponseEntity<String> findNicknameWithLike(@RequestBody PreferenceDTO preferenceDTO) throws Exception {
-        List<Preference> nickname = preferenceService.find_nickname(preferenceDTO);
-        log.info("추천 닉네임 정보 : "+preferenceDTO.getId());
-        log.info("DB 추천 닉네임 정보 : "+nickname.isEmpty());
+    public ResponseEntity<String> findMember_noWithLike(@RequestBody PreferenceDTO preferenceDTO) throws Exception {
+        log.info("추천하기로 넘어온 정보 : "+preferenceDTO);
+        Preference nickname = preferenceService.find_nickname(preferenceDTO);
+        log.info("추천 회원 번호 정보 : "+preferenceDTO.getMember_no());
+        log.info("DB 추천 닉네임 정보 : "+nickname);
         String word;
-        if(nickname.isEmpty() == true){
+        if(nickname == null){
             word = "아직 기록이 없습니다.";
         } else {
-            if(nickname.get(0).getGood() == null )
+            if(nickname.getGood() == null )
                 word = "이미 비추천을 했습니다.";
             else {
                 word = "이미 추천을 했습니다.";
@@ -56,15 +57,15 @@ public class PreferenceController {
     public ResponseEntity<String> addGoodCnt(@RequestBody PreferenceDTO preferenceDTO) throws Exception {
         log.info("add Preference");
         log.info("추천 정보:"+preferenceDTO);
-        List<Preference> nickname = preferenceService.find_nickname(preferenceDTO);
+        Preference nickname = preferenceService.find_nickname(preferenceDTO);
         log.info("닉네임이 이미 존재하는지 확인"+ nickname);
         String word;
-        if(nickname.isEmpty()) {
+        if(nickname == null) {
             Preference preference = preferenceService.register(preferenceDTO);
             word = "이 글을 추천하셨습니다.";
             log.info("저장된 추천 정보 : "+preference);
         } else {
-            preferenceService.remove(preferenceDTO.getId());
+            preferenceService.remove(preferenceDTO);
             word = "추천을 취소하셨습니다";
         }
         return new ResponseEntity<>(word, HttpStatus.OK);
@@ -73,15 +74,15 @@ public class PreferenceController {
     public ResponseEntity<String> addBodCnt(@RequestBody PreferenceDTO preferenceDTO) throws Exception {
         log.info("add Preference");
         log.info("추천 정보:"+preferenceDTO);
-        List<Preference> nickname = preferenceService.find_nickname(preferenceDTO);
+        Preference nickname = preferenceService.find_nickname(preferenceDTO);
         log.info("닉네임이 이미 존재하는지 확인"+ nickname);
         String word;
-        if(nickname.isEmpty()) {
+        if(nickname == null) {
             Preference preference = preferenceService.register(preferenceDTO);
             word = "이 글을 비추천하셨습니다.";
             log.info("저장된 추천 정보 : "+preference);
         } else {
-            preferenceService.remove(preferenceDTO.getId());
+            preferenceService.remove(preferenceDTO);
             word = "비추천을 취소하셨습니다";
         }
         return new ResponseEntity<>(word, HttpStatus.OK);
