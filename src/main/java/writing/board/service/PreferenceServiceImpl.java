@@ -22,9 +22,7 @@ import java.util.stream.Collectors;
 @Log4j2
 @RequiredArgsConstructor
 public class PreferenceServiceImpl implements PreferenceService {
-  private final PreferenceRepository repository;
-  private final MemberRepository memberRepository;
-  private  final PostWrittenRepository postWrittenRepository;
+    private final PreferenceRepository repository;
     @Override
     public Preference register(PreferenceDTO testsDTO) throws Exception {
         Map<String, Object> entityMap = dtoToEntity(testsDTO);

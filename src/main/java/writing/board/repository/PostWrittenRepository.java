@@ -18,13 +18,13 @@ public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>,
             +"where p.no = :no group by p")
     List<Object[]> getPostWithAll(Long no);
 
-    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, p.count(r.bad), p.count(r.good) from Post_Written p "
+    @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.reg_date, p.count(r.bad), p.count(r.good) from Post_Written p "
             +"left join Preference r on r.post_written = p", nativeQuery = true)
     List<Object[]> getPostWithAll();
 
     @Query("select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, i.img_name from PostWritten p "
             +"left join Image i on i.no = p.image_no "
- //           +"left outer join Essay e.postWritten = p"
+            //           +"left outer join Essay e.postWritten = p"
             +"where p.no = :no ")
     List<Object[]> getPostWritten_no(long no);
 
