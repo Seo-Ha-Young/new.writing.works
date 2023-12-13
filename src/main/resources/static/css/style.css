@@ -519,7 +519,7 @@ a {
   position: relative;
   z-index: 2;
 }
-
+.member_info .int-area,
 .register .register_div .int-area {
   margin-top: 10px;
 }
@@ -593,9 +593,7 @@ input[type="date"]:valid::before {
 } */
 
 /* 회원정보 */
-.member_info {
-  margin-top: 10px;
-}
+
 .member_info #delet,
 .member_info #edit {
   width: 20%;
@@ -608,4 +606,8 @@ input[type="date"]:valid::before {
 .member_info #edit:hover {
   color: var(--textcolor);
   background: #b6b6b6;
+}
+
+.member_info #addrBox #subaddress {
+  margin-top: 15px;
 }

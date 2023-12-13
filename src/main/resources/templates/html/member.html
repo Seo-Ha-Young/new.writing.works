@@ -1,53 +1,90 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>내 정보</title>
-  <link rel="stylesheet" href="/css/css.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 정보</title>
+    <!-- <link rel="stylesheet" href="/css/css.css" /> -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
 
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-          rel="stylesheet"
-  />
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $("#header").load("header");
-      $("#footers").load("footer");
-    });
-  </script>
-</head>
-<body>
-<div id="header"></div>
-<div class="member_info">
-  <form id="meminfo_form" class="meminfo_form">
-    <div class="int-area" id="emailBox">
-      <input type="text" id="email" name="email" th:value="${member.email}" readonly/>
-    </div>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#header").load("header");
+        $("#footers").load("footer");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="member_info">
+      <form id="meminfo_form" class="meminfo_form">
+        <div class="int-area" id="emailBox">
+          <input
+            type="text"
+            id="email"
+            name="email"
+            th:value="${member.email}"
+            readonly
+          />
+        </div>
 
-    <div class="int-area" id="nickNameBox">
-      <input type="text" id="nickname" name="nickname" th:value="${member.nickname}" readonly />
-    </div>
+        <div class="int-area" id="nickNameBox">
+          <input
+            type="text"
+            id="nickname"
+            name="nickname"
+            th:value="${member.nickname}"
+            readonly
+          />
+        </div>
 
-    <div class="int-area" id="nameBox">
-      <input type="text" id="name" name="name" th:value="${member.name}" readonly />
-    </div>
+        <div class="int-area" id="nameBox">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            th:value="${member.name}"
+            readonly
+          />
+        </div>
 
-    <div class="int-area" id="dateBox">
-      <input type="text" id="birth" name="birth" th:value="${member.birth}" readonly />
-    </div>
+        <div class="int-area" id="dateBox">
+          <input
+            type="text"
+            id="birth"
+            name="birth"
+            th:value="${member.birth}"
+            readonly
+          />
+        </div>
 
-    <div class="int-area" id="addrBox">
-      <input type="text" id="mainaddress" name="mainaddress" th:value="${member.mainaddress}" readonly />
-      <input type="text" id="subaddress" name="subaddress" th:value="${member.subaddress}" readonly />
+        <div class="int-area" id="addrBox">
+          <input
+            type="text"
+            id="mainaddress"
+            name="mainaddress"
+            th:value="${member.mainaddress}"
+            readonly
+          />
+          <input
+            type="text"
+            id="subaddress"
+            name="subaddress"
+            th:value="${member.subaddress}"
+            readonly
+          />
+        </div>
+      </form>
+      <button id="edit">수정</button>
+      <button id="delet">삭제</button>
     </div>
-  </form>
-  <button id="edit">수정</button>
-  <button id="delet">삭제</button>
-</div>
-<div id="footers"></div>
-</body>
+    <div id="footers"></div>
+  </body>
 </html>
