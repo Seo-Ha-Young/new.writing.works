@@ -32,4 +32,7 @@ public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>,
             +"left outer join Preference pr on pr.postWritten = p "
             +"group by p")
     Page<Object[]> getListPage(Pageable pageable);
+
+    @Query("select p from PostWritten p where p.no = :no")
+    PostWritten findPost_no(Long no);
 }

@@ -27,9 +27,9 @@ public class PostWriteController {
     // 글 작성 처리
     @PostMapping("/savePost")
     @ResponseBody
-    public void savePost(@RequestBody PostWrittenDTO writeDTO) {
+    public String savePost(@RequestBody PostWrittenDTO writeDTO) {
         log.info("글 작성 요청: " + writeDTO);
        postService.savePost(writeDTO); // BoardService를 통해 글 작성 로직 수행
-        // 작성 후 목록 페이지로 리다이렉트
+        return "redirect:/html/board"; // 작성 후 목록 페이지로 리다이렉트
     }
 }

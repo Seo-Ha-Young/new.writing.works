@@ -1,7 +1,7 @@
 window.onload = function () {
   var post_no = document.getElementById("dto_no").textContent;
   console.log(post_no);
-  var id = document.getElementById("member_info").textContent;
+  var id = document.getElementById("member_info_nickname").textContent;
   console.log("id=", id);
 
   //전체 리뷰 보여주기 기능

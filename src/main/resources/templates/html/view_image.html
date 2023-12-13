@@ -93,10 +93,10 @@
         </div>
 
         <div class="like" style="text-align:center;">
-            <button class="btn good_Cnt goodBtn" type="button">👍</button>
-            <c class="good_Cnt" th:if="${dto.goodCnt != 0}">[[${dto.goodCnt}]] &nbsp;</c>
-            <button class="btn bad_Cnt badBtn" type="button">👎</button>
-            <c class="bad_Cnt" th:if="${dto.badCnt != 0}">[[${dto.badCnt}]]</c>
+            <button class="btn goodBtn" type="button">👍</button>
+            <c class="good_Cnt" >[[${dto.goodCnt}]] &nbsp;</c>
+            <button class="btn badBtn" type="button">👎</button>
+            <c class="bad_Cnt" >[[${dto.badCnt}]]</c>
         </div>
 
         <div class="bt_wrap">
@@ -154,7 +154,9 @@
 </div>
 
 
-        <a id="member_info" type="hidden" style="display:none">[[${member}]]</a>
+        <a id="member_info_nickname" type="hidden" style="display:none">[[${nickname}]]</a>
+        <a id="member_info_no" type="hidden" style="display:none">[[${member_no}]]</a>
+
 
 <div id="footers"></div>
 </body>

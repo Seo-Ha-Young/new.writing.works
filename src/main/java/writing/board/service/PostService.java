@@ -19,6 +19,9 @@ public class PostService {
 
     public void savePost(PostWrittenDTO postWrittenDTO) {
         PostWritten postWritten = PostWritten.builder()
+                .image_no(postWrittenDTO.getImage_no())
+                .post_name(postWrittenDTO.getPost_name())
+                .writer(postWrittenDTO.getWriter())
                 .post_content(postWrittenDTO.getPost_content())
                 .build();
         postWrittenRepository.save(postWritten);
