@@ -28,8 +28,13 @@ public class MemberController {
     final private MemberUserDetailsService memberService;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpServletRequest request, Model model) {
         log.info("login page.............");
+
+        String uri = request.getHeader("Referer");
+        if(uri != null && uri.contains("/html/login")) {
+            request.getSession().setAttribute("prevPage", uri);
+        }
         return "html/login";
     }
 
@@ -117,7 +122,6 @@ public class MemberController {
                 log.info(validatorResult.get(key));
                 model.addAttribute(key, validatorResult.get(key));
             }
-
 
             return "html/update";
         }
