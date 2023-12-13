@@ -56,7 +56,7 @@ public class MemberUserDetailsService implements UserDetailsService {
     public Long updateMember(MemberDTO memberDTO) {
         Member member = memberRepository.findByEmail(memberDTO.getEmail()).orElseThrow(() -> new UsernameNotFoundException("이메일이 존재하지 않습니다."));
 
-        member.updateEmail(memberDTO.getEmail());
+        member.updateNickname(memberDTO.getNickname());
         memberRepository.save(member);
 
         return member.getNo();

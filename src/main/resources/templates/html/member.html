@@ -1,90 +1,90 @@
 <!DOCTYPE html>
-<html lang="ko">
-  <!DOCTYPE html>
-  <html lang="ko">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Team02작성</title>
-      <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 정보</title>
+     <link rel="stylesheet" href="/css/css.css" />
+<!--    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />-->
 
-      <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-        rel="stylesheet"
-      />
-      <script type="text/javascript">
-        $(document).ready(function () {
-          $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
-          $("#footers").load("footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
-        });
-      </script>
-    </head>
-    <body>
-      <div id="header"></div>
-      <div class="member_info">
-        <form id="meminfo_form" class="meminfo_form" action="#">
-          <div class="int-area" id="idBox">
-            <input type="text" id="id" name="id" placeholder="아이디" />
-          </div>
-          <div class="int-area" id="pwBox">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="비밀번호"
-            />
-          </div>
-          <div class="int-area" id="nameBox">
-            <input type="text" id="name" name="name" placeholder="이름" />
-          </div>
-          <div class="int-area" id="nickNameBox">
-            <input
-              type="text"
-              id="nickname"
-              name="nickname"
-              placeholder="닉네임"
-            />
-          </div>
-          <div class="int-area" id="dateBox">
-            <input
-              id="date_of_birth"
-              type="date"
-              name="date_of_birth"
-              min="1940-01-01"
-              max="2070-12-31"
-              data-placeholder="생년월일"
-              required
-              aria-required="true"
-              value="{startDateValue}"
-            />
-          </div>
-          <div class="int-area" id="emailBox">
-            <input type="text" id="email" name="email" />
-          </div>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#header").load("header");
+        $("#footers").load("footer");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="member_info">
+      <form id="meminfo_form" class="meminfo_form">
+        <div class="int-area" id="emailBox">
+          <input
+            type="text"
+            id="email"
+            name="email"
+            th:value="${member.email}"
+            readonly
+          />
+        </div>
 
-          <div class="int-area" id="addrBox">
-            <input
-              type="text"
-              id="main_address"
-              name="address"
-              placeholder="주소"
-              readonly
-            /><br />
-            <input
-              type="text"
-              id="sub_address"
-              name="subaddress"
-              placeholder="상세 주소"
-            />
-          </div>
-        </form>
-        <button id="edit">수정</button>
-        <button id="delet">삭제</button>
-      </div>
-      <div id="footers"></div>
-    </body>
-  </html>
+        <div class="int-area" id="nickNameBox">
+          <input
+            type="text"
+            id="nickname"
+            name="nickname"
+            th:value="${member.nickname}"
+            readonly
+          />
+        </div>
+
+        <div class="int-area" id="nameBox">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            th:value="${member.name}"
+            readonly
+          />
+        </div>
+
+        <div class="int-area" id="dateBox">
+          <input
+            type="text"
+            id="birth"
+            name="birth"
+            th:value="${member.birth}"
+            readonly
+          />
+        </div>
+
+        <div class="int-area" id="addrBox">
+          <input
+            type="text"
+            id="mainaddress"
+            name="mainaddress"
+            th:value="${member.mainaddress}"
+            readonly
+          />
+          <input
+            type="text"
+            id="subaddress"
+            name="subaddress"
+            th:value="${member.subaddress}"
+            readonly
+          />
+        </div>
+      </form>
+      <button id="edit" onClick="location.href='/html/update'">닉네임 수정</button>
+      <button id="delet" onClick="location.href='/html/delete'">회원 탈퇴</button>
+    </div>
+    <div id="footers"></div>
+  </body>
 </html>
