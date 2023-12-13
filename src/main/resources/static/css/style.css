@@ -499,6 +499,7 @@ a {
 }
 
 /* 회원가입 */
+.member_info,
 .register_div {
   margin: auto;
   margin-top: 50px;
@@ -513,7 +514,7 @@ a {
   -webkit-backdrop-filter: blur(1.3px);
   border: 1px solid rgba(197, 223, 255, 0.09);
 }
-
+.meminfo_form,
 .register_form {
   position: relative;
   z-index: 2;
