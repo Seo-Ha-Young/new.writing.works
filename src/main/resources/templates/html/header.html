@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
   <head>
-    <link rel="stylesheet" href="/src/main/resources/static/css/css.css">
+    <link rel="stylesheet" href="/css/css.css">
   </head>
   <body>
     <div id="wrap">
@@ -15,7 +15,7 @@
           <a th:href="@{/html/board}">게시판</a>
           <a sec:authorize="isAnonymous()" th:href="@{/html/login}">로그인</a>
             <a sec:authorize="isAuthenticated()" th:href="@{/html/logout}">로그아웃</a>
-            <a sec:authorize="hasRole('USER')" th:href="@{|/html/memberinfo/${member.no}|}">내정보</a>
+            <a sec:authorize="hasRole('USER')" th:href="@{|/html/member/${member.no}|}">내정보</a>
         </nav>
          </div>
       </header>

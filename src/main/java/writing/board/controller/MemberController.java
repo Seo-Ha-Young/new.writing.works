@@ -72,12 +72,12 @@ public class MemberController {
         return "redirect:/html/login";
     }
 
-    @GetMapping("/memberinfo/{no}")
+    @GetMapping("/member/{no}")
     public String memberInfo(@PathVariable("no") Long no, Model model) {
-        log.info("memberinfo page..............");
+        log.info("member page..............");
         MemberDTO memberDTO = memberService.findById(no);
         model.addAttribute("member", memberDTO);
-        return "/html/memberinfo";
+        return "/html/member";
     }
 
     @GetMapping("/delete")
