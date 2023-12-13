@@ -24,7 +24,7 @@ public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>,
 
     @Query("select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, i.img_name from PostWritten p "
             +"left join Image i on i.no = p.image_no "
-            //           +"left outer join Essay e.postWritten = p"
+ //           +"left outer join Essay e.postWritten = p"
             +"where p.no = :no ")
     List<Object[]> getPostWritten_no(long no);
 
@@ -32,4 +32,7 @@ public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>,
             +"left outer join Preference pr on pr.postWritten = p "
             +"group by p")
     Page<Object[]> getListPage(Pageable pageable);
+
+    @Query("select p from PostWritten p where p.no = :no")
+    PostWritten findPost_no(Long no);
 }

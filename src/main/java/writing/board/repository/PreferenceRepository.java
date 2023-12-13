@@ -13,23 +13,25 @@ import java.util.Optional;
 
 public interface PreferenceRepository extends JpaRepository<Preference, Long> {
 
-    @Query("select no, regDate, id, good, bad from Preference where no = :no")
+    @Query(value = "select no, reg_date, member_no, good, bad from Preference where no = :no", nativeQuery = true)
     List<Object[]> getTestWithAll(Long no);
 
-    @Query("select no, regDate, id,  good, bad from Preference")
+    @Query(value = "select no, reg_date, member_no,  good, bad from Preference", nativeQuery = true)
     List<Object[]> getTestWithAll();
 
-    @Query(value = "select no, reg_date, id, good, bad, post_written_no, nickname from Preference  "
-            +"where post_written_no = :no", nativeQuery = true)
+    @Query(value = "select p.no, p.reg_date, p.good, p.bad, p.post_written_no, p.member_no from Preference p "
+            +"where p.post_written_no = :no", nativeQuery = true)
     List<Preference> getTestWithPost_No(Long no);
 
-    @Query(value = "select no, reg_date, id, good, bad, post_written_no, nickname from Preference "+
-            "where id = :nickname", nativeQuery = true) // 나중에 이 닉네임을 저 닉네임과 연결 필요
-    List<Preference> getNicknameWithAll(String nickname);
+
+
+    @Query(value = "select p.no, p.reg_date, p.good, p.bad, p.post_written_no, p.member_no from Preference p "
+            +"where p.member_no = :member_no and p.post_written_no = :no", nativeQuery = true)
+    Preference getNicknameWithAll(Long member_no, Long no);
 
     @Modifying
     @Transactional
-    @Query("delete from Preference p where p.id = :id ")
-    void deleteByUserId(String id);
+    @Query(value = "delete from Preference p where p.member_no = :member_no and p.post_written_no = :post_no ", nativeQuery = true)
+    void deleteByUserId(Long member_no, Long post_no);
 
 }

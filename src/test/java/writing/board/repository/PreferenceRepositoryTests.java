@@ -22,7 +22,6 @@ public class PreferenceRepositoryTests {
     public void insertRecommend() {
         IntStream.rangeClosed(1,5).forEach(i ->{
             Preference preference = Preference.builder()
-                    .id("id"+(i+4))
                     .postWritten((PostWritten.builder().no((long)i)).build())
                     .bad((long)1)
                     .build();
@@ -55,7 +54,7 @@ public class PreferenceRepositoryTests {
     }
     @Test
     public void testGetNicknameWithAll() {
-        List<Preference> result = preferenceRepository.getNicknameWithAll("닉네임3");
+        Preference result = preferenceRepository.getNicknameWithAll((long) 8, (long) 3);
         System.out.println("-----------------------------------------------------");
         System.out.println(result);
 

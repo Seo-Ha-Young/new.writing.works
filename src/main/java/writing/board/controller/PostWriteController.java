@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import writing.board.dto.PageRequestDTO;
 import writing.board.dto.PostWrittenDTO;
-import writing.board.entity.PostWritten;
-import writing.board.service.BoardService;
 import writing.board.service.PostService;
 
 @Controller
