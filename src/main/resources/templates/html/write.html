@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Team02작성</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
+    <link rel="stylesheet" href="/css/css.css" />
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -96,7 +96,16 @@
         </button>
       </form>
     </div>
-    <script defer src="/src/main/resources/static/js/test.js"></script>
+    <script defer src="/js/test.js"></script>
+    <script src="/js/write.js"></script>
+    <script>
+      document.getElementById('upload').addEventListener('click', function() {
+       savePost();
+   });
+      document.getElementById('upload2').addEventListener('click', function() {
+       savePost();
+   });
+    </script>
     <div id="footers"></div>
   </body>
 </html>
