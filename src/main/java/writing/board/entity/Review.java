@@ -2,10 +2,7 @@ package writing.board.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -16,10 +13,10 @@ import javax.persistence.ManyToOne;
 public class Review extends BaseEntity {
 
     private String review_content;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
     @JoinColumn(name = "post_no", referencedColumnName = "no")
     private PostWritten postWritten;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade =  {CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinColumn(name = "member_no", referencedColumnName = "no")
     private Member member;
 
