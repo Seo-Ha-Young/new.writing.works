@@ -308,8 +308,15 @@ a {
   border-bottom: 1px solid #889fa5;
   line-height: 160%;
   font-size: 1.4rem;
+  width: 400px;
+  height: 500px;
+  margin-left: 256px;
 }
-
+.board_view .cont img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 /* 댓글 */
 .reply_content {
   margin-top: 40px;

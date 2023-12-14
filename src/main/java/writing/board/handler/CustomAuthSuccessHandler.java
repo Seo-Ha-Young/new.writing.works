@@ -36,7 +36,7 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException {
 
-        clearSession(request);
+        //clearSession(request);
 
         SavedRequest savedRequest = requestCache.getRequest(request, response);
 
