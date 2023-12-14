@@ -37,13 +37,13 @@
   <div class="timer">
     <dl>
       <dt>
-        글짓기를 준비하세요! <br />
+        글짓기를 준비하세요! <br/>
         (초단위)
       </dt>
       <img src="/img/write.jpg" width="300" height="300">
-     <!-- <dd>
-        <input type="number" id="timer" min="1" />
-      </dd>-->
+      <!-- <dd>
+         <input type="number" id="timer" min="1" />
+       </dd>-->
     </dl>
   </div>
   <div class="modeSelect">
@@ -62,40 +62,27 @@
     <button onclick="buttonClick();">시작하기</button>
   </div>
 </div>
+<div id="titlePopup" style="display: none;">
+  <input type="text" id="postTitle" placeholder="제목을 입력하세요">
+</div>
 
 <div class="write_mode1" id="write_mode1" style="display: none">
   <div id="img"></div>
   <div id="timers"></div>
-  <textarea id="write_word" name="img_mode" ></textarea><br />
-  <button
-          type="button"
-          id="upload"
-          class="upload"
-  >
-    등록
-  </button>
-  <button onClick="window.location.reload()" class="refresh">
-    처음으로
-  </button>
+  <textarea id="write_word" name="img_mode" ></textarea><br/>
+  <button onclick="openTitlePopup()" type="button" id="upload" class="upload">등록</button>
+  <button onClick="window.location.reload()" class="refresh">처음으로</button>
 </div>
+
 <div class="write_mode2" id="write_mode2" style="display: none">
   <form>
     <div id="timers2"></div>
-
-    <textarea id="write_word2" name="Essay-mode"></textarea><br />
-
-    <button
-            id="upload2"
-            class="upload"
-            onclick="savePost()"
-    >
-      등록
-    </button>
-    <button onClick="window.location.reload()" class="refresh">
-      처음으로
-    </button>
+    <textarea id="write_word2" name="Essay-mode"></textarea><br/>
+    <button onclick="openTitlePopup()" id="upload2" class="upload2">등록</button>
+    <button onClick="window.location.reload()" class="refresh">처음으로</button>
   </form>
 </div>
+
 <script defer src="/js/test.js"></script>
 <script src="/js/write.js"></script>
 <script>
