@@ -1,22 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>게시물</title>
-    <!--     <link rel="stylesheet" href="/css/css.css" />-->
-    <link rel="stylesheet" href="/css/css.css" />
 
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <!-- <script src="/js/review.js"></script> -->
-    <script src="/static/js/review.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $("#header").load("header.html"); // 원하는 파일 경로를 삽입하면 된다
-        $("#footers").load("footer.html"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
-      });
-    </script>
-  </head>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>게시물</title>
+  <link rel="stylesheet" href="/css/css.css"/>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="/js/review.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+        $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
+        $("#footers").load("footer"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+
+    });
+
+
+  </script>
+  <style>
+    .modal {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+width: 30%;
+height: 30%;
+
+display: none;
+
+background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.show {
+display: block;
+}
+
+.modal-content {
+position: fixed;
+top: 50%;
+left: 50%;
+
+padding: 0px;
+
+text-align: center;
+
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+transform: translateX(-50%) translateY(-50%);
+}
+
+  </style>
+</head>
   <body>
     <div id="header"></div>
     <div class="board_wrap">
@@ -42,22 +79,32 @@
             </dl>
             <dl>
               <dt>추천수</dt>
-              <dd>11</dd>
+              <dd>[[${dto.goodCnt}]]</dd>
+              <dt>비추천수</dt>
+              <dd>[[${dto.badCnt}]]</dd>
             </dl>
           </div>
           <div class="cont">에세이 문장 [[${dto.post_content}]]</div>
         </div>
 
+        <div class="like" style="text-align:center;">
+          <button class="btn goodBtn" type="button">👍</button>
+          <c class="good_Cnt" >[[${dto.goodCnt}]] &nbsp;</c>
+          <button class="btn badBtn" type="button">👎</button>
+          <c class="bad_Cnt" >[[${dto.badCnt}]]</c>
+        </div>
+
         <div class="bt_wrap">
-          <a
-            th:href="@{/html/board(page= ${requestDTO.page}, type= ${requestDTO.type}, keyword= ${requestDTO.keyword})}"
-            class="'on"
-          >
+          <a th:href="@{/html/board(page= ${requestDTO.page}, type= ${requestDTO.type}, keyword= ${requestDTO.keyword})}"
+             class="'on">
             목록
           </a>
         </div>
 
-        <div class="list-group reviewList" id="reviewList"></div>
+        <div class="list-group reviewList" id="reviewList">
+
+        </div>
+
 
         <div class="reply_content">
           <form onsubmit="addComment(event)">
@@ -66,53 +113,46 @@
               <button type="button" class="btn_reply">작성</button>
             </div>
           </form>
-          <div class="comments mt-3"></div>
+          <div class="comments mt-3">
+
+
+          </div>
         </div>
       </div>
     </div>
+
+
 
     <div class="modal">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Post Review</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="form-group">
             <label>작성자</label>
-            <input
-              type="text"
-              class="form-control"
-              name="id"
-              id="modal_id"
-              placeholder="dkdk"
-              readonly
-            />
+            <input type="text" class="form-control" name="nickname" readonly>
           </div>
-
           <div class="form-group">
             <label>작성 내용</label>
-            <input
-              type="text"
-              class="form-control"
-              name="text"
-              placeholder="리뷰 내용"
-            />
+            <input type="text" class="form-control" name="text" placeholder="리뷰 내용">
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn modifyBtn">Modify</button>
+          <button type="button" class="btn modifyBtn" >Modify</button>
           <button type="button" class="btn removeBtn">Remove</button>
         </div>
       </div>
     </div>
+
+
+    <a id="member_info_nickname" type="hidden" style="display:none">[[${nickname}]]</a>
+    <a id="member_info_no" type="hidden" style="display:none">[[${member_no}]]</a>
+
+
     <div id="footers"></div>
   </body>
 </html>
