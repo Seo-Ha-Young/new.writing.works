@@ -25,8 +25,11 @@ window.onload = function () {
       var str = "";
       $.each(arr, function (idx, review) {
         str += '<div class="post_no" data-no=' + review.no + " ><br>";
-        str += '<a class="nickname">' + review.nickname + "</a><br>";
-        str += '<a class="content">' + review.review_content + "</a><br>";
+        str +=
+          '<a class="nickname" style = "font-weight: bold;">' +
+          review.nickname +
+          "</a><br><br>";
+        str += '<a class="content">' + review.review_content + "</a><br><br>";
         str += '<a class="text">' + formatTime(review.regDate) + "</a>";
         str += "</div><br>";
       });
@@ -39,24 +42,28 @@ window.onload = function () {
   var content = $('textarea[name="reply"]');
   //리뷰 등록 기능
   $(".btn_reply").click(function () {
-    var data = { post_no: post_no, review_content: content.val(), member_no: member_no };
+    var data = {
+      post_no: post_no,
+      review_content: content.val(),
+      member_no: member_no,
+    };
     console.log(data);
-    if(member_no != "") {
-    $.ajax({
-      url: "/reviews/" + post_no,
-      type: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json; charset=utf-8",
-      dataType: "text",
-      success: function (result) {
-        console.log("result :" + result);
-        getPostReviews();
-      }
-    });
-     } else {
+    if (member_no != "") {
+      $.ajax({
+        url: "/reviews/" + post_no,
+        type: "POST",
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function (result) {
+          console.log("result :" + result);
+          content.val("");
+          getPostReviews();
+        },
+      });
+    } else {
       alert("로그인 후 이용하세요");
-      }
-
+    }
   });
 
   var modal = document.querySelector(".modal");
@@ -67,22 +74,22 @@ window.onload = function () {
   //리뷰 수정창 띄우기
   $(".reviewList").on("click", ".post_no", function () {
     var targetReview = $(this);
-   if(member_no != "") {
-    review_no = targetReview.data("no");
-    console.log("review_no:" + review_no);
-    inputNickname.val(targetReview.find(".nickname").text());
-    inputText.val(
-      targetReview.find(".content").clone().children().remove().end().text()
-    );
-    console.log("review : " + inputNickname.val() + " " + inputText.val());
-    if( inputNickname.val() == nickname ) {
-    modal.classList.toggle("show");
-    } else {
+    if (member_no != "") {
+      review_no = targetReview.data("no");
+      console.log("review_no:" + review_no);
+      inputNickname.val(targetReview.find(".nickname").text());
+      inputText.val(
+        targetReview.find(".content").clone().children().remove().end().text()
+      );
+      console.log("review : " + inputNickname.val() + " " + inputText.val());
+      if (inputNickname.val() == nickname) {
+        modal.classList.toggle("show");
+      } else {
         alert("다른 사람의 댓글을 수정할 수 없습니다.");
+      }
+    } else {
+      alert("로그인 후 수정 가능합니다.");
     }
-         } else {
-          alert("로그인 후 수정 가능합니다.");
-          }
   });
 
   //리뷰 수정기능
@@ -125,22 +132,19 @@ window.onload = function () {
     });
   });
 
-      //리뷰 수정창 닫기 기능
-      function close() {
-        modal.classList.remove("show");
-      }
-      $(".close").on("click", close);
+  //리뷰 수정창 닫기 기능
+  function close() {
+    modal.classList.remove("show");
+  }
+  $(".close").on("click", close);
 
-      function addJavascript(jsname) {
-      	var th = document.getElementsByTagName('head')[0];
-      	var s = document.createElement('script');
-      	s.setAttribute('type','text/javascript');
-      	s.setAttribute('src',jsname);
-      	th.appendChild(s);
-      }
+  function addJavascript(jsname) {
+    var th = document.getElementsByTagName("head")[0];
+    var s = document.createElement("script");
+    s.setAttribute("type", "text/javascript");
+    s.setAttribute("src", jsname);
+    th.appendChild(s);
+  }
 
-      addJavascript('/js/like.js');
-
-  };
-
-
+  addJavascript("/js/like.js");
+};

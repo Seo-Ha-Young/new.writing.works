@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원 정보 삭제</title>
     <link rel="stylesheet" href="/css/css.css" />
-    <!--    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />-->
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
     />
     <script type="text/javascript">
-        $(document).ready(function () {
-          $("#header").load("header");
-          $("#footers").load("footer");
-        });
+      $(document).ready(function () {
+        $("#header").load("header");
+        $("#footers").load("footer");
+      });
     </script>
-</head>
-<body>
-<div id="header"></div>
-<div class="member_info">
-    <form id="meminfo_form" class="meminfo_form" method="post">
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="member_info">
+      <form id="meminfo_form" class="meminfo_form" method="post">
         <div class="int-area" id="nickNameBox">
-            <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password 입력"
-            />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password 입력"
+          />
         </div>
-        <p th:if="${wrongPassword}" class="error" th:text="${wrongPassword}"></p>
-        <button type="submit" id="delet" onClick="location.href='/html/delete'" >회원 탈퇴</button>
-    </form>
-</div>
-<div id="footers"></div>
-</body>
+        <p
+          th:if="${wrongPassword}"
+          class="error"
+          th:text="${wrongPassword}"
+        ></p>
+        <button type="submit" id="delet" onClick="location.href='/html/delete'">
+          회원 탈퇴
+        </button>
+      </form>
+    </div>
+    <div id="footers"></div>
+  </body>
 </html>
