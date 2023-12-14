@@ -22,21 +22,11 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
 
-//    @Override
-//    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-//                                        Authentication authentication) throws IOException {
-//
-//        // 이전 url로 redirect
-//        String prevPage = (String) request.getSession().getAttribute("prevPage");
-//
-//        redirectStrategy.sendRedirect(request, response, prevPage);
-//    }
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException {
 
-        clearSession(request);
+        //clearSession(request);
 
         SavedRequest savedRequest = requestCache.getRequest(request, response);
 
@@ -60,9 +50,9 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
         if (savedRequest != null) {
             uri = savedRequest.getRedirectUrl();
         } else if (prevPage != null && !prevPage.equals("")) {
-            // 회원가입 - 로그인으로 넘어온 경우 "/"로 redirect
+            // 회원가입 - 로그인으로 넘어온 경우 "/html/board"로 redirect
             if (prevPage.contains("/html/register")) {
-                uri = "/html/login";
+                uri = "/html/board";
             } else {
                 uri = prevPage;
             }

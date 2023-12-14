@@ -9,17 +9,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString(exclude = {"postWritten", "member"})
 public class Preference extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private PostWritten postWritten;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name="member_no", referencedColumnName = "no") // 만들 컬럼 이름: nickname, 속성:varchar(255), 참조열 이름:nickname
-    private Member member;
+    private Long post_written_no;
+    private Long member_no;
     private Long good;
     private Long bad;
 

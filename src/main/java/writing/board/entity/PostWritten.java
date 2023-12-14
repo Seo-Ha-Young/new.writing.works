@@ -4,10 +4,8 @@ import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -27,4 +25,13 @@ public class PostWritten extends BaseEntity {
     private String writer;
     private Long image_no;
 
+    @ElementCollection(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_written_no", referencedColumnName = "no")
+    private Set<Preference> preferences;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_no", referencedColumnName = "no")
+    private Set<Review>  reviews;
 }

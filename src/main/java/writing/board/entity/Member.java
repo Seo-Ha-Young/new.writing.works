@@ -22,7 +22,6 @@ public class Member extends BaseEntity {
     private String nickname; // 닉네임
     private String name; // 이름
     private String birth; // 생년월일
-    //private String address; // 주소
     private String mainaddress;
     private String subaddress;
 
@@ -30,6 +29,15 @@ public class Member extends BaseEntity {
     @Builder.Default
     private Set<MemberRole> roleSet = new HashSet<>(); // 권한
 
+    @ElementCollection(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "member_no", referencedColumnName = "no")
+    private Set<Preference>  preferences;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "member_no", referencedColumnName = "no")
+    private Set<Review>  reviews;
     public void addMemberRole(MemberRole memberRole){
         roleSet.add(memberRole);
     }

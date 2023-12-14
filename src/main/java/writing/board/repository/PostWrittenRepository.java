@@ -14,12 +14,12 @@ import java.util.List;
 public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>, QuerydslPredicateExecutor<PostWritten> {
 
     @Query("select p, count(pr.bad), count(pr.good) from PostWritten p "
-            +"left outer join Preference pr on pr.postWritten = p "
+            +"left outer join Preference pr on pr.post_written_no = p.no "
             +"where p.no = :no group by p")
     List<Object[]> getPostWithAll(Long no);
 
     @Query(value = "select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.reg_date, p.count(r.bad), p.count(r.good) from Post_Written p "
-            +"left join Preference r on r.post_written = p", nativeQuery = true)
+            +"left join Preference r on r.post_written_no = p.no", nativeQuery = true)
     List<Object[]> getPostWithAll();
 
     @Query("select p.no, p.post_name, p.post_content, p.writer, p.image_no, p.regDate, i.img_name from PostWritten p "
@@ -29,7 +29,7 @@ public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>,
     List<Object[]> getPostWritten_no(long no);
 
     @Query(value = "select p, count(pr.bad) as badCnt, count(pr.good) as goodCnt from PostWritten p "
-            +"left outer join Preference pr on pr.postWritten = p "
+            +"left outer join Preference pr on pr.post_written_no = p.no "
             +"group by p")
     Page<Object[]> getListPage(Pageable pageable);
 
