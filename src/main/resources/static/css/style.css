@@ -35,6 +35,81 @@ a {
   color: indianred;
 }
 
+/* 메인*/
+.main {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 50%;
+  height: 500px;
+  /* opacity: 0.5; */
+  border: 0.5px solid black;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 5px 5px;
+  background-image: url("/src/main/resources/static/img/wirte_img.jpg");
+  top: 50%;
+  left: 25%;
+  padding: 20px;
+}
+.main .coment {
+  width: 100%;
+  margin-top: 40%;
+  font-size: 50px;
+  font-weight: bold;
+  color: black;
+}
+.goWrite {
+  position: relative;
+  width: 50%;
+  height: 200px;
+  top: 50%;
+  left: 25%;
+  margin-top: 20px;
+  background-image: url("https://cdn.pixabay.com/photo/2015/11/14/20/26/writing-1043622_640.png");
+  background-size: 100% 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* .goWrite img {
+  width: 100%;
+  height: 300px;
+  background-image: url(./개미.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid black;
+} */
+
+.goWrite2 {
+  position: absolute;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfiuRx9GFU4WZvp6v2Ym2LSG0tauSsU6hORQ&usqp=CAU");
+  background-size: 100% 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  right: 10px;
+}
+
+.goBoard {
+  position: relative;
+  background-image: url("/src/main/resources/static/img/board_img2.jpg");
+  background-size: 100% 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50%;
+  height: 100px;
+  top: 40%;
+  left: 26%;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 80px;
+  font-weight: bold;
+}
+
 .wirte_mode1,
 .board_wrap {
   width: 1000px;
