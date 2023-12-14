@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/css/css.css" /> -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#header").load("header");
+        $("#footers").load("footer");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="main">
+      <div class="coment">작문 실력 향상을 위한 글 쓰기 연습</div>
+    </div>
+    <!-- <div class="goWrite"></div> -->
+    <div
+      class="goBoard"
+      style="cursor: pointer"
+      onclick="location.href='board.html'"
+    >
+      게시판
+    </div>
+    <div class="goWrite2"></div>
+
+    <div id="footers"></div>
+
+    <script>
+      $(document).ready(function () {
+        var currentPosition = parseInt($(".goWrite2").css("top"));
+        $(window).scroll(function () {
+          var position = $(window).scrollTop();
+          $(".goWrite2")
+            .stop()
+            .animate({ top: position + currentPosition + "px" }, 500);
+        });
+      });
+    </script>
+  </body>
+</html>
