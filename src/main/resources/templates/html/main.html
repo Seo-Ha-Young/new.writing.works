@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script type="text/javascript">
       $(document).ready(function () {
-        $("#header").load("header");
-        $("#footers").load("footer");
+        $("#header").load("header.html");
+        $("#footers").load("footer.html");
       });
     </script>
   </head>
@@ -21,7 +21,7 @@
     <div class="main">
       <div class="coment">작문 실력 향상을 위한 글 쓰기 연습</div>
     </div>
-    <!-- <div class="goWrite"></div> -->
+
     <div
       class="goBoard"
       style="cursor: pointer"
@@ -29,7 +29,13 @@
     >
       게시판
     </div>
-    <div class="goWrite2"></div>
+    <div
+      class="goWrite"
+      style="cursor: pointer"
+      onclick="location.href='write.html'"
+    >
+      글쓰기
+    </div>
 
     <div id="footers"></div>
 
