@@ -51,9 +51,9 @@ public class MemberRepositoryTests {
     @Test
     public void insertDummy() {
         Member member = Member.builder()
-                .email("user1@email.com")
-                .password(passwordEncoder.encode("user1"))
-                .nickname("user1")
+                .email("user@email.com")
+                .password(passwordEncoder.encode("user"))
+                .nickname("user")
                 .name("유저")
                 .birth("2000-11-11")
                 .mainaddress("메인주소")
@@ -71,8 +71,8 @@ public class MemberRepositoryTests {
     @Test
     public void updateDummy() {
         Member member = Member.builder()
-                .email("user1@email.com")
-                .password(passwordEncoder.encode("user1"))
+                .email("user@email.com")
+                .password(passwordEncoder.encode("user"))
                 .nickname("nickname1")
                 .name("유저")
                 .birth("2000-11-11")
