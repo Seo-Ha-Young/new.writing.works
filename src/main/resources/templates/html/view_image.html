@@ -53,10 +53,7 @@
   <body>
     <div id="header"></div>
     <div class="board_wrap">
-      <div class="board_title">
-        <strong>이미지</strong>
-        <p>이미지</p>
-      </div>
+      <div class="board_title"></div>
       <div class="board_view_wrap">
         <div class="board_view">
           <div class="title">[[${dto.post_name}]]</div>
@@ -82,7 +79,7 @@
           </div>
           <div class="cont">
             <img th:src="|/wcs/image/display2?fileNo=${dto.image_no}|" /><br />
-            [[${dto.post_content}]]
+            <div class="post_content">[[${dto.post_content}]]</div>
           </div>
         </div>
 
@@ -102,11 +99,7 @@
           </a>
         </div>
 
-        <div class="list-group reviewList" id="reviewList">
-          dfadsf<br />
-          asdfad<br />
-          adsfafds<br />
-        </div>
+        <div class="list-group reviewList" id="reviewList"></div>
 
         <div class="reply_content">
           <form onsubmit="addComment(event)">
