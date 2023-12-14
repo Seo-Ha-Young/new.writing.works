@@ -15,9 +15,9 @@ import writing.board.security.dto.AuthMemberDTO;
 @RequiredArgsConstructor
 @Log4j2
 public class SampleController {
-    @GetMapping("/hello")
-    public String[] test() {
-        return new String[]{"Hello, World"};
+    @GetMapping("/main")
+    public String _main() {
+        return "/html/main";
     }
 
     @GetMapping("/header")
@@ -29,5 +29,10 @@ public class SampleController {
     @GetMapping("/footer")
     public String footer() {
         return "/html/footer";
+    }
+
+    @GetMapping("/quickmenu")
+    public String quickmenu() {
+        return "/html/quickmenu";
     }
 }
