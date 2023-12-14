@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    @Query("select no, regDate, review_content, id, post_no from Review where no = :no")
+    @Query(value = "select no, reg_date, review_content, member_no, post_no from Review where no = :no", nativeQuery = true)
     List<Object[]> getReviewWithAll(Long no);
 
-    @Query("select no, regDate, review_content, id, post_no from Review")
+    @Query(value = "select no, reg_date, review_content, member_no, post_no from Review", nativeQuery = true)
     List<Object[]> getReviewWithAll();
 
-    @Query(value = "select r.no, r.reg_date, r.review_content, r.id, r.post_no from Review r "
+    @Query(value = "select r.no, r.reg_date, r.review_content, r.member_no, r.post_no from Review r "
             +"left join post_written p on p.no = r.post_no "
             +"where post_no = :no", nativeQuery = true)
     List<Review> findByPostWritten(Long no);
