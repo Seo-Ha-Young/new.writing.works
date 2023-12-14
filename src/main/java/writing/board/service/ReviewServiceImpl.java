@@ -48,7 +48,7 @@ public class ReviewServiceImpl implements ReviewService{
         log.info("reviewDTO = "+reviewDTO);
         Map<String, Object> entityMap = dtoToEntity(reviewDTO);
         Review review = (Review) entityMap.get("review");
-        log.info("review : "+review.getMember().getNo()+review.getReview_content()+review.getPostWritten().getNo());
+        log.info("review : "+review.getMember_no()+review.getReview_content()+review.getPost_no());
         reviewRepository.save(review);
         return review.getNo();
     }

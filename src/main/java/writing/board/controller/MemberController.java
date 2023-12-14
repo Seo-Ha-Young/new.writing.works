@@ -106,7 +106,7 @@ public class MemberController {
     public String deletePost(@RequestParam String password, Model model, Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         boolean result = memberService.deleteMember(userDetails.getUsername(), password);
-
+        log.info("비밀번호 일치 확인 : "+result);
         if (result) {
             return "redirect:/html/logout";
         } else {

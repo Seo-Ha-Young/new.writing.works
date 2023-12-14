@@ -34,7 +34,7 @@
             />
         </div>
         <p th:if="${wrongPassword}" class="error" th:text="${wrongPassword}"></p>
-        <button type="submit" id="delet">회원 탈퇴</button>
+        <button type="submit" id="delet" onClick="location.href='/html/delete'" >회원 탈퇴</button>
     </form>
 </div>
 <div id="footers"></div>
