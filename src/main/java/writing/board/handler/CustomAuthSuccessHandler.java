@@ -21,6 +21,17 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
     private final RequestCache requestCache = new HttpSessionRequestCache();
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+
+//    @Override
+//    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+//                                        Authentication authentication) throws IOException {
+//
+//        // 이전 url로 redirect
+//        String prevPage = (String) request.getSession().getAttribute("prevPage");
+//
+//        redirectStrategy.sendRedirect(request, response, prevPage);
+//    }
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException {
@@ -39,7 +50,8 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
         }
 
         // 기본 URI
-        String uri = "/html/board";
+        //String uri = "/html/board";
+        String uri = prevPage;
 
         /**
          * savedRequest 존재하는 경우 = 인증 권한이 없는 페이지 접근
@@ -50,7 +62,7 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
         } else if (prevPage != null && !prevPage.equals("")) {
             // 회원가입 - 로그인으로 넘어온 경우 "/"로 redirect
             if (prevPage.contains("/html/register")) {
-                uri = "/html/board";
+                uri = "/html/login";
             } else {
                 uri = prevPage;
             }

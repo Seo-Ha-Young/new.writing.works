@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/html/login", "html/register", "html/board").permitAll()
+                .antMatchers("/html/login", "/html/register", "/html/board", "/html/view_essay", "/html/view_image").permitAll()
                 .antMatchers("/html/member", "/html/update", "/html/delete", "/html/write").hasRole("USER")
                 .antMatchers("/member/admin").hasRole("ADMIN");//antMatcher: ?: 한 글자, *: 임의의 파일 , **: 임의의 경로
         http.formLogin()
