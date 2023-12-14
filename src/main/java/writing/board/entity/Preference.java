@@ -15,11 +15,10 @@ public class Preference extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
-    private String id;
     @ManyToOne(fetch = FetchType.LAZY)
     private PostWritten postWritten;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="nickname", columnDefinition = "varchar(255)", referencedColumnName = "nickname") // 만들 컬럼 이름: nickname, 속성:varchar(255), 참조열 이름:nickname
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name="member_no", referencedColumnName = "no") // 만들 컬럼 이름: nickname, 속성:varchar(255), 참조열 이름:nickname
     private Member member;
     private Long good;
     private Long bad;

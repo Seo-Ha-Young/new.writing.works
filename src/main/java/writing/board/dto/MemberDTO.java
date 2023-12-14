@@ -39,7 +39,6 @@ public class MemberDTO {
                 .nickname(nickname)
                 .name(name)
                 .birth(birth)
-                //.address(address)
                 .mainaddress(mainaddress)
                 .subaddress(subaddress)
                 .build();

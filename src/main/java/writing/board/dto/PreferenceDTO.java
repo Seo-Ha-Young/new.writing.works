@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class PreferenceDTO extends BaseEntity {
 
     private Long no;
-    private String id;
+    private Long member_no;
     private Long post_no;
     private Long good;
     private Long bad;

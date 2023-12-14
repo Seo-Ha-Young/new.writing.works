@@ -9,7 +9,9 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import writing.board.entity.MemberRole;
 
 @EnableWebSecurity
 @AllArgsConstructor
@@ -22,6 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    private final AuthenticationSuccessHandler authenticationSuccessHandler;
+
+
     @Override
     public void configure(WebSecurity web) throws Exception
     {
@@ -29,15 +34,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("static/**", "/css/**", "/js/**", "/img/**", "/lib/**", "images/**");
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/html/login", "html/register").permitAll()
-                .antMatchers("member/member").hasRole("USER")
+                .antMatchers("/html/login", "/html/register", "/html/board", "/html/view_essay", "/html/view_image").permitAll()
+                .antMatchers("/html/member", "/html/update", "/html/delete", "/html/write").hasRole("USER")
                 .antMatchers("/member/admin").hasRole("ADMIN");//antMatcher: ?: 한 글자, *: 임의의 파일 , **: 임의의 경로
         http.formLogin()
                 .loginPage("/html/login")
-                .defaultSuccessUrl("/html/board")
+                .successHandler(authenticationSuccessHandler)
+//                .defaultSuccessUrl("/html/board")
                 .usernameParameter("email")
                 .failureUrl("/html/error")
                 .and()

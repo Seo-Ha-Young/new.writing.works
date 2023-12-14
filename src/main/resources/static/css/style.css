@@ -485,8 +485,8 @@ a {
 }
 
 .write_mode1 #write_word {
-  width: 700px;
-  height: 300px;
+  width: 300px;
+  height: 100px;
   margin-bottom: 20px;
   margin-top: 20px;
   border-radius: 4px;

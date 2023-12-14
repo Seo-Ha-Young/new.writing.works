@@ -18,8 +18,9 @@ public class PostService {
     }
 
     public void savePost(PostWrittenDTO postWrittenDTO) {
-        PostWritten postWritten = new PostWritten();
-        postWrittenRepository.getPostWithAll();
+        PostWritten postWritten = PostWritten.builder()
+                .post_content(postWrittenDTO.getPost_content())
+                .build();
         postWrittenRepository.save(postWritten);
     }
 

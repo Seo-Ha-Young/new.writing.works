@@ -8,13 +8,13 @@
 
     <script type="text/javascript">
       $(document).ready(function () {
-        $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
-        $("#footers").load("footer"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+        $("#header").load("header");
+        $("#footers").load("footer");
       });
     </script>
-    <link rel="javascript" href="/js/reg.js" />
+<!--    <link rel="javascript" href="/js/reg.js" />-->
     <!-- <link rel="stylesheet" href="/css/css.css" /> -->
-    <link rel="stylesheet" href="/src/main/resources/static/css/css.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/css.css"
   </head>
 
   <body>
@@ -51,97 +51,8 @@
           <button type="submit">가입하기</button>
         </div>
       </form>
-    </div>
-<!--                          <div id="header"></div>-->
-<!--    <div class="register_div">-->
-<!--      <form id="reg_form" class="reg_form" action="#">-->
-<!--        <div class="int-area" id="idBox">-->
-<!--          <input type="text" id="id" name="id" placeholder="아이디" />-->
-<!--          <div class="success-message hide">사용할 수 있는 아이디입니다</div>-->
-<!--          <div class="failure-message hide">아이디는 4~12글자이어야 합니다</div>-->
-<!--          <div class="failure-message2 hide">영어 또는 숫자만 가능합니다</div>-->
-<!--        </div>-->
-<!--        <div class="int-area" id="pwBox">-->
-<!--          <input-->
-<!--            type="password"-->
-<!--            id="password"-->
-<!--            name="password"-->
-<!--            placeholder="비밀번호"-->
-<!--          />-->
-<!--          <div class="strongPassword-message hide">-->
-<!--            8글자 이상, 영문, 숫자, 특수문자를 사용하세요-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="int-area" id="pw2Box">-->
-<!--          <input type="password" id="password2" placeholder="비밀번호 확인" />-->
-<!--          <div class="mismatch-message hide">비밀번호가 일치하지 않습니다</div>-->
-<!--        </div>-->
-<!--        <div class="int-area" id="nameBox">-->
-<!--          <input type="text" id="name" name="name" placeholder="이름" />-->
-<!--          <div class="failure-message-name hide">이름을 입력해 주세요</div>-->
-<!--        </div>-->
-<!--        <div class="int-area" id="nickNameBox">-->
-<!--          <input-->
-<!--            type="text"-->
-<!--            id="nickname"-->
-<!--            name="nickname"-->
-<!--            placeholder="닉네임"-->
-<!--          />-->
-<!--          <div class="failure-message-nickname hide">-->
-<!--            닉네임을 입력해 주세요-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="int-area" id="dateBox">-->
-<!--          <input-->
-<!--            id="date_of_birth"-->
-<!--            type="date"-->
-<!--            name="date_of_birth"-->
-<!--            min="1940-01-01"-->
-<!--            max="2070-12-31"-->
-<!--            data-placeholder="생년월일"-->
-<!--            required-->
-<!--            aria-required="true"-->
-<!--            value="{startDateValue}"-->
-<!--          />-->
-<!--        </div>-->
-<!--        <div class="int-area" id="emailBox">-->
-<!--          <input-->
-<!--            type="text"-->
-<!--            id="email"-->
-<!--            name="email"-->
-<!--            placeholder="이메일 Ex) abc@defg.com"-->
-<!--          />-->
-<!--          <div class="failure-message-Email hide">-->
-<!--            이메일형식이 알맞지않습니다.-->
-<!--          </div>-->
-<!--        </div>-->
 
-<!--        <div class="int-area" id="addrBox">-->
-<!--          <input-->
-<!--            type="text"-->
-<!--            id="main_address"-->
-<!--            name="address"-->
-<!--            placeholder="클릭하여 주소를 검색해주세요"-->
-<!--            readonly-->
-<!--            onclick="findAddr()"-->
-<!--          /><br />-->
-<!--          <input-->
-<!--            type="text"-->
-<!--            id="sub_address"-->
-<!--            name="subaddress"-->
-<!--            placeholder="상세 주소를 입력해 주세요"-->
-<!--          />-->
-<!--          <div class="failure-message-Addr hide">주소를 입력해 주세요</div>-->
-<!--          <div class="failure-message-SubAddr hide">-->
-<!--            상세주소를 입력해 주세요-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="int-area">-->
-<!--          <button type="submit" onclick="regChk()">회원가입</button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </div>-->
-  <div id="footers"></div>
+    </div>
     <link rel="javascript" href="/js/test.js" />
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -162,5 +73,6 @@
       }
     </script>
 <!--    <script src="/js/reg.js"></script>-->
+    <div id="footers"></div>
   </body>
 </html>

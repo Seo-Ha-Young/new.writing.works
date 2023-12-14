@@ -1,9 +1,10 @@
 window.onload = function () {
   var post_no = document.getElementById("dto_no").textContent;
   console.log(post_no);
-  var id = document.getElementById("member_info").textContent;
-  console.log("id=", id);
-
+  var member_no = document.getElementById("member_info_no").textContent;
+  var nickname = document.getElementById("member_info_nickname").textContent;
+  console.log("member_no=", member_no);
+  console.log("nickname=", nickname);
   //전체 리뷰 보여주기 기능
   function getPostReviews() {
     function formatTime(str) {
@@ -24,7 +25,7 @@ window.onload = function () {
       var str = "";
       $.each(arr, function (idx, review) {
         str += '<div class="post_no" data-no=' + review.no + " ><br>";
-        str += '<a class="id">' + review.id + "</a><br>";
+        str += '<a class="nickname">' + review.nickname + "</a><br>";
         str += '<a class="content">' + review.review_content + "</a><br>";
         str += '<a class="text">' + formatTime(review.regDate) + "</a>";
         str += "</div><br>";
@@ -38,9 +39,9 @@ window.onload = function () {
   var content = $('textarea[name="reply"]');
   //리뷰 등록 기능
   $(".btn_reply").click(function () {
-    var data = { post_no: post_no, review_content: content.val(), id: id };
+    var data = { post_no: post_no, review_content: content.val(), member_no: member_no };
     console.log(data);
-    if(id != "") {
+    if(member_no != "") {
     $.ajax({
       url: "/reviews/" + post_no,
       type: "POST",
@@ -61,20 +62,20 @@ window.onload = function () {
   var modal = document.querySelector(".modal");
   var review_no;
   var inputText = $('input[name="text"]');
-  var inputId = $('input[name="id"]');
+  var inputNickname = $('input[name="nickname"]');
 
   //리뷰 수정창 띄우기
   $(".reviewList").on("click", ".post_no", function () {
     var targetReview = $(this);
-   if(id != "") {
+   if(member_no != "") {
     review_no = targetReview.data("no");
     console.log("review_no:" + review_no);
-    inputId.val(targetReview.find(".id").text());
+    inputNickname.val(targetReview.find(".nickname").text());
     inputText.val(
       targetReview.find(".content").clone().children().remove().end().text()
     );
-    console.log("review : " + inputId.val() + " " + inputText.val());
-    if( inputId.val() == id) {
+    console.log("review : " + inputNickname.val() + " " + inputText.val());
+    if( inputNickname.val() == nickname ) {
     modal.classList.toggle("show");
     } else {
         alert("다른 사람의 댓글을 수정할 수 없습니다.");
@@ -88,7 +89,7 @@ window.onload = function () {
   $(".modifyBtn").on("click", function () {
     var data = {
       no: review_no,
-      id: id,
+      nickname: nickname,
       post_no: post_no,
       review_content: inputText.val(),
     };

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import writing.board.dto.MemberDTO;
 import writing.board.security.dto.AuthMemberDTO;
 import writing.board.security.security.MemberUserDetailsService;
@@ -28,8 +29,24 @@ public class MemberController {
     final private MemberUserDetailsService memberService;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpServletRequest request, Model model) {
         log.info("login page.............");
+        /* 로그인 성공 시 이전 페이지로 이동 */
+        String uri = request.getHeader("Referer");
+
+        // 이전 uri가 null이다 -> 배포 서버에서 나타나는 오류?
+        if (uri==null) {
+            // null일시 이전 페이지에서 addFlashAttribute로 보내준 uri을 저장
+            Map<String, ?> paramMap = RequestContextUtils.getInputFlashMap(request);
+            uri = (String) paramMap.get("referer");
+
+            // 이전 url 정보 담기
+            request.getSession().setAttribute("prevPage", uri);
+
+        }else {
+            // 이전 url 정보 담기
+            request.getSession().setAttribute("prevPage", uri);
+        }
         return "html/login";
     }
 
@@ -97,6 +114,38 @@ public class MemberController {
             return "/html/delete";
         }
     }
+
+    @GetMapping("/update")
+    public String updateGet(Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        MemberDTO member = memberService.findMember(userDetails.getUsername());
+        model.addAttribute("member", member);
+        return "/html/update";
+    }
+
+    @PostMapping("/update")
+    public String updatePost(@Valid MemberDTO memberDTO, Errors errors, Model model, Authentication authentication) {
+        log.info("update post..................");
+        if (errors.hasErrors()) {
+            model.addAttribute("memberDTO", memberDTO);
+
+            Map<String, String> validatorResult = memberService.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                log.info(validatorResult.get(key));
+                model.addAttribute(key, validatorResult.get(key));
+            }
+
+            return "html/update";
+        }
+
+        memberService.updateMember(memberDTO);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        MemberDTO member = memberService.findMember(userDetails.getUsername());
+
+        return "redirect:/html/member/"+member.getNo();
+    }
+
+
 
 
 

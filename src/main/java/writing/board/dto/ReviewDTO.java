@@ -15,7 +15,8 @@ public class ReviewDTO {
 
     private Long no;
     private String review_content;
-    private String id;
+    private Long member_no;
+    private String nickname;
     private Long post_no;
     private LocalDateTime regDate;
 
