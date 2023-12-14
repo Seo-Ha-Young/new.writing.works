@@ -52,7 +52,9 @@ header .glb a {
   font-size: 20px;
   font-weight: bold;
 }
-
+header .glb a:hover {
+  color: rgb(207, 189, 255);
+}
 header .glb a:first-child {
   margin-left: 0;
 }

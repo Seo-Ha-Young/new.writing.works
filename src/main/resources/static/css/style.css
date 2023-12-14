@@ -230,7 +230,7 @@ a {
   width: 10%;
 }
 .board_list .title {
-  width: 40%;
+  width: 30%;
   text-align: left;
   color: black;
 }
@@ -569,7 +569,7 @@ a {
   width: 200px;
   height: 30px;
   padding: 10px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 5px;
 }
 #loginDiv input[type="radio"] {
