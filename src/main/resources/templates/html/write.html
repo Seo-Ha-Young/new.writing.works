@@ -17,15 +17,21 @@
       $(document).ready(function () {
         $("#header").load("header"); // 원하는 파일 경로를 삽입하면 된다
         $("#footers").load("footer"); // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+        $("#quickmenu").load("quickmenu");
+        $("#img_no").html(
+          '<img src="/img/write_image.jpg" width="300" height="300" />'
+        );
 
-        $("#img_no").html('<img src="/img/write_image.jpg" width="300" height="300" />');
-
-        $("#mod").on("change", function() {
+        $("#mod").on("change", function () {
           var value = $(this).val();
-          if(value == 2) {
-           $("#img_no").html('<img src="/img/write_essay.jpg" width="300" height="300" />');
+          if (value == 2) {
+            $("#img_no").html(
+              '<img src="/img/write_essay.jpg" width="300" height="300" />'
+            );
           } else {
-           $("#img_no").html('<img src="/img/write_image.jpg" width="300" height="300" />');
+            $("#img_no").html(
+              '<img src="/img/write_image.jpg" width="300" height="300" />'
+            );
           }
         });
       });
@@ -47,10 +53,8 @@
     <div class="write_warp" id="write_warp">
       <div class="timer">
         <dl>
-          <dt>
-            글짓기를 준비하세요! <br />
-          </dt>
-          <div id="img_no"> </div>
+          <dt>글짓기를 준비하세요! <br /></dt>
+          <div id="img_no"></div>
           <!-- <dd>
         <input type="number" id="timer" min="1" />
       </dd>-->
@@ -103,8 +107,8 @@
       document.getElementById("upload2").addEventListener("click", function () {
         savePost();
       });
-
     </script>
     <div id="footers"></div>
+    <div id="quickmenu"></div>
   </body>
 </html>
