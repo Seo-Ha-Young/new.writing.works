@@ -29,6 +29,15 @@ public class Member extends BaseEntity {
     @Builder.Default
     private Set<MemberRole> roleSet = new HashSet<>(); // 권한
 
+    @ElementCollection(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "member_no", referencedColumnName = "no")
+    private Set<Preference>  preferences;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "member_no", referencedColumnName = "no")
+    private Set<Review>  reviews;
     public void addMemberRole(MemberRole memberRole){
         roleSet.add(memberRole);
     }

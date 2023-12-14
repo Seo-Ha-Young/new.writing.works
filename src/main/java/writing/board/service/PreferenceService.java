@@ -23,8 +23,8 @@ public interface PreferenceService {
     default Preference dtoToEntity(PreferenceDTO dto, Member member, PostWritten postWritten) {
         System.out.println("dto : "+dto);
         Preference preference = Preference.builder()
-                .member(member)
-                .postWritten(postWritten)
+                .member_no(member.getNo())
+                .post_written_no(postWritten.getNo())
                 .good(dto.getGood())
                 .bad(dto.getBad())
                 .build();
@@ -35,7 +35,7 @@ public interface PreferenceService {
     default PreferenceDTO entityToDto(Preference preference, Long post_no) {
         PreferenceDTO preferenceDTO = PreferenceDTO.builder()
                 .no(preference.getNo())
-                .member_no(preference.getMember().getNo())
+                .member_no(preference.getMember_no())
                 .bad(preference.getBad())
                 .good(preference.getGood())
                 .post_no(post_no)

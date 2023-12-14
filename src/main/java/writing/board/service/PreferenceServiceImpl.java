@@ -44,7 +44,7 @@ public class PreferenceServiceImpl implements PreferenceService {
         PostWritten post_no = writtenRepository.findPost_no(preferenceDTO.getPost_no());
         log.info("추천하는 회원 정보"+member.getNickname());
         Preference preference = dtoToEntity(preferenceDTO, member, post_no);
-        Long member_no = preference.getMember().getNo();
+        Long member_no = preference.getMember_no();
         Long no = post_no.getNo();
         log.info("추천하는 번호 정보"+no);
         log.info("가져올 닉네임 정보"+member_no);

@@ -17,9 +17,9 @@ public interface ReviewService {
     default ReviewDTO entityToDto(Review review) {
         ReviewDTO reviewDTO = ReviewDTO.builder()
                 .no(review.getNo())
-                .member_no(review.getMember().getNo())
+                .member_no(review.getMember_no())
                 .review_content(review.getReview_content())
-                .post_no(review.getPostWritten().getNo())
+                .post_no(review.getPost_no())
                 .regDate(review.getRegDate()).build();
         return reviewDTO;
     }
@@ -27,8 +27,8 @@ public interface ReviewService {
         Map<String, Object> entityMap = new HashMap<>();
         Review review = Review.builder()
                 .review_content(reviewDTO.getReview_content())
-                .member(Member.builder().no(reviewDTO.getMember_no()).build())
-                .postWritten(PostWritten.builder().no(reviewDTO.getPost_no()).build()).build();
+                .member_no(reviewDTO.getMember_no())
+                .post_no(reviewDTO.getPost_no()).build();
         entityMap.put("review", review);
         return entityMap;
     }
