@@ -37,12 +37,13 @@
   <div class="timer">
     <dl>
       <dt>
-        글쓰기 목표시간<br />
+        글짓기를 준비하세요! <br />
         (초단위)
       </dt>
-      <dd>
+      <img src="/img/write.jpg" width="300" height="300">
+     <!-- <dd>
         <input type="number" id="timer" min="1" />
-      </dd>
+      </dd>-->
     </dl>
   </div>
   <div class="modeSelect">
@@ -65,12 +66,11 @@
 <div class="write_mode1" id="write_mode1" style="display: none">
   <div id="img"></div>
   <div id="timers"></div>
-  <textarea id="write_word" name="img_mode"></textarea><br />
+  <textarea id="write_word" name="img_mode" ></textarea><br />
   <button
           type="button"
           id="upload"
           class="upload"
-          style="display: none"
   >
     등록
   </button>
@@ -81,12 +81,12 @@
 <div class="write_mode2" id="write_mode2" style="display: none">
   <form>
     <div id="timers2"></div>
+
     <textarea id="write_word2" name="Essay-mode"></textarea><br />
 
     <button
             id="upload2"
             class="upload"
-            style="display: none"
             onclick="savePost()"
     >
       등록

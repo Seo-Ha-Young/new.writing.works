@@ -22,6 +22,8 @@ function savePost() {
   })
   .then(data => {
     console.log('글이 성공적으로 저장되었습니다:', data);
+
+    window.location.href = '/html/board';
   })
   .catch(error => {
     console.error('글을 저장하는 중 오류가 발생했습니다:', error);
