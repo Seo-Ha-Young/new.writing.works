@@ -10,11 +10,13 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import writing.board.dto.MemberDTO;
 import writing.board.security.dto.AuthMemberDTO;
 import writing.board.security.security.MemberUserDetailsService;
+import writing.board.validator.CheckEmailValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,11 @@ import java.util.Map;
 @RequestMapping("/html")
 public class MemberController {
     final private MemberUserDetailsService memberService;
+    final private CheckEmailValidator checkEmailValidator;
+    @InitBinder
+    public void validatorBinder(WebDataBinder binder) {
+        binder.addValidators(checkEmailValidator);
+    }
 
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model) {

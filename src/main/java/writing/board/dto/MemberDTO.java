@@ -54,7 +54,6 @@ public class MemberDTO {
         memberDTO.setNickname(member.getNickname());
         memberDTO.setName(member.getName());
         memberDTO.setBirth(member.getBirth());
-        //memberDTO.setAddress(member.getAddress());
         memberDTO.setMainaddress(member.getMainaddress());
         memberDTO.setSubaddress(member.getSubaddress());
         return memberDTO;

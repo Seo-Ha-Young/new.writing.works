@@ -45,16 +45,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/html/login")
                 .successHandler(authenticationSuccessHandler)
-//                .defaultSuccessUrl("/html/board")
                 .usernameParameter("email")
                 .failureUrl("/html/error")
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/html/logout")).logoutSuccessUrl("/html/board").invalidateHttpSession(true)
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/html/logout"))
+                .logoutSuccessUrl("/html/board").invalidateHttpSession(true)
                 .and()
                 .exceptionHandling().accessDeniedPage("/html/denied");
 
         http.csrf().disable();
     }
-
 
 }
