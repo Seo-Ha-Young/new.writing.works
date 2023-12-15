@@ -1,18 +1,23 @@
-function savePost() {
-  var postContent = document.getElementById('write_word2').value;
-  var image_no = null;
-  console.log(postContent);
-    if(postContent == "") {
-      postContent = document.getElementById('write_word').value;
-      console.log(postContent);
-      image_no = emoticons.indexOf(todayEmoticon)+1;
-    }
+ function savePost() {
+    const postContent1 = document.getElementById('write_word2').value;
+    let data = {};
 
- console.log("image_no"+image_no)
-  const data = {
-    post_content: postContent, image_no:image_no
-  };
-  console.log(data);
+    if (postContent1.trim() !== '') {
+      data = {
+        post_content: postContent1
+      };
+    } else {
+      const postContent2 = document.getElementById('write_word').value;
+      if (postContent2.trim() !== '') {
+        var image_no = emoticons.indexOf(todayEmoticon)+1;
+        data = {
+          post_content: postContent2, image_no:image_no
+        };
+      } else {
+        console.error('모든 필드가 비어있습니다.');
+        return;
+      }
+    }
   fetch('/savePost', {
     method: 'POST',
     headers: {
