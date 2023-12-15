@@ -22,9 +22,7 @@ public class PostWriteController {
     private final MemberUserDetailsService memberUserDetailsService;
 
     @GetMapping("/html/write")
-    public void write(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, @AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
-        log.info("board page................" + requestDTO);
-        model.addAttribute("result", postService.getList(requestDTO));
+    public void write( @AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
         if (authMemberDTO != null) {
             String nickname = authMemberDTO.getNickname();
             Long member_no = authMemberDTO.getNo();
@@ -32,10 +30,6 @@ public class PostWriteController {
             model.addAttribute("nickname", nickname);
             model.addAttribute("member_no", member_no);
         }
-        log.info("게시글 번호 No = " + no);
-        PostWrittenDTO dto = postService.read(no);
-        log.info("게시글 정보 :" + dto);
-        model.addAttribute("dto", dto);
     }
 
 
