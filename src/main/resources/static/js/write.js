@@ -20,7 +20,7 @@ function savePost() {
     return response.json();
   })
   .then(data => {
-    console.log('글이 성공적으로 저장되었습니다:', data);
+    console.log('글이 성공적으로 저장되었습니다:', data);/**/
 
     window.location.href = '/html/board';
   })
