@@ -21,16 +21,16 @@ import java.util.function.Function;
 
 @Service
 @Log4j2
-
+@RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
-    private final PostWrittenRepository postWrittenRepository;
+    private final PostWrittenRepository postRepository;
     private final MemberRepository memberRepository;
 
-    @Autowired
-    public PostServiceImpl(PostWrittenRepository postWrittenRepository, MemberRepository memberRepository) {
-        this.postWrittenRepository = postWrittenRepository;
-        this.memberRepository = memberRepository;
-    }
+//    @Autowired
+//    public PostServiceImpl(PostWrittenRepository postWrittenRepository, MemberRepository memberRepository) {
+//        this.postRepository = postWrittenRepository;
+//        this.memberRepository = memberRepository;
+//    }
     private PostWrittenDTO entityToDto(PostWritten postWritten) {
         return PostWrittenDTO.builder()
                 .no(postWritten.getNo())
@@ -44,7 +44,7 @@ public class PostServiceImpl implements PostService {
     public PageResultDTO<PostWrittenDTO, PostWritten> getList(PageRequestDTO requestDTO) {
         // requestDTO로부터 Pageable을 생성하고, 이를 통해 페이징 처리된 게시물 목록을 가져옵니다.
         Pageable pageable = requestDTO.getPageable(Sort.by("no").descending());
-        Page<PostWritten> result = postWrittenRepository.findAll(pageable);
+        Page<PostWritten> result = postRepository.findAll(pageable);
 
         // 각각의 결과를 PostWrittenDTO로 변환하는 함수를 정의합니다.
         Function<PostWritten, PostWrittenDTO> fn = this::entityToDto;
@@ -56,7 +56,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostWrittenDTO read(Long no) {
         // 게시물 번호에 해당하는 PostWritten 엔티티를 가져옵니다.
-        PostWritten postWritten = postWrittenRepository.findById(no).orElse(null);
+        PostWritten postWritten = postRepository.findById(no).orElse(null);
 
         if (postWritten != null) {
             // PostWritten 엔티티를 PostWrittenDTO로 변환합니다.
@@ -74,10 +74,10 @@ public class PostServiceImpl implements PostService {
                 .writer(currentUserNickname)
                 .image_no(imageNo)
                 .build();
-        postWrittenRepository.save(postWritten);
+        postRepository.save(postWritten);
     }
 
     public List<PostWritten> getAllPosts() {
-        return postWrittenRepository.findAll();
+        return postRepository.findAll();
     }
 }
