@@ -1,31 +1,34 @@
 package writing.board.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import writing.board.dto.PageRequestDTO;
+import writing.board.dto.PageResultDTO;
 import writing.board.dto.PostWrittenDTO;
 import writing.board.entity.PostWritten;
-import writing.board.repository.PostWrittenRepository;
+public interface PostService {
 
-import java.util.List;
+    PageResultDTO<PostWrittenDTO, PostWritten> getList(PageRequestDTO pageRequestDTO);
 
-@Service
-public class PostService {
-    private final PostWrittenRepository postWrittenRepository;
+    PostWrittenDTO read(Long no);
+    default PostWrittenDTO entitiesToDTO(PostWritten postWritten) {
+        PostWrittenDTO postWrittenDTO = PostWrittenDTO.builder()
+                .no(postWritten.getNo())
+                .post_name(postWritten.getPost_name())
+                .post_content(postWritten.getPost_content())
+                .regDate(postWritten.getRegDate())
+                .writer(postWritten.getWriter())
+                .image_no(postWritten.getImage_no())
+                .build();
 
-    @Autowired
-    public PostService(PostWrittenRepository postWrittenRepository) {
-        this.postWrittenRepository = postWrittenRepository;
+        return postWrittenDTO;
     }
-
-    public void savePost(PostWrittenDTO postWrittenDTO) {
+    default PostWritten dtoToEntity(PostWrittenDTO postWrittenDTO) {
         PostWritten postWritten = PostWritten.builder()
                 .post_content(postWrittenDTO.getPost_content())
+                .post_name(postWrittenDTO.getPost_name())
+                .image_no(postWrittenDTO.getImage_no())
+                .writer(postWrittenDTO.getWriter())
                 .build();
-        postWrittenRepository.save(postWritten);
-    }
 
-    public List<PostWritten> getAllPosts() {
-        return postWrittenRepository.findAll();
+        return postWritten;
     }
-
 }
