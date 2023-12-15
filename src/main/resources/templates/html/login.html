@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인</title>
     <link rel="stylesheet" href="/css/css.css" />
+    <!--    <link rel="stylesheet" href="/src/main/resources/static/css/css.css" />-->
+
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,21 +25,51 @@
   <body>
     <div id="header"></div>
     <div id="loginDiv">
-      <form id="registerForm" class="loginForm" action="/html/login" method="post">
+      <form
+        id="registerForm"
+        class="loginForm"
+        action="/html/login"
+        method="post"
+      >
         <div class="idInput">
-          <input type="text" name="email" class="form-control" placeholder="EMAIL">
+          <input
+            type="text"
+            name="email"
+            class="form-control"
+            placeholder="EMAIL"
+            autocomplete="false"
+          />
         </div>
         <div class="pwInput">
-          <input type="password" name="password" class="form-control" placeholder="PASSWORD">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="PASSWORD"
+            autocomplete="false"
+          />
         </div>
         <div class="my-4">
           <div class="float-end">
-            <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
-            <button type="submit" id="login" class="btn btn-primary submitBtn">LOGIN</button>
-            <button type="button" id="sign-in" class="btn btn-primary" onClick="location.href='/html/register'">REGISTER</button>
+            <p
+              th:if="${loginErrorMsg}"
+              class="error"
+              th:text="${loginErrorMsg}"
+            ></p>
+            <button type="submit" id="login" class="btn btn-primary submitBtn">
+              LOGIN
+            </button>
+            <button
+              type="button"
+              id="sign-in"
+              class="btn btn-primary"
+              onClick="location.href='/html/register'"
+            >
+              REGISTER
+            </button>
           </div>
         </div>
-       </form>
+      </form>
     </div>
     <div id="footers"></div>
     <script src="/js/login.js"></script>

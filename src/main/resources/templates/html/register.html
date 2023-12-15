@@ -14,7 +14,7 @@
     </script>
 <!--    <link rel="javascript" href="/js/reg.js" />-->
     <!-- <link rel="stylesheet" href="/css/css.css" /> -->
-    <link rel="stylesheet" href="/src/main/resources/static/css/css.css"
+    <link rel="stylesheet" href="/css/css.css">
   </head>
 
   <body>
@@ -22,11 +22,11 @@
     <div class="register_div">
       <form id="reg_form" class="reg_form" method="post" action="/html/register" modelAttribute="memberDTO">
         <div class="int-area" id="emailBox">
-          <input type="text" id="email" name="email" placeholder="Email">
+          <input type="text" id="email" name="email" placeholder="Email" autocomplete="false">
           <br></bre><span th:text="${valid_email}"></span>
         </div>
         <div class="int-area" id="pwBox">
-          <input type="password" id="password" name="password" placeholder="Password">
+          <input type="password" id="password" name="password" placeholder="Password" autocomplete="false">
           <br><span th:text="${valid_password}"></span>
         </div>
         <div class="int-area" id="nickNameBox">

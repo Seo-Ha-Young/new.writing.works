@@ -11,11 +11,13 @@ input:focus {
 }
 html {
   min-height: 100%;
+  min-width: 100%;
   font-size: 15px;
   font-family: "Hahmlet", serif;
 }
 body {
   min-height: 100%;
+  min-width: 100%;
   text-align: center;
   background-image: linear-gradient(
     to right bottom,
@@ -230,7 +232,7 @@ a {
   width: 10%;
 }
 .board_list .title {
-  width: 40%;
+  width: 30%;
   text-align: left;
   color: black;
 }
@@ -361,21 +363,31 @@ a {
   border-radius: 4px;
   border: 1px solid var(--linecolor);
 }
+.post_no {
+  width: 80%;
+  height: auto;
+  padding: 10px;
+  background: white;
+  border-radius: 4px;
+  border: 0.5px solid black;
+}
+
+/* 댓글 스크롤바 */
 #reviewList {
   margin-top: 20px;
   overflow-y: hidden;
-  max-height: 200px;
+  max-height: 300px;
 }
 #reviewList::-webkit-scrollbar {
   width: 10px;
 }
 #reviewList::-webkit-scrollbar-thumb {
-  height: 10%; /* 스크롤바의 길이 */
-  background: #217af4; /* 스크롤바의 색상 */
+  height: 10%;
+  background: #217af4;
   border-radius: 10px;
 }
 #reviewList::-webkit-scrollbar-track {
-  background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
+  background: rgba(33, 122, 244, 0.1);
 }
 #reviewList:hover {
   overflow-y: auto;
@@ -389,7 +401,7 @@ a {
   font-family: arial;
   font-size: 24px;
   outline: solid 1px white;
-  /* 자식 요소(.child)를 중앙 정렬하기 */
+
   display: inline-block;
   justify-content: center;
   background: #ccdaee;
@@ -518,11 +530,6 @@ a {
   color: black;
   resize: none;
 }
-/* .write_mode2 #upload2,
-.write_mode1 #upload {
-  width: 90px;
-  height: 50px;
-} */
 
 /* 에세이모드 */
 
@@ -569,7 +576,7 @@ a {
   width: 200px;
   height: 30px;
   padding: 10px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 5px;
 }
 #loginDiv input[type="radio"] {
