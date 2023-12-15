@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import writing.board.dto.PageRequestDTO;
 import writing.board.dto.PostWrittenDTO;
+import writing.board.repository.ImageRepository;
 import writing.board.security.dto.AuthMemberDTO;
 import writing.board.security.security.MemberUserDetailsService;
+import writing.board.service.ImageService;
+import writing.board.service.ImageServiceImpl;
 import writing.board.service.PostServiceImpl;
 
 @Controller
@@ -38,9 +41,9 @@ public class PostWriteController {
     @ResponseBody
     public ResponseEntity<PostWrittenDTO> savePost(@RequestBody PostWrittenDTO writeDTO, @AuthenticationPrincipal AuthMemberDTO authMemberDTO) {
         log.info("글 작성 요청: " + writeDTO);
-            String currentUserNickname = authMemberDTO.getNickname();
-            Long imageNo = 1L; //
-            postService.savePost(writeDTO, currentUserNickname, imageNo, writeDTO.getPost_content());
-            return ResponseEntity.ok().body(writeDTO);
+        String currentUserNickname = authMemberDTO.getNickname();
+        Long imageNo = writeDTO.getImage_no(); //
+        postService.savePost(writeDTO, currentUserNickname, imageNo, writeDTO.getPost_content());
+        return ResponseEntity.ok().body(writeDTO);
     }
 }
