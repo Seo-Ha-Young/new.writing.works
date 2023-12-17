@@ -7,6 +7,8 @@ window.onload = function () {
   console.log("nickname=", nickname);
 
       $(".delete_post").on("click", function () {
+        let delete_no = confirm("이 글을 삭제하시겠습니까?")
+        if(delete_no == true) {
         console.log(post_no);
         $.ajax({
           url: "/html/delete_post/" + post_no,
@@ -16,9 +18,12 @@ window.onload = function () {
           success: function (result) {
             alert(result);
             if(result == post_no+"번이 삭제되었습니다")
-            history.back();
-          },
+            window.location.replace("/html/board")
+          }
         });
+        } else {
+        return;
+        }
       });
 
 
