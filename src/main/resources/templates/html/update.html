@@ -30,7 +30,7 @@
                     type="text"
                     id="email"
                     name="email"
-                    th:value="${member.email}"
+                    th:value="${memberDTO.email}"
                     readonly
             />
         </div>
@@ -39,14 +39,14 @@
                     type="text"
                     id="nickname"
                     name="nickname"
-                    th:value="${member.nickname}"
+                    th:value="${memberDTO.nickname}"
                     placeholder="닉네임 입력"
             />
-            <input type="hidden" name="password" id="password" th:value="${member.password}"/>
-            <input type="hidden" name="name" id="name" th:value="${member.name}"/>
-            <input type="hidden" name="birth" id="birth" th:value="${member.birth}"/>
-            <input type="hidden" name="mainaddress" id="mainaddress" th:value="${member.mainaddress}"/>
-            <input type="hidden" name="subaddress" id="subaddress" th:value="${member.subaddress}"/>
+            <input type="hidden" name="password" id="password" th:value="${memberDTO.password}"/>
+            <input type="hidden" name="name" id="name" th:value="${memberDTO.name}"/>
+            <input type="hidden" name="birth" id="birth" th:value="${memberDTO.birth}"/>
+            <input type="hidden" name="mainaddress" id="mainaddress" th:value="${memberDTO.mainaddress}"/>
+            <input type="hidden" name="subaddress" id="subaddress" th:value="${memberDTO.subaddress}"/>
         </div>
         <p th:if="${wrongNickname}" class="error" th:text="${wrongNickname}"></p>
         <button type="submit" id="edit">닉네임 수정하기</button>
