@@ -5,6 +5,23 @@ window.onload = function () {
   var nickname = document.getElementById("member_info_nickname").textContent;
   console.log("member_no=", member_no);
   console.log("nickname=", nickname);
+
+      $(".delete_post").on("click", function () {
+        console.log(post_no);
+        $.ajax({
+          url: "/html/delete_post/" + post_no,
+          type: "delete",
+          contentType: "application/json; charset:utf-8",
+          datatype: "text",
+          success: function (result) {
+            alert(result);
+            if(result == post_no+"번이 삭제되었습니다")
+            history.back();
+          },
+        });
+      });
+
+
   //전체 리뷰 보여주기 기능
   function getPostReviews() {
     function formatTime(str) {
@@ -137,6 +154,8 @@ window.onload = function () {
     modal.classList.remove("show");
   }
   $(".close").on("click", close);
+
+
 
   function addJavascript(jsname) {
     var th = document.getElementsByTagName("head")[0];

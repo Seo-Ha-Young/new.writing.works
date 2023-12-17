@@ -12,6 +12,8 @@ public interface BoardService {
     PageResultDTO<PostWrittenDTO, Object[]> getList(PageRequestDTO requestDTO);
 
     PostWrittenDTO read(Long no);
+
+    void remove(Long postNo);
     default PostWrittenDTO entitiesToDTO(PostWritten postWritten, Long badCnt, Long goodCnt){
         PostWrittenDTO postWrittenDTO = PostWrittenDTO.builder()
                 .no(postWritten.getNo())
@@ -36,5 +38,7 @@ public interface BoardService {
                 .build();
         return postWritten;
     }
+
+
 }
 

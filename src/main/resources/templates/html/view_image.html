@@ -95,7 +95,9 @@
       <div class="board_title"></div>
       <div class="board_view_wrap">
         <div class="board_view">
-          <div class="title">[[${dto.post_name}]]</div>
+          <div class="title">[[${dto.post_name}]]
+            <button th:each="role : ${role_set}" th:if="${#strings.contains(role,'ADMIN')}" type="button" class="delete_post">삭제</button>
+          </div>
           <div class="info">
             <dl>
               <dt>번호</dt>
