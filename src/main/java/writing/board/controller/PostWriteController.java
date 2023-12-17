@@ -40,7 +40,7 @@ public class PostWriteController {
         log.info("글 작성 요청: " + writeDTO);
             String currentUserNickname = authMemberDTO.getNickname();
             Long imageNo = writeDTO.getImage_no(); //
-            postService.savePost(writeDTO, currentUserNickname, imageNo, writeDTO.getPost_content());
+            postService.savePost(writeDTO, currentUserNickname, imageNo, writeDTO.getPost_name());
             return ResponseEntity.ok().body(writeDTO);
     }
 }

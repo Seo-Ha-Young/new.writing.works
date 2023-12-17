@@ -1,17 +1,18 @@
  function savePost() {
     const postContent1 = document.getElementById('write_word2').value;
     let data = {};
+    let post_name = prompt("게시글 제목");
 
     if (postContent1.trim() !== '') {
       data = {
-        post_content: postContent1
+        post_content: postContent1, post_name: post_name
       };
     } else {
       const postContent2 = document.getElementById('write_word').value;
       if (postContent2.trim() !== '') {
         var image_no = emoticons.indexOf(todayEmoticon)+1;
         data = {
-          post_content: postContent2, image_no:image_no
+          post_content: postContent2, image_no:image_no, post_name: post_name
         };
       } else {
         console.error('모든 필드가 비어있습니다.');
