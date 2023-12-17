@@ -125,23 +125,17 @@ public class MemberController {
     @GetMapping("/update")
     public String updateGet(Model model, Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        MemberDTO member = memberService.findMember(userDetails.getUsername());
-        model.addAttribute("member", member);
+        MemberDTO memberDTO = memberService.findMember(userDetails.getUsername());
+        model.addAttribute("memberDTO", memberDTO);
         return "/html/update";
     }
 
     @PostMapping("/update")
     public String updatePost(@Valid MemberDTO memberDTO, Errors errors, Model model, Authentication authentication) {
         log.info("update post..................");
-        if (errors.hasErrors()) {
-            model.addAttribute("memberDTO", memberDTO);
 
-            Map<String, String> validatorResult = memberService.validateHandling(errors);
-            for (String key : validatorResult.keySet()) {
-                log.info(validatorResult.get(key));
-                model.addAttribute(key, validatorResult.get(key));
-            }
-
+        if(memberDTO.getNickname().equals("")) {
+            model.addAttribute("wrongNickname", "닉네임을 다시 입력해주세요.");
             return "html/update";
         }
 
@@ -151,10 +145,5 @@ public class MemberController {
 
         return "redirect:/html/member/"+member.getNo();
     }
-
-
-
-
-
 
 }
