@@ -49,6 +49,13 @@ public class BoardServiceImpl implements BoardService{
         return entitiesToDTO(postWritten, goodCnt, badCnt);
     }
 
+    @Override
+    public void remove(Long postNo) {
+        log.info("삭제할 번호 "+postNo);
+        PostWritten post = postRepository.findPost_no(postNo);
+        postRepository.delete(post);
+    }
+
 
     private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
         String type = requestDTO.getType();
