@@ -6,7 +6,8 @@ input:focus {
   outline: none;
 }
 :root {
-  --linecolor: #b1bdc5;
+  /*--linecolor: #b1bdc5;*/
+  --linecolor: black;
   --textcolor: ;
 }
 html {
@@ -19,6 +20,7 @@ body {
   min-height: 100%;
   min-width: 100%;
   text-align: center;
+
   background-image: linear-gradient(
     to right bottom,
     #b3c1d6,
@@ -251,7 +253,9 @@ a {
 .board_list a {
   color: black;
 }
-
+.board_view_wrap img {
+  border: 3px solid black;
+}
 /* 뷰페이지 */
 
 .board_view {
