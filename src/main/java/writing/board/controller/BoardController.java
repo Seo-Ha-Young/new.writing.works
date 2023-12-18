@@ -35,6 +35,7 @@ private final MemberRepository memberRepository;
 
     }
 
+
     @GetMapping({"/view_image", "/view_essay"})
     public void view(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, @AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
         log.info("로그인 멤버 정보 "+authMemberDTO);
