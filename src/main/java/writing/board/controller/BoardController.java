@@ -30,6 +30,7 @@ private final MemberRepository memberRepository;
     @GetMapping("/board")
     public void board(PageRequestDTO requestDTO, Model model) {
         log.info("board page................"+requestDTO);
+        log.info("넘어온 페이지 정보 "+boardService.getList(requestDTO));
         model.addAttribute("result", boardService.getList(requestDTO));
 
     }

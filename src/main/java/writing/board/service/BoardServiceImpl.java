@@ -1,6 +1,7 @@
 package writing.board.service;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,7 +18,6 @@ import writing.board.repository.PostWrittenRepository;
 
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 
 @Service
@@ -29,15 +29,32 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public PageResultDTO<PostWrittenDTO, Object[]> getList(PageRequestDTO requestDTO) {
         Pageable pageable = requestDTO.getPageable(Sort.by("no").descending());
-        Page<Object[]> result = postRepository.getListPage(pageable);
-        Function<Object[], PostWrittenDTO> fn = (entity -> entitiesToDTO(
-                (PostWritten) entity[0],
-                (Long) entity[1],
-                (Long) entity[2]
-        ));
+        Predicate booleanBuilder = getSearch(requestDTO);
+        log.info("검색 타입 2"+booleanBuilder);
+        Page<Object[]> result = postRepository.getListPage(booleanBuilder, pageable);
+        postRepository.findAll(booleanBuilder, pageable);
+        Function<Object[], PostWrittenDTO> fn = (entity -> {
+            PostWrittenDTO dto = entitiesToDTO((PostWritten) entity[0], (Long) entity[1], (Long) entity[2]);
+            log.info("가져온 정보 "+dto);
+            return dto;
+        });
+
         return new PageResultDTO<>(result, fn);
 
     }
+
+//    @Override
+//    public PageResultDTO<PostWrittenDTO, Object[]> getList(PageRequestDTO requestDTO) {
+//        Pageable pageable = requestDTO.getPageable(Sort.by("no").descending());
+//        Page<Object[]> result = postRepository.getListPage(pageable);
+//        Function<Object[], PostWrittenDTO> fn = (entity -> entitiesToDTO(
+//                (PostWritten) entity[0],
+//                (Long) entity[1],
+//                (Long) entity[2]
+//        ));
+//        return new PageResultDTO<>(result, fn);
+//
+//    }
 
     @Override
     public PostWrittenDTO read(Long no) {
@@ -57,8 +74,9 @@ public class BoardServiceImpl implements BoardService{
     }
 
 
-    private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
+    private Predicate getSearch(PageRequestDTO requestDTO) {
         String type = requestDTO.getType();
+        log.info("검색 타입 "+type);
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         QPostWritten qPostWritten = QPostWritten.postWritten;
         String keyword = requestDTO.getKeyword();
@@ -68,6 +86,9 @@ public class BoardServiceImpl implements BoardService{
             return  booleanBuilder;
         }
         BooleanBuilder conditionBuilder = new BooleanBuilder();
+        if(type.contains("t")){
+            conditionBuilder.or(qPostWritten.post_name.contains(keyword));
+        }
         if(type.contains("c")){
             conditionBuilder.or(qPostWritten.post_content.contains(keyword));
         }
@@ -75,6 +96,8 @@ public class BoardServiceImpl implements BoardService{
             conditionBuilder.or(qPostWritten.writer.contains(keyword));
         }
         booleanBuilder.and(conditionBuilder);
+        log.info("검색할 내용 "+booleanBuilder);
+        log.info("검색기능 작동 완료");
         return booleanBuilder;
     }
 

@@ -29,6 +29,18 @@ public interface BoardService {
         return postWrittenDTO;
     }
 
+    default PostWrittenDTO entitiesToDTO_Search(PostWritten postWritten){
+        PostWrittenDTO postWrittenDTO = PostWrittenDTO.builder()
+                .no(postWritten.getNo())
+                .post_name(postWritten.getPost_name())
+                .post_content(postWritten.getPost_content())
+                .regDate(postWritten.getRegDate())
+                .writer(postWritten.getWriter())
+                .image_no((postWritten.getImage_no()))
+                .build();
+        return postWrittenDTO;
+    }
+
     default PostWritten dtoToEntity(PostWrittenDTO postWrittenDTO) {
         PostWritten postWritten = PostWritten.builder()
                 .post_content(postWrittenDTO.getPost_content())
