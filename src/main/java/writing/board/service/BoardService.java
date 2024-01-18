@@ -5,8 +5,6 @@ import writing.board.dto.PageResultDTO;
 import writing.board.dto.PostWrittenDTO;
 import writing.board.entity.PostWritten;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public interface BoardService {
     PageResultDTO<PostWrittenDTO, Object[]> getList(PageRequestDTO requestDTO);
@@ -14,7 +12,7 @@ public interface BoardService {
     PostWrittenDTO read(Long no);
 
     void remove(Long postNo);
-    default PostWrittenDTO entitiesToDTO(PostWritten postWritten, Long badCnt, Long goodCnt){
+    default PostWrittenDTO entitiesToDTO(PostWritten postWritten, Long goodCnt, Long badCnt){
         PostWrittenDTO postWrittenDTO = PostWrittenDTO.builder()
                 .no(postWritten.getNo())
                 .post_name(postWritten.getPost_name())
