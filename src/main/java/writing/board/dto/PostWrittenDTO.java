@@ -1,9 +1,11 @@
 package writing.board.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import writing.board.entity.PostWritten;
 
 import java.time.LocalDateTime;
 

@@ -9,6 +9,8 @@ public interface PostService {
     PageResultDTO<PostWrittenDTO, PostWritten> getList(PageRequestDTO pageRequestDTO);
 
     PostWrittenDTO read(Long no);
+
+    PostWritten savePost(PostWrittenDTO writeDTO, String currentUserNickname, Long imageNo, String postContent);
     default PostWrittenDTO entitiesToDTO(PostWritten postWritten) {
         PostWrittenDTO postWrittenDTO = PostWrittenDTO.builder()
                 .no(postWritten.getNo())
@@ -31,4 +33,6 @@ public interface PostService {
 
         return postWritten;
     }
+
+
 }

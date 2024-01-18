@@ -22,7 +22,6 @@ public class PreferenceRepositoryTests {
     public void insertRecommend() {
         IntStream.rangeClosed(1,5).forEach(i ->{
             Preference preference = Preference.builder()
-                    .postWritten((PostWritten.builder().no((long)i)).build())
                     .bad((long)1)
                     .build();
             System.out.println("=======================================================");

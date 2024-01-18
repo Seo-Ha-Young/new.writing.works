@@ -1,15 +1,14 @@
 package writing.board.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import writing.board.entity.PostWritten;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -33,8 +32,11 @@ public interface PostWrittenRepository extends JpaRepository<PostWritten, Long>,
     @Query(value = "select p, count(pr.bad) as badCnt, count(pr.good) as goodCnt from PostWritten p "
             +"left outer join Preference pr on pr.post_written_no = p.no "
             +"group by p")
-    Page<Object[]> getListPage(Pageable pageable);
+    Page<Object[]> getListPage(Predicate booleanBuilder, Pageable pageable);
 
     @Query("select p from PostWritten p where p.no = :no")
     PostWritten findPost_no(Long no);
+
+
+
 }

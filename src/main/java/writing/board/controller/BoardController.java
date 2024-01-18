@@ -30,9 +30,11 @@ private final MemberRepository memberRepository;
     @GetMapping("/board")
     public void board(PageRequestDTO requestDTO, Model model) {
         log.info("board page................"+requestDTO);
+        log.info("넘어온 페이지 정보 "+boardService.getList(requestDTO));
         model.addAttribute("result", boardService.getList(requestDTO));
 
     }
+
 
     @GetMapping({"/view_image", "/view_essay"})
     public void view(long no, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, @AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {

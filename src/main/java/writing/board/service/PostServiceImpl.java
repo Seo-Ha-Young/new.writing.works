@@ -67,14 +67,15 @@ public class PostServiceImpl implements PostService {
         }
     }
 
-    public void savePost(PostWrittenDTO postWrittenDTO, String currentUserNickname, Long imageNo, String postName) {
+    public PostWritten savePost(PostWrittenDTO postWrittenDTO, String currentUserNickname, Long imageNo, String postName) {
         PostWritten postWritten = PostWritten.builder()
                 .post_name(postName)
                 .post_content(postWrittenDTO.getPost_content())
                 .writer(currentUserNickname)
                 .image_no(imageNo)
                 .build();
-        postRepository.save(postWritten);
+         postRepository.save(postWritten);
+         return  postWritten;
     }
 
     public List<PostWritten> getAllPosts() {
